@@ -6,6 +6,30 @@ All desired features:
 - A feature to solve a sudoku puzzle - again either a random one requested from an API, or one entered by the user. The solver will explain to the user each step it takes and walk them through the logic, allowing them to see techniques in action and learn how to use them.
 - The sudoku solver will be given increasingly advanced techniques to use when solving puzzles - starting with crosshatching, naked/hidden singles, etc - progressing as far as possible.
 
+MVP:
+The user should be able to request a random sudoku puzzle.
+The user should be able to manually fill in a sudoku puzzle.
+The user should be able to fill out a sudoku puzzle in the app with illegal moves being rejected.
+The user should be able to have the app solve a sudoku puzzle for them.
+The user should be able to create an account to track and review the puzzles they have completed.
+The user should be able to read about the rules and history of sudoku.
+
+Basic Extensions:
+The user should be able to see step-by-step the logic that the solver has employed.
+The user should be able to learn about basic sudoku techniques.
+The user should be able to switch the colour scheme into a visually noisy mess and listen to blaring J-pop.
+The user should be able to complete a puzzle that another user has completed and compare the time.
+
+Full Extensions:
+The user should be able to select a difficulty level when requesting a sudoku puzzle.
+The user should be able to pencil in candidate numbers in squares.
+The user should be able to use the sudoku solver with more advanced logic.
+The user should be able to see more advanced logic that the solver has employed to solve harder puzzles.
+The user should be able to learn about advanced sudoku techniques.
+
+
+
+
 
 MVP:
 - Page that allows the user to solve a sudoku puzzle - front-end checks each move's legality and rejects illegal moves, can confirm puzzle has been completed.
@@ -24,6 +48,7 @@ Basic extensions:
 - In the bottom right corner of the screen, there is a "CRAZY MODE" button.
 - This changes the appearance of the site from professional monochrome minimalism to outrageous fuchsia and green, and similar visual mayhem. Obnoxious J-pop starts playing loudly.
 - It can be reverted at any time.
+- Different users can complete the same puzzle to compare speeds.
 
 Full extensions:
 - Allow support for pencilling in.
