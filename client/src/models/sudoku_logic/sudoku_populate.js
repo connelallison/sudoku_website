@@ -1,0 +1,24 @@
+"use strict";
+const Sudoku = require("./sudoku_helpers.js");
+
+// This method is used to populate a blank sudoku puzzle with values passed in as a 2D rows array of numbers.
+// It loops through each Square of each row of the sudoku puzzle, and sets its value property to the corresponding number in the 2D array passed in as an argument.
+Sudoku.prototype.populate2dArray = function (rows) {
+  for (let x = 0; x < 9; x++) {
+    for (let y = 0; y < 9; y++) {
+      this.rows[x][y].value = rows[x][y];
+    }
+  }
+  this.constructCandidates();
+};
+
+// This method is used to construct the starting candidate lists when a puzzle is populated. It loops through each Square object in each row, and invokes the checkPeers method on it.
+Sudoku.prototype.constructCandidates = function () {
+  for (let x = 0; x < 9; x++) {
+    for (let y = 0; y < 9; y++) {
+      this.checkPeers(this.rows[x][y]);
+    }
+  }
+};
+
+module.exports = Sudoku;

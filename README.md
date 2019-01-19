@@ -78,3 +78,10 @@ Logic and Back-end: Connel and Ally
 In particular...
 Sudoku algorithms: Connel
 Server, database, account system: Ally
+
+Additional ideas:
+- Add a way for the user to import a puzzle in the form of a number string instead of having to manually enter in the numbers - for example:
+000023000004000100050084090001070902093006000000010760000000000800000004060000587
+would be converted into a sudoku grid, with the first 9 digits representing the values in the first row, and so on.
+- In crazy mode, replace all the numbers in the grid with non-numeric symbols. For example, the number 1 might be replaced with a little image of a doge.
+- Have the crazy mode button not say "CRAZY MODE" but instead say "クレージー モウド" - which is "KUREEJII MOUDO" (the closest you can get to "CRAZY MODE" using Japanese phonetics) written in katakana.
