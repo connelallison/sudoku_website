@@ -1,0 +1,33 @@
+{
+  "name": "sudoku_website",
+  "version": "1.0.0",
+  "description": "Sudoku Web-app",
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server:dev": "nodemon server/server.js",
+    "build": "webpack -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/connelallison/sudoku_website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/connelallison/sudoku_website/issues"
+  },
+  "homepage": "https://github.com/connelallison/sudoku_website#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.9",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongodb": "^3.1.12"
+  }
+}
