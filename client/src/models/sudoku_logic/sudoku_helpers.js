@@ -141,9 +141,6 @@ Sudoku.prototype.checkPeers = function (square) {
     square.candidates = square.candidates.filter((candidate) => {
       return !(this.unitNumbers(this.nonets[square.nonet]).includes(candidate));
     });
-    // if (square.candidates.length === 1) {
-    //   square.value = square.candidates[0];
-    // }
   }
 };
 
