@@ -105,6 +105,19 @@ describe("Sudoku Helpers", function () {
   it("this.unitNumbers() should take a unit as an input and return an array of the values of the Square objects inside the unit", function () {
     assert.deepStrictEqual(sudoku1.unitNumbers(sudoku1.rows[2]), [0, 3, 9, 6, 0, 4, 0, 7, 0]);
   });
+  it("this.unitsNumbers() should take an array of units as an input and return a 2D array of the values of the Square objects inside the input array", function () {
+    assert.deepStrictEqual(sudoku1.unitsNumbers(sudoku1.rows), [
+      [0, 0, 2, 9, 8, 0, 5, 0, 0],
+      [4, 0, 0, 0, 7, 0, 0, 1, 3],
+      [0, 3, 9, 6, 0, 4, 0, 7, 0],
+      [2, 0, 0, 0, 5, 6, 4, 0, 0],
+      [8, 4, 0, 3, 0, 0, 2, 0, 1],
+      [9, 0, 7, 0, 0, 1, 0, 8, 6],
+      [6, 0, 0, 7, 0, 5, 1, 3, 0],
+      [0, 9, 1, 4, 0, 0, 0, 0, 5],
+      [0, 2, 0, 0, 3, 0, 6, 0, 8]
+    ]);
+  });
 });
 // describe("Sudoku Populate", function () {
 //   beforeEach(function() {
