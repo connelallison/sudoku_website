@@ -118,6 +118,14 @@ describe("Sudoku Helpers", function () {
       [0, 2, 0, 0, 3, 0, 6, 0, 8]
     ]);
   });
+  it("this.unitComplete() should take a unit as an input. if the unit contains each of 1...9 exactly once, the method should return true - otherwise, it should return false", function () {
+    assert.strictEqual(sudoku1.unitComplete(sudoku1.rows[0]), false);
+    assert.strictEqual(sudoku1complete.unitComplete(sudoku1complete.rows[0]), true);
+    assert.strictEqual(sudoku1.unitComplete(sudoku1.columns[2]), false);
+    assert.strictEqual(sudoku1complete.unitComplete(sudoku1complete.columns[2]), true);
+    assert.strictEqual(sudoku1.unitComplete(sudoku1.nonets[4]), false);
+    assert.strictEqual(sudoku1complete.unitComplete(sudoku1complete.rows[4]), true);
+  })
 });
 // describe("Sudoku Populate", function () {
 //   beforeEach(function() {
