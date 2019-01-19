@@ -46,7 +46,7 @@ const Sudoku = function () {
   this.sudoku = [this.rows, this.columns, this.nonets];
 };
 
-//  THIS IS WHERE THE CONSTRUCTOR ENDS!!!
+//  THIS IS WHERE THE CONSTRUCTORS END!!!
 
 // This method takes in one of the 2D arrays as an argument - this.rows, this.columns, or this.nonets - and then returns a 2D array containing the values in each square, not the objects.
 Sudoku.prototype.unitsNumbers = function (unitArray) {
@@ -199,7 +199,7 @@ sudoku1complete.populate2dArray(sudoku1completeRows);
 // console.log(sudoku1.sudoku());
 // console.log(sudoku1.rowsNumbers());
 // console.log(sudoku1.columnsNumbers());
-// sudoku1.printUnitArray(sudoku1.rows);
+sudoku1.printUnitArray(sudoku1.rows);
 // sudoku1.printUnitArray(sudoku1.columns);
 // sudoku1.printUnitArray(sudoku1.nonets);
 
