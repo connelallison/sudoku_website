@@ -1,0 +1,18 @@
+body {
+  justify-content: center;
+  text-align: justify;
+  margin: 15%;
+}
+
+h1 {
+  font-family: helvetica;
+  font-weight: bold;
+  text-align: center;
+  justify-content: center;
+}
+
+/* p {
+  font-family: helvetica;
+  font-weight: bold;
+  justify-content: center;
+} */
