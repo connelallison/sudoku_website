@@ -1,12 +1,14 @@
 "use strict";
 
 
-// This is the constructor for a Square object. It takes in an x co-ordinate and a y co-ordinate, and optionally takes a value. If no value is supplied, the default parameter is 0.
+// This is the constructor for a Square object. It takes in a row as an x co-ordinate, a column as y co-ordinate, and a nonet (handled by the Sudoku object), and optionally takes a value.
+// If no value is supplied, the default parameter is 0.
 // If a non-zero value was passed in, then the candidates property (the list of numbers that might be placed inside the square) will be initialised to an array containing only that value.
 // Otherwise, it will be an array of the numbers 1...9. The Sudoku object will be responsible for eliminating possibilities from the array.
-const Square = function (x, y, value = 0) {
-  this.x = x;
-  this.y = y;
+const Square = function (x, y, nonet, value = 0) {
+  this.row = x;
+  this.column = y;
+  this.nonet = nonet;
   this.value = value;
   if (value === 0) {
     this.candidates = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -57,6 +59,83 @@ Sudoku.prototype.unitsNumbers = function (unitArray) {
   });
 }
 
+Sudoku.prototype.nonetFromXY = function (x, y) {
+  switch (x) {
+    case 0:
+    case 1:
+    case 2:
+      switch (y) {
+        case 0:
+        case 1:
+        case 2:
+          return 0;
+          break;
+        case 3:
+        case 4:
+        case 5:
+          return 1;
+          break;
+        case 6:
+        case 7:
+        case 8:
+          return 2;
+          break;
+        default:
+          return new Error(`Error - only 0...8 are valid column indices. ${y} is not valid.`);
+          break;
+      }
+    case 3:
+    case 4:
+    case 5:
+    switch (y) {
+      case 0:
+      case 1:
+      case 2:
+        return 3;
+        break;
+      case 3:
+      case 4:
+      case 5:
+        return 4;
+        break;
+      case 6:
+      case 7:
+      case 8:
+        return 5;
+        break;
+      default:
+        return console.error(`Error - only 0...8 are valid column indices. ${y} is not valid.`);
+        break;
+    }
+    case 6:
+    case 7:
+    case 8:
+    switch (y) {
+      case 0:
+      case 1:
+      case 2:
+        return 6;
+        break;
+      case 3:
+      case 4:
+      case 5:
+        return 7;
+        break;
+      case 6:
+      case 7:
+      case 8:
+        return 8;
+        break;
+      default:
+        return console.error(`Error - only 0...8 are valid column indices. ${y} is not valid.`);
+        break;
+    }
+    default:
+      return console.error(`Error - only 0...8 are valid row indices. ${x} is not valid.`);
+      break;
+  }
+};
+
 // This method is invoked inside the constructor to turn this.rows, this.columns, and this.nonets into three 2D arrays of Square objects, each pointing to the same 81 Square objects.
 Sudoku.prototype.makeGrid = function () {
   this.constructRows();
@@ -68,7 +147,7 @@ Sudoku.prototype.makeGrid = function () {
 // Then, 9 times:
 //   It creates an empty array and appends it to "rows".
 //   Then, 9 times:
-//     It creates nine Square objects, with x-y co-ordinates set to its position in the 2D array and its value set to 0.
+//     It creates nine Square objects, with row, column, and nonet values determined by its position in the 2D array, and its value set to 0.
 //     It appends these nine Square objects to the empty array inside "rows".
 // The result is a 9x9 2D array of Square objects. this.rows is then reassigned to the 2D array.
 Sudoku.prototype.constructRows = function () {
@@ -77,7 +156,8 @@ Sudoku.prototype.constructRows = function () {
     let row = [];
     rows.push(row);
     for (let y = 0; y < 9; y++) {
-      const square = new Square(x, y, 0)
+      const nonet = this.nonetFromXY(x, y);
+      const square = new Square(x, y, nonet, 0)
       rows[x].push(square);
     }
   }
@@ -241,3 +321,5 @@ sudoku1.printUnitArray(sudoku1.rows);
 // rowsTestMemory[0][0].value = 42;
 // console.log(rowsTestMemory[0][0].value);
 // console.log(columnsTestMemory[0][0].value);
+
+// console.log(sudoku1.nonetFromXY(0, 9));
