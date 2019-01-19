@@ -53,6 +53,9 @@ describe("Square Constructor", function () {
   it("On construction, this.candidates should be set to an array of 1...9 in order", function () {
     assert.deepStrictEqual(square1.candidates, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
   });
+  it("On construction, if no value is passed in, the parameter will default to 0", function () {
+    assert.strictEqual(square3.value, 0);
+  })
 });
 describe("Sudoku Constructor", function() {
   beforeEach(function() {
