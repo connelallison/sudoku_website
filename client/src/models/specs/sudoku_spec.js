@@ -60,7 +60,6 @@ describe("Square Constructor", function () {
 describe("Sudoku Constructor", function() {
   beforeEach(function() {
     sudoku1 = new Sudoku();
-    sudoku1complete = new Sudoku();
   });
   it("On construction, this.rows, this.columns, and this.nonets should each be a 9x9 2D array", function() {
     assert.strictEqual(sudoku1.rows.length, 9);
@@ -96,13 +95,23 @@ describe("Sudoku Constructor", function() {
     assert.deepStrictEqual(sudoku1.sudoku, [sudoku1.rows, sudoku1.columns, sudoku1.nonets]);
   });
 });
-
+describe("Sudoku Helpers", function () {
+  beforeEach(function () {
+    sudoku1 = new Sudoku();
+    sudoku1complete = new Sudoku();
+    sudoku1.populate2dArray(sudoku1rows);
+    sudoku1complete.populate2dArray(sudoku1completeRows);
+  });
+  it("this.unitNumbers() should take a unit as an input and return an array of the values of the Square objects inside the unit", function () {
+    assert.deepStrictEqual(sudoku1.unitNumbers(sudoku1.rows[2]), [0, 3, 9, 6, 0, 4, 0, 7, 0]);
+  });
+});
 // describe("Sudoku Populate", function () {
 //   beforeEach(function() {
-//     sudoku1 = new Sudoku();
-//     sudoku1complete = new Sudoku();
-//     sudoku1.populate2dArray(sudoku1rows);
-//     sudoku1complete.populate2dArray(sudoku1completeRows);
+    // sudoku1 = new Sudoku();
+    // sudoku1complete = new Sudoku();
+    // sudoku1.populate2dArray(sudoku1rows);
+    // sudoku1complete.populate2dArray(sudoku1completeRows);
 //   });
 //   // it("the checkPeers method should ")
 // })
