@@ -1,21 +1,11 @@
 "use strict";
-
+const Square = require("./square_object.js");
 
 // This is the constructor for a Square object. It takes in a row as an x co-ordinate, a column as y co-ordinate, and a nonet (handled by the Sudoku object), and optionally takes a value.
 // If no value is supplied, the default parameter is 0.
 // If a non-zero value was passed in, then the candidates property (the list of numbers that might be placed inside the square) will be initialised to an array containing only that value.
 // Otherwise, it will be an array of the numbers 1...9. The Sudoku object will be responsible for eliminating possibilities from the array.
-const Square = function (x, y, nonet, value = 0) {
-  this.row = x;
-  this.column = y;
-  this.nonet = nonet;
-  this.value = value;
-  if (value === 0) {
-    this.candidates = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  } else {
-    this.candidates = [this.value];
-  }
-}
+
 
 // // These lines test that the default parameter functions correctly, and the constructor works as intended.
 // const testSquare1 = new Square(0, 0, 4);
@@ -309,7 +299,6 @@ const sudoku1completeRows = [
 ];
 
 sudoku1.populate2dArray(sudoku1rows);
-// console.log(sudoku1.rows);
 sudoku1complete.populate2dArray(sudoku1completeRows);
 
 // console.log(sudoku1.rows);
@@ -318,7 +307,7 @@ sudoku1complete.populate2dArray(sudoku1completeRows);
 // console.log(sudoku1.sudoku());
 // console.log(sudoku1.rowsNumbers());
 // console.log(sudoku1.columnsNumbers());
-sudoku1.printUnitArray(sudoku1.rows);
+// sudoku1.printUnitArray(sudoku1.rows);
 // sudoku1.printUnitArray(sudoku1.columns);
 // sudoku1.printUnitArray(sudoku1.nonets);
 
@@ -371,3 +360,6 @@ sudoku1.printUnitArray(sudoku1.rows);
 // console.log(sudoku1.rows[2][5]);
 // console.log(sudoku1.rows[1][1]);
 // sudoku1.printUnitArray(sudoku1.rows);
+
+
+module.exports = Sudoku;
