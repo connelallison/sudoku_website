@@ -28,6 +28,7 @@ const sudoku1completeRows = [
 ];
 let sudoku1;
 let sudoku1complete;
+let sudokuBlank;
 let square1;
 let square2;
 let square3;
@@ -131,12 +132,16 @@ describe("Sudoku Helpers", function () {
     assert.strictEqual(sudoku1complete.sudokuComplete(), true);
   });
 });
-// describe("Sudoku Populate", function () {
-//   beforeEach(function() {
-    // sudoku1 = new Sudoku();
-    // sudoku1complete = new Sudoku();
+describe("Sudoku Populate", function () {
+  beforeEach(function() {
+    sudoku1 = new Sudoku();
+    sudoku1complete = new Sudoku();
     // sudoku1.populate2dArray(sudoku1rows);
     // sudoku1complete.populate2dArray(sudoku1completeRows);
-//   });
-//   // it("the checkPeers method should ")
-// })
+  });
+  it("this.populate2dArray should taken in a 2D array of square values as an input, and populate the blank sudoku grid with the appropriate values", function () {
+    assert.strictEqual(sudoku1.rows[1][0].value, 0);
+    sudoku1.populate2dArray(sudoku1rows);
+    assert.strictEqual(sudoku1.rows[1][0].value, 4);
+  });
+})
