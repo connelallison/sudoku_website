@@ -50,6 +50,9 @@ describe("Square Constructor", function () {
     assert.strictEqual(square1.nonet, 0);
     assert.strictEqual(square3.nonet, 4);
   });
+  it("On construction, this.candidates should be set to an array of 1...9 in order", function () {
+    assert.deepStrictEqual(square1.candidates, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  });
 });
 describe("Sudoku Constructor", function() {
   beforeEach(function() {
