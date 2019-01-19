@@ -125,7 +125,11 @@ describe("Sudoku Helpers", function () {
     assert.strictEqual(sudoku1complete.unitComplete(sudoku1complete.columns[2]), true);
     assert.strictEqual(sudoku1.unitComplete(sudoku1.nonets[4]), false);
     assert.strictEqual(sudoku1complete.unitComplete(sudoku1complete.rows[4]), true);
-  })
+  });
+  it("this.sudokuComplete() should return true if the sudoku has been correctly completed, and false otherwise", function () {
+    assert.strictEqual(sudoku1.sudokuComplete(), false);
+    assert.strictEqual(sudoku1complete.sudokuComplete(), true);
+  });
 });
 // describe("Sudoku Populate", function () {
 //   beforeEach(function() {

@@ -28,7 +28,7 @@ Sudoku.prototype.unitComplete = function (unit) {
 // This method tests whether the entire sudoku puzzle has been correctly solved. It checks if every unit returns true when tested with the unitComplete method.
 // If every row, every column, and every nonet contains each of 1...9 once - meaning the puzzle has been solved - the method will return true. Otherwise, it will return false.
 Sudoku.prototype.sudokuComplete = function () {
-  return this.sudoku().every((unitArray) => {
+  return this.sudoku.every((unitArray) => {
     return unitArray.every((unit) => {
       return this.unitComplete(unit)
     });
