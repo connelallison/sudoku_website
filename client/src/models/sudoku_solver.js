@@ -189,13 +189,14 @@ Sudoku.prototype.populate2dArray = function (rows) {
       this.rows[x][y].value = rows[x][y];
     }
   }
+  this.constructCandidates();
 };
 
 // This method is used to check, for a single Square object passed in as an argument, which of the numbers in its candidate list can be immediately eliminated.
 // To do this, it checks its peers (the other squares in its row,  its column, and its nonet), and removes their values from its candidates list.
 // For example, if it finds that a square in the same row has 7 as its value, it would remove 7 from its list of candidates, because 7 is already taken.
 Sudoku.prototype.checkPeers = function (square) {
-  if (square.value === 0) {
+  if (square.candidates.length > 1) {
     square.candidates = square.candidates.filter((candidate) => {
       return !(this.unitNumbers(this.rows[square.row]).includes(candidate));
     });
@@ -345,6 +346,10 @@ sudoku1complete.populate2dArray(sudoku1completeRows);
 // console.log(sudoku1.rows[2][5]);
 // console.log(sudoku1.rows[1][1]);
 // sudoku1.printUnitArray(sudoku1.rows);
+
+console.log(sudoku1.rows[0][0].candidates);
+console.log(sudoku1.rows[1][1].candidates);
+console.log(sudoku1.rows[1][0].candidates);
 
 
 module.exports = Sudoku;
