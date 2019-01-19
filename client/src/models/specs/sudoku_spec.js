@@ -104,20 +104,10 @@ describe("Sudoku Helpers", function () {
     sudoku1complete.populate2dArray(sudoku1completeRows);
   });
   it("this.unitNumbers() should take a unit as an input and return an array of the values of the Square objects inside the unit", function () {
-    assert.deepStrictEqual(sudoku1.unitNumbers(sudoku1.rows[2]), [0, 3, 9, 6, 0, 4, 0, 7, 0]);
+    assert.deepStrictEqual(sudoku1.unitNumbers(sudoku1.rows[2]), sudoku1rows[2]);
   });
   it("this.unitsNumbers() should take an array of units as an input and return a 2D array of the values of the Square objects inside the input array", function () {
-    assert.deepStrictEqual(sudoku1.unitsNumbers(sudoku1.rows), [
-      [0, 0, 2, 9, 8, 0, 5, 0, 0],
-      [4, 0, 0, 0, 7, 0, 0, 1, 3],
-      [0, 3, 9, 6, 0, 4, 0, 7, 0],
-      [2, 0, 0, 0, 5, 6, 4, 0, 0],
-      [8, 4, 0, 3, 0, 0, 2, 0, 1],
-      [9, 0, 7, 0, 0, 1, 0, 8, 6],
-      [6, 0, 0, 7, 0, 5, 1, 3, 0],
-      [0, 9, 1, 4, 0, 0, 0, 0, 5],
-      [0, 2, 0, 0, 3, 0, 6, 0, 8]
-    ]);
+    assert.deepStrictEqual(sudoku1.unitsNumbers(sudoku1.rows), sudoku1rows);
   });
   it("this.unitComplete() should take a unit as an input. if the unit contains each of 1...9 exactly once, the method should return true - otherwise, it should return false", function () {
     assert.strictEqual(sudoku1.unitComplete(sudoku1.rows[0]), false);
@@ -144,4 +134,13 @@ describe("Sudoku Populate", function () {
     sudoku1.populate2dArray(sudoku1rows);
     assert.strictEqual(sudoku1.rows[1][0].value, 4);
   });
+  it("after populating, the Square objects' candidate lists should have been updated to exclude any values contained inside a peer Square", function () {
+    assert.deepStrictEqual(sudoku1.rows[0][5].candidates, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    assert.deepStrictEqual(sudoku1.rows[2][5].candidates, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    assert.deepStrictEqual(sudoku1.rows[1][1].candidates, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    sudoku1.populate2dArray(sudoku1rows);
+    assert.deepStrictEqual(sudoku1.rows[0][5].candidates, [3]);
+    assert.deepStrictEqual(sudoku1.rows[2][5].candidates, [2]);
+    assert.deepStrictEqual(sudoku1.rows[1][1].candidates, [5, 6, 8]);
+  })
 })
