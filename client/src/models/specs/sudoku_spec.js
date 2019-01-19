@@ -27,7 +27,16 @@ const sudoku1completeRows = [
 ];
 let sudoku1;
 let sudoku1complete;
+let square1;
+let square2;
 
+
+// describe("Square Constructor", function () {
+//   beforeEach(function () {
+//     square1 = new Square(1, 2, );
+//   });
+//   it("On construction, this.row, this.column, and this.nonet should be a number")
+// });
 describe("Sudoku Constructor", function() {
   beforeEach(function() {
     sudoku1 = new Sudoku();
@@ -68,12 +77,12 @@ describe("Sudoku Constructor", function() {
   });
 });
 
-describe("Sudoku Population", function () {
-  beforeEach(function() {
-    sudoku1 = new Sudoku();
-    sudoku1complete = new Sudoku();
-    sudoku1.populate2dArray(sudoku1rows);
-    sudoku1complete.populate2dArray(sudoku1completeRows);
-  });
-  // it("the checkPeers method should ")
-})
+// describe("Sudoku Populate", function () {
+//   beforeEach(function() {
+//     sudoku1 = new Sudoku();
+//     sudoku1complete = new Sudoku();
+//     sudoku1.populate2dArray(sudoku1rows);
+//     sudoku1complete.populate2dArray(sudoku1completeRows);
+//   });
+//   // it("the checkPeers method should ")
+// })

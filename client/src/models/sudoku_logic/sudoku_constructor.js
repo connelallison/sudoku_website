@@ -48,8 +48,7 @@ Sudoku.prototype.constructRows = function () {
     let row = [];
     rows.push(row);
     for (let y = 0; y < 9; y++) {
-      const nonet = this.nonetFromXY(x, y);
-      const square = new Square(x, y, nonet, 0)
+      const square = new Square(x, y, 0)
       rows[x].push(square);
     }
   }
