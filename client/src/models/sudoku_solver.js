@@ -1,21 +1,6 @@
 "use strict";
 const Square = require("./square_object.js");
 
-// This is the constructor for a Square object. It takes in a row as an x co-ordinate, a column as y co-ordinate, and a nonet (handled by the Sudoku object), and optionally takes a value.
-// If no value is supplied, the default parameter is 0.
-// If a non-zero value was passed in, then the candidates property (the list of numbers that might be placed inside the square) will be initialised to an array containing only that value.
-// Otherwise, it will be an array of the numbers 1...9. The Sudoku object will be responsible for eliminating possibilities from the array.
-
-
-// // These lines test that the default parameter functions correctly, and the constructor works as intended.
-// const testSquare1 = new Square(0, 0, 4);
-// const testSquare2 = new Square(1, 3, 0);
-// const testSquare3 = new Square(4, 5);
-// console.log(testSquare1);
-// console.log(testSquare2);
-// console.log(testSquare3);
-
-
 
 // This is the constructor for the Sudoku object.
 // The "completed" property is simply an array of 1...9 in order that can be referenced when checking if a unit (unit meaning a row, column, or nonet) has been completed correctly.

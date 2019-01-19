@@ -28,12 +28,10 @@ const sudoku1completeRows = [
 let sudoku1;
 let sudoku1complete;
 
-describe("Sudoku", function() {
+describe("Sudoku Constructor", function() {
   beforeEach(function() {
     sudoku1 = new Sudoku();
     sudoku1complete = new Sudoku();
-    // sudoku1.populate2dArray(sudoku1rows);
-    // sudoku1complete.populate2dArray(sudoku1completeRows);
   });
   it("On construction, this.rows, this.columns, and this.nonets should each be a 9x9 2D array", function() {
     assert.strictEqual(sudoku1.rows.length, 9);
@@ -65,7 +63,17 @@ describe("Sudoku", function() {
   it("this.completed should be an array of 1...9 in ascending order", function () {
     assert.deepStrictEqual(sudoku1.completed, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
   });
-  it("this.sudoku should be an array of this.rows, this.columns, and this.nonets", () => {
+  it("this.sudoku should be an array of this.rows, this.columns, and this.nonets", function () {
     assert.deepStrictEqual(sudoku1.sudoku, [sudoku1.rows, sudoku1.columns, sudoku1.nonets]);
   });
 });
+
+describe("Sudoku Population", function () {
+  beforeEach(function() {
+    sudoku1 = new Sudoku();
+    sudoku1complete = new Sudoku();
+    sudoku1.populate2dArray(sudoku1rows);
+    sudoku1complete.populate2dArray(sudoku1completeRows);
+  });
+  // it("the checkPeers method should ")
+})
