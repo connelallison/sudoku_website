@@ -45,7 +45,11 @@ describe("Square Constructor", function () {
     assert.strictEqual(square2.row, 2);
     assert.strictEqual(square2.column, 2);
     assert.strictEqual(square2.value, 9);
-  })
+  });
+  it("On construction, this.nonet should be set to the appropriate nonet corresponding to the row and column passed in", function () {
+    assert.strictEqual(square1.nonet, 0);
+    assert.strictEqual(square3.nonet, 4);
+  });
 });
 describe("Sudoku Constructor", function() {
   beforeEach(function() {
