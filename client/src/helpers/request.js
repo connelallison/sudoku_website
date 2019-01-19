@@ -1,3 +1,15 @@
+<<<<<<< HEAD
+const Request = function (url) {
+  this.url = url
+};
+
+Request.prototype.get = function (onComplete) {
+  return fetch(this.url)
+    .then(response => response.json());
+};
+
+module.exports = Request;
+=======
 const RequestHelper = function (url) {
   this.url = url;
 };
@@ -24,3 +36,4 @@ RequestHelper.prototype.delete = function (id) {
 };
 
 module.exports = RequestHelper;
+>>>>>>> b05791afea0d5909e3110db2604ea31266075d5d
