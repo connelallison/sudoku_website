@@ -1,6 +1,7 @@
 "use strict";
 
 const assert = require('assert');
+const Square = require("../sudoku_logic/square_constructor.js")
 const Sudoku = require("../sudoku_solver.js");
 
 const sudoku1rows = [
@@ -29,14 +30,23 @@ let sudoku1;
 let sudoku1complete;
 let square1;
 let square2;
+let square3;
 
-
-// describe("Square Constructor", function () {
-//   beforeEach(function () {
-//     square1 = new Square(1, 2, );
-//   });
-//   it("On construction, this.row, this.column, and this.nonet should be a number")
-// });
+describe("Square Constructor", function () {
+  beforeEach(function () {
+    square1 = new Square(1, 2, 0);
+    square2 = new Square(2, 2, 9);
+    square3 = new Square(4, 5);
+  });
+  it("On construction, this.row, this.column, and this.value should be numbers determined by the parameters passed in", function () {
+    assert.strictEqual(square1.row, 1);
+    assert.strictEqual(square1.column, 2);
+    assert.strictEqual(square1.value, 0);
+    assert.strictEqual(square2.row, 2);
+    assert.strictEqual(square2.column, 2);
+    assert.strictEqual(square2.value, 9);
+  })
+});
 describe("Sudoku Constructor", function() {
   beforeEach(function() {
     sudoku1 = new Sudoku();
