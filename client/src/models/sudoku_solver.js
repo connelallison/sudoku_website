@@ -57,14 +57,23 @@ Sudoku.prototype.unitsNumbers = function (unitArray) {
       return square.value;
     });
   });
-}
+};
 
-Sudoku.prototype.nonetFromXY = function (x, y) {
-  switch (x) {
+
+// This method takes in a unit as an argument, and returns and array of only its values.
+Sudoku.prototype.unitNumbers = function (unit) {
+  return unit.map((square) => {
+    return square.value;
+  })
+};
+
+// This method takes in a row index and a column index, and returns the nonet index of the square in which they intersect.
+Sudoku.prototype.nonetFromXY = function (row, column) {
+  switch (row) {
     case 0:
     case 1:
     case 2:
-      switch (y) {
+      switch (column) {
         case 0:
         case 1:
         case 2:
@@ -81,13 +90,13 @@ Sudoku.prototype.nonetFromXY = function (x, y) {
           return 2;
           break;
         default:
-          return new Error(`Error - only 0...8 are valid column indices. ${y} is not valid.`);
+          return new Error(`Error - only 0...8 are valid column indices. ${column} is not valid.`);
           break;
       }
     case 3:
     case 4:
     case 5:
-    switch (y) {
+    switch (column) {
       case 0:
       case 1:
       case 2:
@@ -104,13 +113,13 @@ Sudoku.prototype.nonetFromXY = function (x, y) {
         return 5;
         break;
       default:
-        return console.error(`Error - only 0...8 are valid column indices. ${y} is not valid.`);
+        return console.error(`Error - only 0...8 are valid column indices. ${column} is not valid.`);
         break;
     }
     case 6:
     case 7:
     case 8:
-    switch (y) {
+    switch (column) {
       case 0:
       case 1:
       case 2:
@@ -127,11 +136,11 @@ Sudoku.prototype.nonetFromXY = function (x, y) {
         return 8;
         break;
       default:
-        return console.error(`Error - only 0...8 are valid column indices. ${y} is not valid.`);
+        return console.error(`Error - only 0...8 are valid column indices. ${column} is not valid.`);
         break;
     }
     default:
-      return console.error(`Error - only 0...8 are valid row indices. ${x} is not valid.`);
+      return console.error(`Error - only 0...8 are valid row indices. ${row} is not valid.`);
       break;
   }
 };
@@ -147,6 +156,7 @@ Sudoku.prototype.makeGrid = function () {
 // Then, 9 times:
 //   It creates an empty array and appends it to "rows".
 //   Then, 9 times:
+//     It uses the nonetFromXY method to determine the appropriate nonet from the current row and column being filled.
 //     It creates nine Square objects, with row, column, and nonet values determined by its position in the 2D array, and its value set to 0.
 //     It appends these nine Square objects to the empty array inside "rows".
 // The result is a 9x9 2D array of Square objects. this.rows is then reassigned to the 2D array.
@@ -199,9 +209,38 @@ Sudoku.prototype.constructNonets = function () {
 // This method is used to populate an blank sudoku puzzle with values passed in as a 2D rows array of numbers.
 // It loops through each Square of each row of the sudoku puzzle, and sets its value property to the corresponding number in the 2D array passed in as an argument.
 Sudoku.prototype.populate2dArray = function (rows) {
-  for (let x = 0; x < rows.length; x++) {
-    for (let y = 0; y < rows.length; y++) {
+  for (let x = 0; x < 9; x++) {
+    for (let y = 0; y < 9; y++) {
       this.rows[x][y].value = rows[x][y];
+    }
+  }
+};
+
+// This method is used to check, for a single Square object passed in as an argument, which of the numbers in its candidate list can be immediately eliminated.
+// To do this, it checks its peers (the other squares in its row,  its column, and its nonet), and removes their values from its candidates list.
+// For example, if it finds that a square in the same row has 7 as its value, it would remove 7 from its list of candidates, because 7 is already taken.
+Sudoku.prototype.checkPeers = function (square) {
+  if (square.value === 0) {
+    square.candidates = square.candidates.filter((candidate) => {
+      return !(this.unitNumbers(this.rows[square.row]).includes(candidate));
+    });
+    square.candidates = square.candidates.filter((candidate) => {
+      return !(this.unitNumbers(this.columns[square.column]).includes(candidate));
+    });
+    square.candidates = square.candidates.filter((candidate) => {
+      return !(this.unitNumbers(this.nonets[square.nonet]).includes(candidate));
+    });
+    // if (square.candidates.length === 1) {
+    //   square.value = square.candidates[0];
+    // }
+  }
+};
+
+// This method is used to construct the starting candidate lists when a puzzle is populated. It loops through each Square object in each row, and invokes the checkPeers method on it.
+Sudoku.prototype.constructCandidates = function () {
+  for (let x = 0; x < 9; x++) {
+    for (let y = 0; y < 9; y++) {
+      this.checkPeers(this.rows[x][y]);
     }
   }
 };
@@ -323,3 +362,12 @@ sudoku1.printUnitArray(sudoku1.rows);
 // console.log(columnsTestMemory[0][0].value);
 
 // console.log(sudoku1.nonetFromXY(0, 9));
+
+// console.log(sudoku1.rows[0][5]);
+// console.log(sudoku1.rows[2][5]);
+// console.log(sudoku1.rows[1][1]);
+// sudoku1.constructCandidates();
+// console.log(sudoku1.rows[0][5]);
+// console.log(sudoku1.rows[2][5]);
+// console.log(sudoku1.rows[1][1]);
+// sudoku1.printUnitArray(sudoku1.rows);
