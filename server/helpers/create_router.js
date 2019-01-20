@@ -17,7 +17,14 @@ const createRouter = function (collection) {
     const id = ObjectID(req.params.id);
     collection.findOne({_id: id})
     .then((docs) => res.json(docs));
-  })
+  });
+
+  router.post('/', (req, res) => {
+    const newUser = req.body;
+    collection.insertOne(newUser)
+    .then(() => collection.find().toArray())
+    .then((docs) => res.json(docs));
+  });
 
   return router;
 
