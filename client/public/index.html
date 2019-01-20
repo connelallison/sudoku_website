@@ -10,23 +10,22 @@
 <body>
 		<center>
 		<h1>Sudoku Game</h1>
-
+    <nav>
+      
+    </nav>
 		<div class="step">
-			<span >Choose Difficulty</span></br></br>
 			<button id="easy" class="diff" onclick="setPercentage('easy')" >Easy</button>
 			<button id="medium" class="diff active" onclick="setPercentage('medium')" >Medium</button>
 			<button id="hard" class="diff" onclick="setPercentage('hard')" >Hard</button>
 		</div>
-
 		<br>
-
 		<button onclick="Populate Board Function()">New Game</button>
 		<br><br>
-		<div class="message_board">
-			<span id="message">Put in values below</span>
-		</div>
-		<br>
-		<table border="3" cellspacing="0">
+		<table border="2" cellspacing="0">
+      <colgroup><col><col><col>
+      <colgroup><col><col><col>
+      <colgroup><col><col><col>
+      <tbody>
 			<tr>
 				<td><input id="number1" maxlength="1" size="3"></input></td>
 				<td><input id="number2" maxlength="1" size="3"></input></td>
@@ -60,6 +59,8 @@
 				<td><input id="number26" maxlength="1" size="3"></input></td>
 				<td><input id="number27" maxlength="1" size="3"></input></td>
 			</tr>
+      </tbody>
+      <tbody>
 			<tr>
 				<td><input id="number28" maxlength="1" size="3"></input></td>
 				<td><input id="number29" maxlength="1" size="3"></input></td>
@@ -93,6 +94,7 @@
 				<td><input id="number53" maxlength="1" size="3"></input></td>
 				<td><input id="number54" maxlength="1" size="3"></input></td>
 			</tr>
+      </tbody>
 			<tr>
 				<td><input id="number55" maxlength="1" size="3"></input></td>
 				<td><input id="number56" maxlength="1" size="3"></input></td>
@@ -127,11 +129,11 @@
 				<td><input id="number81" maxlength="1" size="3"></input></td>
 			</tr>
 		</table>
+    <br><br>
 		<button onclick="Check Answer Functon()" >Check Answer</button>
 		<button onclick="Give Hint Function()">Give Hint</button>
     <button onclick="Solve Function()">Solve</button>
     <button onclick="Clear Function()">Clear</button>
-		<br><br><br><br>
 		</center>
 </body>
 </html>
