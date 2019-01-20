@@ -2,7 +2,7 @@
   "name": "sudoku_website",
   "version": "1.0.0",
   "description": "Sudoku Web-app",
-  "main": "webpack.config.js",
+  "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
     "test": "mocha client/src/models/specs",
