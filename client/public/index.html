@@ -10,10 +10,11 @@
 </head>
 <body>
 		<center>
-		<h1>Sudoku Game</h1>
-    <nav>
-
-    </nav>
+    <ul>
+    <li><a href="#game">Sudoku Game</a></li>
+    <li><a class="active" href="#history">Sudoku History</a></li>
+    </ul>
+    <h1>Sudoku Game</h1>
 		<div class="step">
 			<button id="easy" class="diff" onclick="setPercentage('easy')" >Easy</button>
 			<button id="medium" class="diff active" onclick="setPercentage('medium')" >Medium</button>
@@ -22,10 +23,20 @@
 		<br>
 		<button onclick="Populate Board Function()">New Game</button>
 		<br><br>
+
 		<table border="2" cellspacing="0">
-      <colgroup><col><col><col>
-      <colgroup><col><col><col>
-      <colgroup><col><col><col>
+      <colgroup>
+        <col style="background-color: red;">
+        <col style="background-color: red;">
+        <col style="background-color: red;">
+      <colgroup>
+        <col style="background-color: green;">
+        <col style="background-color: green;">
+        <col style="background-color: green;">
+      <colgroup>
+        <col style="background-color: blue;">
+        <col style="background-color: blue;">
+        <col style="background-color: blue;">
       <tbody>
 			<tr>
 				<td><input id="number1" maxlength="1" size="3"></input></td>
