@@ -17,14 +17,10 @@ UserGridView.prototype.bindEvents = function(){
 };
 
 UserGridView.prototype.renderUserGrid = function(users){
-  this.container.innerHTML = '';
+  const sudokuElement = document.querySelector('#wrapper');
+  sudokuElement.innerHTML = '';
   const userView = new UserView(this.container);
   users.forEach((user) => userView.renderUser(user));
-
-
-  // const testPara = document.createElement('p');
-  // testPara.textContent = "this is a test - this is where the user grid will go"
-  // this.container.appendChild(testPara);
 };
 
 module.exports = UserGridView;

@@ -18,11 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const historyView = new HistoryView(historyInfoContainer);
   historyView.showHistory();
 
-  const userFormContainer = document.querySelector('div#wrapper');
+  const userFormContainer = document.querySelector('div#new-users');
   const userFormView = new UserFormView(userFormContainer);
   userFormView.showUserForm();
 
-  const userGridContainer = document.querySelector('div#wrapper');
+  const userGridContainer = document.querySelector('div#users');
   const userGridView = new UserGridView(userGridContainer);
   userGridView.bindEvents();
 
