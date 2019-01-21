@@ -56,6 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // const sudokuCandidatesView = new SudokuCandidatesView(sudokuGridDiv);
     // sudokuCandidatesView.render(sudokuCandidates);
 
+  const stopwatch = new Stopwatch();
+  stopwatch.bindEvents();
 
   const hub = new Hub();
     // hub.bindEvents();
