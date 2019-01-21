@@ -6,7 +6,7 @@ UserView.prototype.renderUser = function (user) {
   const userContainer = document.createElement('div');
   userContainer.id = 'user';
 
-  const name = document.createElement('h3');
+  const name = document.createElement('p');
   name.textContent = user.name;
   userContainer.appendChild(name);
 

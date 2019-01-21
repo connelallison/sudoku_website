@@ -39,3 +39,11 @@ td {
 .mySlides {
   font-family: helvetica;
 }
+
+#user {
+  border: solid red;
+}
+
+#new-user-form {
+  
+}
