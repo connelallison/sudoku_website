@@ -196,11 +196,11 @@ sudoku6.populateString(sudoku6string);
 // sudoku5.printUnitArray(sudoku5.rows);
 // sudoku5.solve();
 
-sudoku6.printUnitArray(sudoku6.rows);
-sudoku6.solve();
-
-console.log(sudoku6.rows[1][2].candidates);
-console.log(sudoku6.rows[2][2].candidates);
+// sudoku6.printUnitArray(sudoku6.rows);
+// sudoku6.solve();
+//
+// console.log(sudoku6.rows[1][2].candidates);
+// console.log(sudoku6.rows[2][2].candidates);
 //
 // // console.log(sudoku2.rows[6][6].candidates);
 // // console.log(sudoku2.rows[6][7].candidates);

@@ -64,3 +64,17 @@ li a {
 
 li a:hover {
   background-color: #111;
+}
+
+input {
+  outline: none;
+  border: none;
+  text-align: center;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+}
+
+.candidate-square {
+  border: none;
+}
