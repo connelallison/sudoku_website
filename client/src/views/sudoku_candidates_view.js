@@ -29,6 +29,7 @@ SudokuCandidatesView.prototype.render = function (data) {
         for (let l = 0; l < 3; l++, d++) {
           const candidateGridSquare = document.createElement("td");
           candidateGridSquare.classList.add("candidate-square")
+          candidateGridRow.classList.add("candidate-row")
           let pencilMarkValue;
           let disabled;
           if (!data[i][j].includes(d)) {
