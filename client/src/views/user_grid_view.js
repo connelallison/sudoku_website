@@ -6,7 +6,6 @@ const UserGridView = function(container) {
 }
 
 UserGridView.prototype.bindEvents = function(){
-
   const usersNavButton = document.querySelector("a[href='#players']");
   usersNavButton.addEventListener('click', (event) => {
     PubSub.subscribe('Users:all-users-loaded', (event) => {
