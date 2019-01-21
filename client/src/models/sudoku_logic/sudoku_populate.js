@@ -1,5 +1,14 @@
 "use strict";
 const Sudoku = require("./sudoku_helpers.js");
+const PubSub = require('../../helpers/pub_sub.js')
+
+Sudoku.prototype.bindEventsPopulate = function(){
+  PubSub.subscribe('Hub:sudoku-data-received', (event) => {
+    const data = event.detail;
+    this.populate2dArray(data)
+    console.log('bindevents', data)
+  })
+}
 
 // This method is used to populate a blank sudoku puzzle with values passed in as a 2D rows array of numbers.
 // It loops through each Square of each row of the sudoku puzzle, and sets its value property to the corresponding number in the 2D array passed in as an argument.
