@@ -1,27 +1,63 @@
+@font-face {
+  font-family: Japan;
+  src: local("Hiroshima"),
+       url(../fonts/Hiroshima.ttf);
+  font-weight: bold;
+}
+
+body {
+  background-image: url('../images/cherrytree.jpg');
+  /* background-repeat: no-repeat; */
+  background-size: cover;
+  font-family: Japan;
+}
+
+nav {
+  display: flex;
+  background-color: lightpink;
+  width: 100%;
+}
+
+nav a {
+  display: flex;
+  float: left;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+nav a:hover {
+  color: white;
+}
+
+#wrapper {
+}
+
+
 h1 {
-  font-family: helvetica;
   font-weight: bold;
   font-size: 50px;
   text-align: center;
 }
 
 p {
-  font-family: helvetica;
+  /* font-family: helvetica; */
   font-size: 18px;
   text-align: justify;
 }
 
 span {
-  font-family: helvetica;
+  /* font-family: helvetica; */
 }
 
 button {
-  font-family: helvetica;
+  /* font-family: helvetica; */
 }
 
 table {
   border-collapse: collapse;
-  font-family: Calibri, sans-serif;
+  /* font-family: Calibri, sans-serif; */
 }
 
 colgroup, tbody {
@@ -37,7 +73,15 @@ td {
 }
 
 .mySlides {
-  font-family: helvetica;
+  /* font-family: helvetica; */
+}
+
+#user {
+  border: dashed rosybrown;
+}
+
+#new-user-form {
+
 }
 
 ul {
