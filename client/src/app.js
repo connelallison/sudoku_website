@@ -53,9 +53,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const sudokuGridDiv = document.querySelector("#sudoku-grid-div")
     const sudokuValuesView = new SudokuValuesView(sudokuGridDiv);
     sudokuValuesView.render(sudokuValues);
-    const sudokuCandidatesView = new SudokuCandidatesView(sudokuGridDiv);
-    sudokuCandidatesView.render(sudokuCandidates);
+    // const sudokuCandidatesView = new SudokuCandidatesView(sudokuGridDiv);
+    // sudokuCandidatesView.render(sudokuCandidates);
 
+  const stopwatch = new Stopwatch();
+  stopwatch.bindEvents();
 
   const hub = new Hub();
     // hub.bindEvents();

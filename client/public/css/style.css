@@ -24,7 +24,7 @@ nav a {
   text-align: center;
   padding: 14px 20px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 24px;
 }
 
 nav a:hover {
@@ -46,17 +46,13 @@ h1 {
 }
 
 p {
-  /* font-family: helvetica; */
+  font-family: japan;
   font-size: 18px;
   text-align: justify;
 }
 
 span {
-  /* font-family: helvetica; */
-}
-
-button {
-  /* font-family: helvetica; */
+  font-family: helvetica;
 }
 
 table {
@@ -155,4 +151,41 @@ colgroup {
 
 tbody {
   border: 5px solid black;
+}
+
+.myButton {
+  width: 180px;
+  height: 50px;
+  border-radius: 6px;
+  border: none;
+  background-color: white;
+  font-size: 30px;
+  font-family: japan;
+}
+
+.myButton:hover {background-color: #3e8e41}
+
+.myButton:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+button {
+  width: 180px;
+  height: 50px;
+  border-radius: 6px;
+  border: none;
+  background-color: white;
+  font-size: 30px;
+  font-family: japan;
+  hover: blue;
+}
+
+button:hover {background-color: #3e8e41}
+
+button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
