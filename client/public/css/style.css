@@ -85,7 +85,11 @@ input {
 }
 
 .nested-table {
-  height: 30px;
-  width: 50px;
+  height: 20px;
+  width: 60px;
+}
 
+.value-table {
+  height: 20px;
+  width: 60px;
 }
