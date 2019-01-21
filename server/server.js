@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const path = require('path');
 const parser = require('body-parser');
@@ -9,6 +10,8 @@ const publicPath = path.join(__dirname, '../client/public');
 app.use(express.static(publicPath));
 
 app.use(parser.json());
+
+app.use(cors());
 
 // MongoClient.connect('mongodb://localhost:27017')
 // .then((client) => {

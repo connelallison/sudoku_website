@@ -162,7 +162,7 @@ Sudoku.prototype.solve = function () {
     this.loopsPass();
     currentValues = this.unitsCandidates(this.rows);
   }
-  this.reportOutcome(!this.stringEquals(initialValues, this.unitsNumbers(this.rows)));
+  this.reportOutcome(!this.stringEquals(previousValues, this.unitsNumbers(this.rows)));
   // this.reportOutcome(JSON.stringify(initialValues) !== JSON.stringify(this.unitsNumbers(this.rows)));
 }
 
@@ -193,6 +193,7 @@ Sudoku.prototype.singlesLoop = function () {
     // while (JSON.stringify(previousValues) !== JSON.stringify(currentValues)) {
     previousValues = currentValues;
     this.singlesPass();
+    this.fillOneCandidates();
     currentValues = this.unitsCandidates(this.rows);
     this.printUnitArray(this.rows);
   }
@@ -203,7 +204,7 @@ Sudoku.prototype.singlesPass = function () {
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
       this.checkPeers(this.rows[i][j]);
-      this.fillIfForced(this.rows[i][j]);
+      // this.fillIfForced(this.rows[i][j]);
       // this.updatePeers(this.rows[i][j]);
       this.checkHiddenSingles(this.rows[i][j]);
     }
@@ -330,6 +331,7 @@ Sudoku.prototype.lockedCandidatesLoop = function () {
   while (!this.stringEquals(previousValues, currentValues)) {
     previousValues = currentValues;
     this.lockedCandidatesPass();
+    this.fillOneCandidates();
     currentValues = this.unitsCandidates(this.rows);
     // this.printUnitArray(this.rows);
   }
@@ -376,6 +378,7 @@ Sudoku.prototype.nakedPairsLoop = function () {
   while (!this.stringEquals(previousValues, currentValues)) {
     previousValues = currentValues;
     this.nakedPairsPass();
+    this.fillOneCandidates();
     currentValues = this.unitsCandidates(this.rows);
     // this.printUnitArray(this.rows);
   }
@@ -392,13 +395,17 @@ Sudoku.prototype.checkHiddenPairs = function (unit) {
   });
   for (let i = 0; i < potentialPairs.length; i++) {
     for (let j = 0; j < potentialPairs.length; j++) {
-      if (i !== j && emptySquares.find((square) => {return square.candidates.includes(potentialPairs[i])}).candidates.includes(potentialPairs[j])) {
+      // if (i !== j && emptySquares.find((square) => {return square.candidates.includes(potentialPairs[i])}).candidates.includes(potentialPairs[j])) {
+      if (i !== j && emptySquares.filter((square) => {
+        return square.candidates.includes(potentialPairs[i])
+      })[0].candidates.includes(potentialPairs[j])) {
         eliminatedNumbers = missingNumbers.filter((number) => {
           return (number !== potentialPairs[i]) && (number !== potentialPairs[j]);
         })
         let pairSquares = emptySquares.filter((square) => {
-          return square.candidates.includes(potentialPairs[i])
+          return square.candidates.includes(potentialPairs[i]);
         });
+        console.log(pairSquares);
         pairSquares[0].candidates = pairSquares[0].candidates.filter((candidate) => {
           return !eliminatedNumbers.includes(candidate);
         });
@@ -408,6 +415,7 @@ Sudoku.prototype.checkHiddenPairs = function (unit) {
       }
     }
   }
+
 }
 
 Sudoku.prototype.hiddenPairsPass = function () {
@@ -429,6 +437,7 @@ Sudoku.prototype.hiddenPairsLoop = function () {
   while (!this.stringEquals(previousValues, currentValues)) {
     previousValues = currentValues;
     this.hiddenPairsPass();
+    this.fillOneCandidates();
     currentValues = this.unitsCandidates(this.rows);
     // this.printUnitArray(this.rows);
   }

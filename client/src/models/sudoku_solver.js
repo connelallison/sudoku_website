@@ -8,8 +8,8 @@ const Sudoku = require("./sudoku_logic/sudoku_populate.js");
 Sudoku.prototype.bindEventsPopulate = function(){
   PubSub.subscribe('Hub:sudoku-data-received', (event) => {
     const data = event.detail;
-    this.populate2dArray(data)
-    console.log('bindevents', data)
+    this.populateApiRequest(data)
+    console.log('bind events', data)
   })
 }
 
@@ -70,14 +70,33 @@ const sudoku5string = "050007690000040000009000000000100004000230008008000150000
 const sudoku6 = new Sudoku();
 const sudoku6string = "005100000600003000300000706000030601009050400802090000401000005000500008000007200";
 
+const sudoku7 = new Sudoku();
+const sudoku7squares = [
+  {"x":0,"y":1,"value":2},{"x":0,"y":2,"value":1},{"x":0,"y":5,"value":7},{"x":0,"y":7,"value":8},{"x":1,"y":0,"value":8},{"x":1,"y":1,"value":6},{"x":1,"y":4,"value":2},{"x":1,"y":7,"value":5},{"x":1,"y":8,"value":9},{"x":2,"y":0,"value":7},{"x":2,"y":2,"value":4},{"x":2,"y":4,"value":9},{"x":2,"y":5,"value":8},{"x":2,"y":6,"value":2},{"x":3,"y":1,"value":3},{"x":3,"y":2,"value":9},{"x":3,"y":3,"value":1},{"x":3,"y":5,"value":5},{"x":3,"y":7,"value":6},{"x":4,"y":1,"value":8},{"x":4,"y":2,"value":6},{"x":4,"y":3,"value":9},{"x":4,"y":6,"value":5},{"x":4,"y":7,"value":1},{"x":5,"y":0,"value":1},{"x":5,"y":3,"value":2},{"x":5,"y":5,"value":6},{"x":5,"y":6,"value":4},{"x":5,"y":8,"value":3},{"x":6,"y":2,"value":7},{"x":6,"y":4,"value":1},{"x":6,"y":7,"value":4},{"x":6,"y":8,"value":6},{"x":7,"y":4,"value":6},{"x":7,"y":6,"value":1},{"x":8,"y":0,"value":6},{"x":8,"y":1,"value":1},{"x":8,"y":5,"value":4},{"x":8,"y":6,"value":9},{"x":8,"y":7,"value":7}
+];
+const sudoku8 = new Sudoku();
+const sudoku8squares = [
+  {"x":0,"y":1,"value":2},{"x":0,"y":2,"value":1},{"x":0,"y":3,"value":9},{"x":0,"y":6,"value":4},{"x":1,"y":2,"value":6},{"x":1,"y":3,"value":7},{"x":1,"y":4,"value":8},{"x":1,"y":5,"value":2},{"x":2,"y":3,"value":6},{"x":2,"y":8,"value":7},{"x":3,"y":1,"value":8},{"x":3,"y":2,"value":4},{"x":3,"y":5,"value":1},{"x":3,"y":7,"value":9},{"x":4,"y":0,"value":6},{"x":4,"y":3,"value":4},{"x":4,"y":4,"value":9},{"x":4,"y":5,"value":8},{"x":4,"y":6,"value":7},{"x":4,"y":8,"value":5},{"x":5,"y":0,"value":5},{"x":5,"y":1,"value":7},{"x":5,"y":2,"value":9},{"x":5,"y":5,"value":6},{"x":5,"y":7,"value":8},{"x":5,"y":8,"value":4},{"x":6,"y":4,"value":5},{"x":6,"y":5,"value":7},{"x":6,"y":6,"value":6},{"x":6,"y":7,"value":4},{"x":6,"y":8,"value":1},{"x":7,"y":3,"value":1},{"x":7,"y":4,"value":4},{"x":7,"y":5,"value":3},{"x":8,"y":0,"value":1},{"x":8,"y":2,"value":5},{"x":8,"y":3,"value":2},{"x":8,"y":6,"value":8},{"x":8,"y":7,"value":7},{"x":8,"y":8,"value":3}
+];
+
 
 sudoku1.populate2dArray(sudoku1rows);
-sudoku1complete.populate2dArray(sudoku1completeRows);
-sudoku2.populateString(sudoku2string);
-sudoku3.populateString(sudoku3string);
-sudoku4.populate2dArray(sudoku4rows);
-sudoku5.populateString(sudoku5string);
-sudoku6.populateString(sudoku6string);
+console.log(sudoku1.rows[0][3].value);
+console.log(sudoku1.rows[0][3].candidates);
+
+// sudoku1complete.populate2dArray(sudoku1completeRows);
+// sudoku2.populateString(sudoku2string);
+// sudoku3.populateString(sudoku3string);
+// sudoku4.populate2dArray(sudoku4rows);
+// sudoku5.populateString(sudoku5string);
+// sudoku6.populateString(sudoku6string);
+// sudoku7.populateApiRequest(sudoku7squares);
+// sudoku8.populateApiRequest(sudoku8squares);
+
+// sudoku7.printUnitArray(sudoku7.rows);
+// sudoku7.solve();
+// sudoku8.printUnitArray(sudoku8.rows);
+// sudoku8.solve();
 
 // console.log(sudoku1.rows);
 // console.log(sudoku1.columns);

@@ -6,9 +6,17 @@ const SudokuCandidatesView = function (container) {
   this.container = container
 }
 
+SudokuCandidatesView.prototype.bindEvents = function () {
+  PubSub.subscribe('Hub:render-candidates-view', (evt) => {
+    // console.log(evt.detail);
+    this.render(evt.detail);
+  });
+}
+
 SudokuCandidatesView.prototype.render = function (data) {
   this.container.innerHTML = "";
   const grid = document.createElement("table");
+  grid.id = "candidates-grid";
   grid.innerHTML += "<colgroup> <col> <col> <col>";
   grid.innerHTML += "<colgroup> <col> <col> <col>";
   grid.innerHTML += "<colgroup> <col> <col> <col>";
@@ -23,7 +31,7 @@ SudokuCandidatesView.prototype.render = function (data) {
     for (let j = 0; j < 9; j++, c++) {
       const gridSquare = document.createElement("td");
       const nestedTable = document.createElement("table");
-      for (let k = 0, d = 0; k < 3; k++) {
+      for (let k = 0, d = 1; k < 3; k++) {
         const candidateGridRow = document.createElement("tr");
         for (let l = 0; l < 3; l++, d++) {
           const candidateGridSquare = document.createElement("td");

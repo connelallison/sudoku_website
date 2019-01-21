@@ -21,6 +21,13 @@ Sudoku.prototype.populateString = function (string) {
   this.constructCandidates();
 }
 
+Sudoku.prototype.populateApiRequest = function (filledSquares) {
+  for (let i = 0; i < filledSquares.length; i++) {
+    this.rows[filledSquares[i].x][filledSquares[i].y].value = filledSquares[i].value;
+  }
+  this.constructCandidates();
+}
+
 // This method is used to construct the starting candidate lists when a puzzle is populated. It loops through each Square object in each row, and invokes the checkPeers method on it.
 Sudoku.prototype.constructCandidates = function () {
   for (let x = 0; x < 9; x++) {

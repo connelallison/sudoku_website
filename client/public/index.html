@@ -16,12 +16,13 @@
     </ul>
     <h1>Sudoku Game</h1>
 		<div class="step">
-			<button id="easy" class="diff" onclick="setPercentage('easy')" >Easy</button>
+      <p>New Game:</p>
+			<button id="easy-button" class="diff" >Easy</button>
 			<button id="medium" class="diff active" onclick="setPercentage('medium')" >Medium</button>
 			<button id="hard" class="diff" onclick="setPercentage('hard')" >Hard</button>
 		</div>
 		<br>
-		<button onclick="Populate Board Function()">New Game</button>
+		<button id="switch-view-button">Switch between candidates and values</button>
 		<br><br>
 
     <div id="sudoku-grid-div">
@@ -148,7 +149,7 @@
     <br><br>
 		<button onclick="Check Answer Functon()" >Check Answer</button>
 		<button onclick="Give Hint Function()">Give Hint</button>
-    <button onclick="Solve Function()">Solve</button>
+    <button id="solve-button">Solve</button>
     <button onclick="Clear Function()">Clear</button>
 		</center>
 </body>

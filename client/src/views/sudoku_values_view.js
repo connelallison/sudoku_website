@@ -3,12 +3,20 @@
 const PubSub = require("../helpers/pub_sub.js");
 
 const SudokuValuesView = function (container) {
-  this.container = container
+  this.container = container;
+}
+
+SudokuValuesView.prototype.bindEvents = function () {
+  PubSub.subscribe('Hub:render-values-view', (evt) => {
+    // console.log(evt.detail);
+    this.render(evt.detail);
+  });
 }
 
 SudokuValuesView.prototype.render = function (data) {
   this.container.innerHTML = "";
   const grid = document.createElement("table");
+  grid.id = "values-grid";
   grid.innerHTML += "<colgroup> <col> <col> <col>";
   grid.innerHTML += "<colgroup> <col> <col> <col>";
   grid.innerHTML += "<colgroup> <col> <col> <col>";

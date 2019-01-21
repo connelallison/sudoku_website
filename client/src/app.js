@@ -1,7 +1,9 @@
 const Hub = require('./models/hub.js');
-const Sudoku = require('./models/sudoku_solver.js')
-const SudokuValuesView = require("./views/sudoku_values_view.js")
-const SudokuCandidatesView = require("./views/sudoku_candidates_view.js")
+const Sudoku = require('./models/sudoku_solver.js');
+const SudokuValuesView = require("./views/sudoku_values_view.js");
+const SudokuCandidatesView = require("./views/sudoku_candidates_view.js");
+const PubSub = require('./helpers/pub_sub.js');
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -24,14 +26,22 @@ document.addEventListener('DOMContentLoaded', () => {
   let sudokuValues = sudoku.unitsNumbers(sudoku.rows);
   let sudokuCandidates = sudoku.unitsCandidates(sudoku.rows);
 
+  const switchViewButton = document.querySelector("#switch-view-button");
+  switchViewButton.addEventListener("click", () => {
+    PubSub.publish("App:switch-view-clicked", )
+  })
+
   const sudokuGridDiv = document.querySelector("#sudoku-grid-div")
   const sudokuValuesView = new SudokuValuesView(sudokuGridDiv);
-  sudokuValuesView.render(sudokuValues);
+  sudokuValuesView.bindEvents();
+  // sudokuValuesView.render(sudokuValues);
   const sudokuCandidatesView = new SudokuCandidatesView(sudokuGridDiv);
-  sudokuCandidatesView.render(sudokuCandidates);
+  sudokuCandidatesView.bindEvents();
+
+  // sudokuCandidatesView.render(sudokuCandidates);
 
 
-  // const hub = new Hub();
-  // hub.bindEvents();
-  // hub.getData();
+  const hub = new Hub();
+  hub.bindEvents();
+  // hub.getDataEasy();
 })
