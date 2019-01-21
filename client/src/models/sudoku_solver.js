@@ -5,7 +5,13 @@ const Sudoku = require("./sudoku_logic/sudoku_populate.js");
 
 
 
-
+Sudoku.prototype.bindEventsPopulate = function(){
+  PubSub.subscribe('Hub:sudoku-data-received', (event) => {
+    const data = event.detail;
+    this.populate2dArray(data)
+    console.log('bindevents', data)
+  })
+}
 
 
 
