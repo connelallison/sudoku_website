@@ -57,7 +57,7 @@ button {
 
 table {
   border-collapse: collapse;
-  /* font-family: Calibri, sans-serif; */
+  border: 10px solid black;
 }
 
 colgroup, tbody {
@@ -70,6 +70,7 @@ td {
   width: 2em;
   text-align: center;
   padding: 0;
+  background-color: white;
 }
 
 .mySlides {
@@ -128,12 +129,26 @@ input {
   margin: 0;
 }
 
+.candidate-row {
+  background-color: white;
+}
+
 .nested-table {
   height: 20px;
   width: 60px;
+  border: 1px solid black;
 }
 
-.value-table {
-  height: 20px;
+.values-table {
+  height: 60px;
   width: 60px;
+  border: 1px solid black;
+}
+
+colgroup {
+  border: 5px solid black;
+}
+
+tbody {
+  border: 5px solid black;
 }
