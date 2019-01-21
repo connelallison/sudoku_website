@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const userFormContainer = document.querySelector('div#new-users');
   const userFormView = new UserFormView(userFormContainer);
-  userFormView.showUserForm();
+  // userFormView.showUserForm();
+  userFormView.bindEvents();
 
   const userGridContainer = document.querySelector('div#users');
   const userGridView = new UserGridView(userGridContainer);

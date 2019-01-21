@@ -2,15 +2,23 @@ const UserFormView = function(container) {
   this.container = container;
 }
 
-UserFormView.prototype.showUserForm = function(){
+// UserFormView.prototype.bindEvents = function() {
+//   // const newUserForm = document.querySelector('form');
+//   // newUserForm.addEventListener('submit', (event) => {
+//   //   this.handleSubmit(event);
+//   // })
+// };
 
+UserFormView.prototype.bindEvents = function(){
   const usersNavButton = document.querySelector("a[href='#players']");
   usersNavButton.addEventListener('click', (event) => {
     const sudokuElement = document.querySelector('#wrapper');
     sudokuElement.innerHTML = '';
+    this.container.innerHTML = '';
     this.renderForm();
   })
-
+  // const newUserForm = document.querySelector('form');
+  // console.log('new user form:', newUserForm);
 }
 
 UserFormView.prototype.renderForm = function(){
@@ -27,14 +35,10 @@ UserFormView.prototype.renderForm = function(){
   nameInput.id = 'user_name';
   newUserForm.appendChild(nameInput);
 
-
-
   const submitFormButton = document.createElement('input');
   submitFormButton.type = 'submit';
   submitFormButton.value = 'submit';
   newUserForm.appendChild(submitFormButton);
-
-
 
   this.container.appendChild(newUserForm);
 

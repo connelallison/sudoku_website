@@ -5,6 +5,10 @@ const RulesView = function(container) {
 RulesView.prototype.showRules = function() {
   const rulesNavButton = document.querySelector("a[href='#rules']");
   rulesNavButton.addEventListener('click', (event) => {
+    const formElement = document.querySelector('#new-users');
+    formElement.innerHTML = '';
+    const gridElement = document.querySelector('#users');
+    gridElement.innerHTML = '';
     this.container.innerHTML = '';
     this.renderRules();
   })
