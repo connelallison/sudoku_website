@@ -14,7 +14,7 @@ UserGridView.prototype.bindEvents = function(){
     })
   })
   PubSub.subscribe('Users:all-updated-users-loaded', (event) => {
-    // this.renderUpdatedUserGrid(event.detail);
+    this.renderUserGrid(event.detail);
     console.log('published on all-updated-users-loaded:', event.detail);
   })
 };

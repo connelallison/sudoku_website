@@ -18,12 +18,11 @@ Users.prototype.bindEvents = function(){
       this.postUser(event.detail);
       // console.log('this does not match');
     } else {
-      this.addToUser(newUser.name);
+      console.log('this user matches', newUser.name);
+      const updatedUser = this.addToUser(newUser.name);
+      this.updateUser(updatedUser);
     }
-  })
-  PubSub.subscribe('Users:user-updated', (event) => {
-    console.log('user updated:', event.detail);
-    this.updateUser(event.detail);
+
   })
 };
 
@@ -56,7 +55,8 @@ Users.prototype.postUser = function (user) {
 Users.prototype.updateUser = function(user) {
   console.log('user id:', user._id);
   const request = new Request(this.url);
-  request.put(user._id, user)
+  const userObject = { name: user.name, gamesCompleted: user.gamesCompleted, score: user.score }
+  request.put(user._id, userObject)
   .then((users) => {
     PubSub.publish('Users:all-updated-users-loaded', users)
   })
@@ -64,13 +64,14 @@ Users.prototype.updateUser = function(user) {
 };
 
 Users.prototype.addToUser = function(userName) {
-  const user = this.users.find((user) => {
+  const foundUser = this.users.find((user) => {
     return user.name === userName;
   })
-  user.gamesCompleted += 1;
-  user.score += 10;
-  PubSub.publish('Users:user-updated', user)
-  // console.log('user', user);
+  foundUser.gamesCompleted += 1;
+  foundUser.score += 10;
+  console.log('user', foundUser);
+  return foundUser
+
 }
 
 Users.prototype.publishUsers = function(users){

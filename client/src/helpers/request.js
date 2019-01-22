@@ -24,6 +24,8 @@ Request.prototype.delete = function (id) {
 };
 
 Request.prototype.put = function(id, payload) {
+  console.log('url', `${this.url}/${id}`);
+  console.log('payload', payload);
   return fetch(`${this.url}/${id}`, {
     method: 'PUT',
     body: JSON.stringify(payload),
