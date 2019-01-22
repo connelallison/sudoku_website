@@ -8,6 +8,27 @@ const Hub = function (){
 };
 
 Hub.prototype.bindEvents = function () {
+  PubSub.subscribe("SudokuValuesView:attempt-fill-value", (event) => {
+    const row = event.detail[0];
+    const column = event.detail[1];
+    const square = this.sudoku.rows[row][column];
+    const value = event.detail[2];
+    console.log("row:", row);
+    console.log("column:", column);
+    console.log("value:", value);
+    console.log("square:", square);
+    if (this.sudoku.attemptFillValue(square, value)) {
+      PubSub.publish('Hub:render-values-view', this.sudoku.unitsNumbers(this.sudoku.rows));
+      console.log("value accepted, re-rendering view");
+    } else {
+      PubSub.publish('Hub:render-values-view', this.sudoku.unitsNumbers(this.sudoku.rows));
+      // PubSub.publish("Hub:value-rejected", square.peerCoords())
+      console.log("value rejected, re-rendering view");
+      // PubSub.publish("Hub:illegal-move");
+    }
+
+  })
+
   const easyButton = document.querySelector("#easy-button");
   easyButton.addEventListener("click", () => {
     this.getDataEasy();

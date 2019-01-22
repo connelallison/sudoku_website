@@ -50,11 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const switchViewButton = document.querySelector("#switch-view-button");
   switchViewButton.addEventListener("click", () => {
-    if (switchViewButton.innerHTML === "Show Candidates") {
-      switchViewButton.innerHTML === "Show Values"
-    }
-    if (switchViewButton.innerHTML === "Show Values") {
-      switchViewButton.innerHTML = "Show Candidates"
+    if (switchViewButton.textContent === "Show Candidates") {
+      switchViewButton.textContent = "Show Values"
+    } else if (switchViewButton.textContent === "Show Values") {
+      switchViewButton.textContent = "Show Candidates"
     }
     PubSub.publish("App:switch-view-clicked", )
   })
@@ -74,4 +73,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const hub = new Hub();
   hub.bindEvents();
-})
+});

@@ -81,11 +81,43 @@ Sudoku.prototype.checkPeers = function (square) {
   }
 };
 
+Sudoku.prototype.attemptFillValue = function (square, value) {
+  if (this.legalMove(square, value)) {
+    this.fillValue(square, value);
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
+Sudoku.prototype.fillValue = function (square, value) {
+  square.value = value;
+  square.candidates = [value];
+  this.updatePeers(square);
+}
+
+Sudoku.prototype.legalMove = function (square, value) {
+  const peers = this.getPeers(square);
+  if (peers.some((peer) => {
+    peer.value === value;
+  })) {
+    console.log("illegal move");
+    return false;
+  } else {
+    console.log("legal move");
+    return true;
+  }
+}
 
 Sudoku.prototype.getPeers = function (square) {
   return square.peers.map((peer) => {
     return this.rows[peer[0]][peer[1]];
   })
+}
+
+Sudoku.prototype.getPeerCoords = function (square) {
+  return square.peers;
 }
 
 Sudoku.prototype.checkHiddenSingles = function (square) {
@@ -104,7 +136,13 @@ Sudoku.prototype.checkHiddenSingles = function (square) {
 };
 
 Sudoku.prototype.updatePeers = function (square) {
-  if (square.candidates.length === 1) {
+  if (square.value !== 0) {
+    for (let i = 0; i < 24; i++) {
+      this.getPeers(square)[i].candidates = this.getPeers(square)[i].candidates.filter((candidate) => {
+        return square.value !== candidate;
+      })
+    }
+  }
     // for (let i = 0; i < 9; i++) {
     //   this.rows[square.row][i].candidates = this.rows[square.row][i].candidates.filter((candidate) => {
     //     return candidate !== square.candidates[0] || this.nonets[square.nonet][i] === square;
@@ -116,17 +154,11 @@ Sudoku.prototype.updatePeers = function (square) {
     //     return candidate !== square.candidates[0] || this.nonets[square.nonet][i] === square;
     //   });
     // }
-    for (let i = 0; i < 24; i++) {
-      this.getPeers(square)[i].candidates = this.getPeers(square)[i].candidates.filter((candidate) => {
-        return square.candidates[0] !== candidate;
-      })
-    }
-  }
 };
 
 Sudoku.prototype.fillIfForced = function (square) {
   if (square.candidates.length === 1 && square.value === 0) {
-    square.value = square.candidates[0];
+    // square.value = square.candidates[0];
   }
 }
 

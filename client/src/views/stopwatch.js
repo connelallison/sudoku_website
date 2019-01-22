@@ -14,6 +14,7 @@ Stopwatch.prototype.populate = function () {
   // this.container.appendChild(title);
   this.container.appendChild(timerLabel);
   this.status = 1;
+  this.time = 0;
   this.timer();
 }
 

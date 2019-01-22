@@ -5,13 +5,7 @@ const Sudoku = require("./sudoku_logic/sudoku_populate.js");
 
 
 
-Sudoku.prototype.bindEventsPopulate = function(){
-  PubSub.subscribe('Hub:sudoku-data-received', (event) => {
-    const data = event.detail;
-    this.populateApiRequest(data)
-    console.log('bind events', data)
-  })
-}
+
 
 
 
@@ -123,8 +117,8 @@ const sudoku10rows = [
 // sudoku7.solve();
 // sudoku8.printUnitArray(sudoku8.rows);
 // sudoku8.solve();
-sudoku10.populate2dArray(sudoku10rows);
-sudoku10.solve();
+// sudoku10.populate2dArray(sudoku10rows);
+// sudoku10.solve();
 
 // console.log(sudoku1.rows);
 // console.log(sudoku1.columns);
