@@ -5,57 +5,70 @@
   font-weight: bold;
 }
 
-@keyframes body {
-  from {background-color: red;}
-  to {background-color: mistyrose;}
+#current-user {
+  background-color: mistyrose;
+  font-family: japan;
+  font-size: 30px;
+  padding: 14px;
+  margin-left: 20px;
 }
 
-/* @-webkit-keyframes body {
-  0%   {background-color:red; left:0px; top:0px;}
-  25%  {background-color:yellow; left:200px; top:0px;}
-  50%  {background-color:blue; left:200px; top:200px;}
-  75%  {background-color:green; left:0px; top:200px;}
-  100% {background-color:red; left:0px; top:0px;}
-} */
+label {
+  margin-left: 40px;
+}
+
+input[type=text] {
+  width: 100px;
+  transition: ease-in-out, width .55s ease-in-out;
+  color: red;
+  font-weight: bold;
+}
+
+input[type=text]:focus {
+  width: 250px;
+}
 
 body {
   background-color: mistyrose;
   background-size: cover;
   font-family: Japan;
-  /* -webkit-animation-iteration-count: infinite; */
-  animation-name: body;
-  animation-duration: 5s;
 }
 
 nav {
+  text-align: center;
   display: flex;
-  /* background-color: lightpink; */
   width: 100%;
+  font-size: 30px;
 }
 
 nav a {
   display: flex;
   float: left;
   text-align: center;
-  padding: 14px 20px;
+  padding: 14px 10px;
   text-decoration: none;
   font-size: 30px;
   color: black;
+  background-color: none;
 }
 
 nav a:hover {
   color: red;
 }
 
-
-#stopwatch-container h2 {
+#timer-label {
   display: flex;
-  text-align: right;
   justify-content: flex-end;
+  text-align: right;
+  align-items: flex-end;
   font-size: 40px;
 }
 
 #wrapper {
+}
+
+.user-list {
+  width: 75%;
 }
 
 #users {
@@ -97,10 +110,6 @@ td {
   text-align: center;
   padding: 0;
   background-color: white;
-}
-
-.mySlides {
-  /* font-family: helvetica; */
 }
 
 #users {
@@ -240,7 +249,6 @@ button {
   font-size: 20px;
   color: black;
   font-family: japan;
-  /* hover: blue; */
 }
 
 button:hover {
