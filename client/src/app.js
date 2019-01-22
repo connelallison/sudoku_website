@@ -35,6 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const historyView = new HistoryView(historyInfoContainer);
   historyView.showHistory();
 
+  const rulesContainer = document.querySelector("div#wrapper")
+  const rulesView = new RulesView(rulesContainer);
+  rulesView.showRules();
+
   const userFormContainer = document.querySelector('div#new-users');
   const userFormView = new UserFormView(userFormContainer);
   // userFormView.showUserForm();
