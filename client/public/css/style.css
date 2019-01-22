@@ -127,6 +127,7 @@ input {
   font-size: 10px;
   padding: 0;
   margin: 0;
+  /* border: 1px solid black; */
 }
 
 .candidate-row {
@@ -134,7 +135,7 @@ input {
 }
 
 .nested-table {
-  height: 20px;
+  height: 60px;
   width: 60px;
   border: 1px solid black;
 }
