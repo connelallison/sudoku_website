@@ -3,11 +3,18 @@ const Request = require('../helpers/request.js');
 const Sudoku = require('./sudoku_solver.js')
 
 const Hub = function (){
-  this.sudoku = null;
+  this.sudoku = new Sudoku();
   this.displaysCandidates = false;
 };
 
 Hub.prototype.bindEvents = function () {
+  const gameNavButton = document.querySelector("a[href='#game']");
+  gameNavButton.addEventListener('click', (event) => {
+    PubSub.publish("Hub:render-sudoku-grid");
+    PubSub.publish('Hub:render-values-view', this.sudoku.unitsNumbers(this.sudoku.rows));
+  })
+  PubSub.publish("Hub:render-sudoku-grid");
+  PubSub.publish('Hub:render-values-view', this.sudoku.unitsNumbers(this.sudoku.rows));
   PubSub.subscribe("SudokuValuesView:attempt-fill-value", (event) => {
     const row = event.detail[0];
     const column = event.detail[1];
@@ -28,28 +35,22 @@ Hub.prototype.bindEvents = function () {
     }
 
   })
-
-  const easyButton = document.querySelector("#easy-button");
-  easyButton.addEventListener("click", () => {
+  PubSub.subscribe("GameView:easy-button-clicked", () => {
     this.getDataEasy();
   });
-  const mediumButton = document.querySelector("#medium-button");
-  mediumButton.addEventListener("click", () => {
+  PubSub.subscribe("GameView:medium-button-clicked", () => {
     this.getDataMedium();
   });
-  const hardButton = document.querySelector("#hard-button");
-  hardButton.addEventListener("click", () => {
+  PubSub.subscribe("GameView:hard-button-clicked", () => {
     this.getDataHard();
   });
-  const solveButton = document.querySelector("#solve-button");
-  solveButton.addEventListener("click", () => {
+  PubSub.subscribe("GameView:solve-button-clicked", () => {
     PubSub.publish("Hub:puzzle-ends");
     this.sudoku.solve();
     PubSub.publish("Hub:render-values-view", this.sudoku.unitsNumbers(this.sudoku.rows));
     this.displaysCandidates = false;
   })
-  const switchViewButton = document.querySelector("#switch-view-button");
-  switchViewButton.addEventListener("click", () => {
+  PubSub.subscribe("GameView:switch-button-clicked", () => {
     if (this.sudoku) {
       if (this.displaysCandidates) {
         PubSub.publish("Hub:render-values-view", this.sudoku.unitsNumbers(this.sudoku.rows));
@@ -97,8 +98,7 @@ Hub.prototype.getDataHard = function(){
     const sudoku = new Sudoku();
     sudoku.populateApiRequest(sudokuData);
     this.sudoku = sudoku;
-    PubSub.publish('Hub:render-values-view',
-    this.sudoku.unitsNumbers(this.sudoku.rows));
+    PubSub.publish('Hub:render-values-view', this.sudoku.unitsNumbers(this.sudoku.rows));
     PubSub.publish("Hub:puzzle-begins")
   });
 }
