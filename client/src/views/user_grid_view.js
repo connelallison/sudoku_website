@@ -10,8 +10,12 @@ UserGridView.prototype.bindEvents = function(){
   usersNavButton.addEventListener('click', (event) => {
     PubSub.subscribe('Users:all-users-loaded', (event) => {
       this.renderUserGrid(event.detail);
-      console.log('published on all-users-loaded:', event.detail);
+      // console.log('published on all-users-loaded:', event.detail);
     })
+  })
+  PubSub.subscribe('Users:all-updated-users-loaded', (event) => {
+    // this.renderUpdatedUserGrid(event.detail);
+    console.log('published on all-updated-users-loaded:', event.detail);
   })
 };
 
