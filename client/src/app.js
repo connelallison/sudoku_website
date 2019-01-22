@@ -4,9 +4,10 @@ const UserGridView = require('./views/user_grid_view.js');
 const Users = require('./models/users_model.js');
 const HistoryView = require('./views/history_view.js');
 const RulesView = require('./views/rules_view.js');
-const Sudoku = require('./models/sudoku_solver.js')
-const SudokuValuesView = require("./views/sudoku_values_view.js")
-const SudokuCandidatesView = require("./views/sudoku_candidates_view.js")
+const Sudoku = require('./models/sudoku_solver.js');
+const SudokuValuesView = require("./views/sudoku_values_view.js");
+const SudokuCandidatesView = require("./views/sudoku_candidates_view.js");
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -31,7 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const usersUrl = 'http://localhost:3000/api/users';
   const users = new Users(usersUrl);
-  users.getData();
+  users.bindEvents();
+  users.displayUsers();
 
   // temporary code for passing a hardcoded sudoku to the view - will be replaced later.
     const sudoku = new Sudoku();
@@ -56,10 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // const sudokuCandidatesView = new SudokuCandidatesView(sudokuGridDiv);
     // sudokuCandidatesView.render(sudokuCandidates);
 
-  const stopwatch = new Stopwatch();
-  stopwatch.bindEvents();
+  // const stopwatch = new Stopwatch();
+  // stopwatch.bindEvents();
 
   const hub = new Hub();
-    // hub.bindEvents();
+  hub.bindEvents();
   hub.getData();
 })

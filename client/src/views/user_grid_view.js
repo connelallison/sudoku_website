@@ -18,6 +18,7 @@ UserGridView.prototype.bindEvents = function(){
 UserGridView.prototype.renderUserGrid = function(users){
   const sudokuElement = document.querySelector('#wrapper');
   sudokuElement.innerHTML = '';
+  this.container.innerHTML = '';
   const userView = new UserView(this.container);
   users.forEach((user) => userView.renderUser(user));
 };
