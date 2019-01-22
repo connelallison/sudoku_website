@@ -5,11 +5,6 @@
   font-weight: bold;
 }
 
-@keyframes body {
-  from {background-color: red;}
-  to {background-color: mistyrose;}
-}
-
 /* @-webkit-keyframes body {
   0%   {background-color:red; left:0px; top:0px;}
   25%  {background-color:yellow; left:200px; top:0px;}
@@ -18,26 +13,45 @@
   100% {background-color:red; left:0px; top:0px;}
 } */
 
+#current-user {
+  background-color: mistyrose;
+  font-family: japan;
+  font-size: 30px;
+  padding: 14px;
+  margin-left: 20px;
+}
+
+/* input[type=text] {
+  width: 100px;
+  transition: ease-in-out, width .50s ease-in-out;
+}
+
+input[type=text]:focus {
+  width: 250px;
+} */
+
 body {
   background-color: mistyrose;
   background-size: cover;
   font-family: Japan;
   /* -webkit-animation-iteration-count: infinite; */
-  animation-name: body;
-  animation-duration: 5s;
+  /* animation-name: body;
+  animation-duration: 5s; */
 }
 
 nav {
+  text-align: center;
   display: flex;
   /* background-color: lightpink; */
   width: 100%;
+  font-size: 30px;
 }
 
 nav a {
   display: flex;
   float: left;
   text-align: center;
-  padding: 14px 20px;
+  padding: 14px 10px;
   text-decoration: none;
   font-size: 30px;
   color: black;
@@ -56,6 +70,10 @@ nav a:hover {
 }
 
 #wrapper {
+}
+
+.user-list {
+  width: 75%;
 }
 
 #users {

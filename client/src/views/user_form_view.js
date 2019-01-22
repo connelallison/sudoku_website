@@ -39,7 +39,7 @@ UserFormView.prototype.renderForm = function(){
   newUserForm.appendChild(submitFormButton);
 
   this.container.appendChild(newUserForm);
-
+  newUserForm.classList.add('user-grid')
 }
 
 
