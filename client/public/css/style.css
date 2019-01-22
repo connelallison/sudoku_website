@@ -172,14 +172,15 @@ tbody {
 }
 
 button {
+  outline: none;
   width: 180px;
   height: 50px;
   border-radius: 6px;
   border: none;
   background-color: white;
-  font-size: 30px;
+  font-size: 20px;
   font-family: japan;
-  hover: blue;
+  /* hover: blue; */
 }
 
 button:hover {background-color: #3e8e41}

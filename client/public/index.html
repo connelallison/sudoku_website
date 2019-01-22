@@ -23,68 +23,20 @@
       <div id="wrapper">
     <h1>Sudoku Game</h1>
 		<div class="step">
-      <p>New Game:</p>
-			<button id="easy-button" class="diff" >Easy</button>
-			<button id="medium" class="diff active" onclick="setPercentage('medium')" >Medium</button>
-			<button id="hard" class="diff" onclick="setPercentage('hard')" >Hard</button>
+			<button id="easy-button" class="diff" >Easy Sudoku</button>
+			<button id="medium" class="diff active" onclick="setPercentage('medium')" >Medium Sudoku</button>
+			<button id="hard" class="diff" onclick="setPercentage('hard')" >Hard Sudoku</button>
 		</div>
 		<br>
-		<button id="switch-view-button">Switch between candidates and values</button>
+    <button id="switch-view-button">Show Candidates</button>
 		<br><br>
       <div id="sudoku-grid-div">
       </div>
 
-      <div class="stopwatchContainer">
-        <h1 class="title">Stopwatch</h1>
-        <h1 id="timerLabel">00:00:00</h1>
-        <input type="button" value="START" class="myButton" onClick="start()" id="startBtn">
-        <input type="button" value="STOP" class="myButton" onClick="stop()">
-        <input type="button" value="RESET" class="myButton" onClick="reset()">
+    <br>
+      <div id="stopwatch-container">
+
       </div>
-      <script type="text/javascript">
-        var status = 0;
-        var time = 0;
-
-        function start() {
-          status = 1;
-          document.getElementById("startBtn").disabled = true;
-          timer();
-        }
-        function stop() {
-          status = 0;
-          document.getElementById("startBtn").disabled = false;
-        }
-        function reset() {
-          status = 0;
-          time = 0;
-          document.getElementById("startBtn").disabled = false;
-          document.getElementById("timerLabel").innerHTML = "00:00:00";
-
-        }
-        function timer() {
-          if(status == 1) {
-            setTimeout(function(){
-               time++;
-               var min = Math.floor(time/100/60);
-               var sec = Math.floor(time/100);
-               var mSec = time % 100;
-
-              if(min < 10){
-                min = "0" + min;
-              }
-              if(sec >= 60){
-                sec = sec % 60;
-              }
-              if(sec < 10){
-                sec = "0" + sec;
-              }
-
-              document.getElementById("timerLabel").innerHTML = min + ":" + sec + ":" + mSec;
-              timer();
-            }, 10);
-          }
-        }
-      </script>
     <br><br>
 		<button onclick="Check Answer Functon()" >Check Answer</button>
 		<button onclick="Give Hint Function()">Give Hint</button>
