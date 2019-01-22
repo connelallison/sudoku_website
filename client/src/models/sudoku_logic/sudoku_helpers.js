@@ -256,15 +256,24 @@ Sudoku.prototype.emptySquares = function (unit) {
 //   return
 // }
 
+// Sudoku.prototype.sameNonet = function (squares) {
+//   return (squares.length > 0) && squares.every((square) => {
+//     square.nonet =
+//   })
+// }
+
 Sudoku.prototype.lockedCandidatesLine = function (unit) {
   let missingNumbers = this.missingNumbers(unit);
   let emptySquares = this.emptySquares(unit);
+  if (missingNumbers.length < 2 || emptySquares.length < 2) {
+    return;
+  }
   for (let i = 0; i < missingNumbers.length; i++) {
     let candidateSquares = emptySquares.filter((square) => {
-      return square.candidates.includes(missingNumbers[i])
+      return square.candidates.includes(missingNumbers[i]);
     });
-    if (candidateSquares.every((square) => {
-      return square.nonet === candidateSquares[0].nonet;
+    if (candidateSquares.length > 0 && candidateSquares.every((candidateSquare) => {
+      return candidateSquare.nonet === candidateSquares[0].nonet;
     })) {
       let eliminatedSquares = this.nonets[candidateSquares[0].nonet].filter((square) => {
         return !candidateSquares.includes(square)
@@ -281,6 +290,9 @@ Sudoku.prototype.lockedCandidatesLine = function (unit) {
 Sudoku.prototype.lockedCandidatesNonet = function (nonet) {
   let missingNumbers = this.missingNumbers(nonet);
   let emptySquares = this.emptySquares(nonet);
+  if (missingNumbers.length < 2 || emptySquares.length < 2) {
+    return;
+  }
   for (let i = 0; i < missingNumbers.length; i++) {
     let candidateSquares = emptySquares.filter((square) => {
       return square.candidates.includes(missingNumbers[i])
@@ -384,37 +396,74 @@ Sudoku.prototype.nakedPairsLoop = function () {
   }
 }
 
+Sudoku.prototype.squaresWithCandidate = function (number, emptySquares) {
+  return emptySquares.filter((square) => {
+    return square.candidates.includes(number);
+  }).length;
+}
+
+Sudoku.prototype.findPotentialPair = function (unit) {
+  let missingNumbers = this.missingNumbers(unit);
+  let emptySquares = this.emptySquares(unit);
+  if (missingNumbers.length > 1 && emptySquares.length > 1) {
+    return missingNumbers.filter((number) => {
+      return this.squaresWithCandidate(number, emptySquares) === 2;
+    });
+  } else {
+    return 0;
+  }
+}
+
+// Sudoku.prototype.potentialPairs = function (unit) {
+//   let missingNumbers = this.missingNumbers(unit);
+//   let emptySquares = this.emptySquares(unit);
+//   let potentialPairs = findPotentialPair
+// }
+
 Sudoku.prototype.checkHiddenPairs = function (unit) {
   let missingNumbers = this.missingNumbers(unit);
   let emptySquares = this.emptySquares(unit);
   let eliminatedNumbers;
-  let potentialPairs = missingNumbers.filter((number) => {
-    return emptySquares.filter((square) => {
-      return square.candidates.includes(number)
-    }).length === 2;
-  });
-  for (let i = 0; i < potentialPairs.length; i++) {
-    for (let j = 0; j < potentialPairs.length; j++) {
-      // if (i !== j && emptySquares.find((square) => {return square.candidates.includes(potentialPairs[i])}).candidates.includes(potentialPairs[j])) {
-      if (i !== j && emptySquares.filter((square) => {
-        return square.candidates.includes(potentialPairs[i])
-      })[0].candidates.includes(potentialPairs[j])) {
-        eliminatedNumbers = missingNumbers.filter((number) => {
-          return (number !== potentialPairs[i]) && (number !== potentialPairs[j]);
-        })
-        let pairSquares = emptySquares.filter((square) => {
-          return square.candidates.includes(potentialPairs[i]);
-        });
-        console.log(pairSquares);
-        pairSquares[0].candidates = pairSquares[0].candidates.filter((candidate) => {
-          return !eliminatedNumbers.includes(candidate);
-        });
-        pairSquares[1].candidates = pairSquares[1].candidates.filter((candidate) => {
-          return !eliminatedNumbers.includes(candidate);
-        });
+  // let potentialPairs = missingNumbers.filter((number) => {
+  //   return emptySquares.filter((square) => {
+  //     return square.candidates.includes(number)
+  //   }).length === 2;
+  // });
+  let potentialPairs = this.findPotentialPair(unit);
+
+  if (potentialPairs !== 0) {
+    for (let i = 0; i < potentialPairs.length; i++) {
+      for (let j = 0; j < potentialPairs.length && i !== j; j++) {
+        // if (i !== j && emptySquares.find((square) => {return square.candidates.includes(potentialPairs[i])}).candidates.includes(potentialPairs[j])) {
+        if (i !== j && emptySquares.filter((square) => {
+          return square.candidates.includes(potentialPairs[i])
+        }).length === 2 && emptySquares.filter((square) => {
+          return square.candidates.includes(potentialPairs[i])
+        })[0].candidates.includes(potentialPairs[j])) {
+          eliminatedNumbers = missingNumbers.filter((number) => {
+            return (number !== potentialPairs[i]) && (number !== potentialPairs[j]);
+          })
+          let pairSquares = emptySquares.filter((square) => {
+            return square.candidates.includes(potentialPairs[i]);
+          });
+          if (pairSquares.length == 2) {
+            pairSquares[0].candidates = pairSquares[0].candidates.filter((candidate) => {
+              return !eliminatedNumbers.includes(candidate);
+            });
+            pairSquares[1].candidates = pairSquares[1].candidates.filter((candidate) => {
+              return !eliminatedNumbers.includes(candidate);
+            });
+          }
+          // console.log(pairSquares);
+
+        }
+        // if (i !== j) {
+        //   const pairSquares = [potentialPairs[i], potentialPairs[j]];
+        // }
       }
     }
   }
+
 
 }
 

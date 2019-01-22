@@ -79,11 +79,37 @@ const sudoku8squares = [
   {"x":0,"y":1,"value":2},{"x":0,"y":2,"value":1},{"x":0,"y":3,"value":9},{"x":0,"y":6,"value":4},{"x":1,"y":2,"value":6},{"x":1,"y":3,"value":7},{"x":1,"y":4,"value":8},{"x":1,"y":5,"value":2},{"x":2,"y":3,"value":6},{"x":2,"y":8,"value":7},{"x":3,"y":1,"value":8},{"x":3,"y":2,"value":4},{"x":3,"y":5,"value":1},{"x":3,"y":7,"value":9},{"x":4,"y":0,"value":6},{"x":4,"y":3,"value":4},{"x":4,"y":4,"value":9},{"x":4,"y":5,"value":8},{"x":4,"y":6,"value":7},{"x":4,"y":8,"value":5},{"x":5,"y":0,"value":5},{"x":5,"y":1,"value":7},{"x":5,"y":2,"value":9},{"x":5,"y":5,"value":6},{"x":5,"y":7,"value":8},{"x":5,"y":8,"value":4},{"x":6,"y":4,"value":5},{"x":6,"y":5,"value":7},{"x":6,"y":6,"value":6},{"x":6,"y":7,"value":4},{"x":6,"y":8,"value":1},{"x":7,"y":3,"value":1},{"x":7,"y":4,"value":4},{"x":7,"y":5,"value":3},{"x":8,"y":0,"value":1},{"x":8,"y":2,"value":5},{"x":8,"y":3,"value":2},{"x":8,"y":6,"value":8},{"x":8,"y":7,"value":7},{"x":8,"y":8,"value":3}
 ];
 
+const sudoku9 = new Sudoku();
+const sudoku9rows = [
+  [7, 0, 4, 0, 0, 0, 2, 0, 9],
+  [6, 8, 3, 2, 9, 5, 0, 1, 0],
+  [2, 0, 0, 0, 4, 7, 0, 0, 3],
+  [0, 0, 0, 4, 0, 6, 0, 5, 0],
+  [1, 4, 7, 5, 0, 9, 6, 3, 2],
+  [8, 6, 5, 0, 2, 3, 9, 4, 1],
+  [5, 3, 8, 9, 7, 4, 1, 2, 6],
+  [4, 7, 6, 1, 5, 2, 0, 9, 8],
+  [9, 1, 2, 0, 0, 0, 0, 7, 5]
+];
 
-sudoku1.populate2dArray(sudoku1rows);
-console.log(sudoku1.rows[0][3].value);
-console.log(sudoku1.rows[0][3].candidates);
+// As of writing this, this puzzle will cause the solver to make mistakes - for example, 9 appears twice in column 2, 1 appears twice inside row 9, column 8, and nonet 2, etc.
+const sudoku10 = new Sudoku();
+const sudoku10rows = [
+  [0, 8, 2, 3, 6, 0, 0, 4, 0],
+  [0, 0, 0, 0, 0, 0, 8, 0, 0],
+  [0, 3, 0, 1, 0, 4, 0, 0, 6],
+  [2, 5, 0, 4, 3, 0, 0, 8, 0],
+  [4, 0, 7, 0, 0, 0, 3, 6, 2],
+  [0, 6, 3, 0, 1, 2, 0, 5, 0],
+  [0, 0, 0, 6, 0, 1, 2, 9, 5],
+  [5, 0, 0, 2, 0, 3, 0, 0, 8],
+  [1, 2, 6, 0, 5, 0, 0, 7, 3]
+];
 
+// console.log(sudoku1.rows[0][3].value);
+// console.log(sudoku1.rows[0][3].candidates);
+
+// sudoku1.populate2dArray(sudoku1rows);
 // sudoku1complete.populate2dArray(sudoku1completeRows);
 // sudoku2.populateString(sudoku2string);
 // sudoku3.populateString(sudoku3string);
@@ -97,6 +123,8 @@ console.log(sudoku1.rows[0][3].candidates);
 // sudoku7.solve();
 // sudoku8.printUnitArray(sudoku8.rows);
 // sudoku8.solve();
+sudoku10.populate2dArray(sudoku10rows);
+sudoku10.solve();
 
 // console.log(sudoku1.rows);
 // console.log(sudoku1.columns);
