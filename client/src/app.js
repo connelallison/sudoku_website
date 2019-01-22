@@ -7,6 +7,7 @@ const RulesView = require('./views/rules_view.js');
 const Sudoku = require('./models/sudoku_solver.js')
 const SudokuValuesView = require("./views/sudoku_values_view.js")
 const SudokuCandidatesView = require("./views/sudoku_candidates_view.js")
+const Stopwatch = require("./views/stopwatch.js")
 
 document.addEventListener('DOMContentLoaded', () => {
 

@@ -73,10 +73,6 @@ td {
   background-color: white;
 }
 
-.mySlides {
-  /* font-family: helvetica; */
-}
-
 #user {
   border: dashed rosybrown;
 }
@@ -84,32 +80,6 @@ td {
 #new-user-form {
 
 }
-
-/* ul {
-  font-family: helvetica;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  text-family: helvetica;
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover {
-  background-color: #111;
-} */
 
 input {
   outline: none;
@@ -179,7 +149,6 @@ button {
   background-color: white;
   font-size: 30px;
   font-family: japan;
-  hover: blue;
 }
 
 button:hover {background-color: #3e8e41}
