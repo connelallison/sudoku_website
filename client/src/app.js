@@ -74,6 +74,21 @@ document.addEventListener('DOMContentLoaded', () => {
   stopwatch.bindEvents();
   // sudokuCandidatesView.render(sudokuCandidates);
 
+  function swapStyleSheet(sheet) {
+    document.querySelector('#pagestyle').setAttribute("href", sheet);
+  }
+
+  const krazyButton = document.querySelector('#krazy-button');
+  krazyButton.addEventListener('click', () => {
+    const stylesheet = document.querySelector('#pagestyle');
+    if (stylesheet.getAttribute('href') === '/css/style.css'){
+      swapStyleSheet('/css/krazy.css');
+    }
+    else
+    {
+      swapStyleSheet('/css/style.css')
+    };
+  });
 
   const hub = new Hub();
   hub.bindEvents();
