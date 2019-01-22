@@ -5,17 +5,26 @@
   font-weight: bold;
 }
 
+@keyframes body {
+  from {background-color: red;}
+  to {background-color: mistyrose;}
+}
+
+/* @-webkit-keyframes body {
+  0%   {background-color:red; left:0px; top:0px;}
+  25%  {background-color:yellow; left:200px; top:0px;}
+  50%  {background-color:blue; left:200px; top:200px;}
+  75%  {background-color:green; left:0px; top:200px;}
+  100% {background-color:red; left:0px; top:0px;}
+} */
+
 body {
-  background-repeat: no-repeat;
-  background: center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
   background-color: mistyrose;
-  /* background-image: linear-gradient(white, orangered); */
   background-size: cover;
   font-family: Japan;
+  /* -webkit-animation-iteration-count: infinite; */
+  animation-name: body;
+  animation-duration: 5s;
 }
 
 nav {
@@ -236,8 +245,8 @@ button {
 
 button:hover {
   background-color: black;
-  border: 3px solid white;
-  color: white
+  border: 3px solid black;
+  color: white;
 }
 
 button:active {
