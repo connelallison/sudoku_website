@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const userGridView = new UserGridView(userGridContainer);
   userGridView.bindEvents();
 
-  const usersUrl = 'http://localhost:3000/api/users';
+  const usersUrl = 'http://localhost:3000/api/puzzles';
   const users = new Users(usersUrl);
   users.getData();
   const stopwatchContainer = document.querySelector("#stopwatch-container");

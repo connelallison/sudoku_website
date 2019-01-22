@@ -1,6 +1,15 @@
 "use strict";
 const Sudoku = require("./sudoku_constructor.js");
 
+Sudoku.prototype.stringify = function () {
+  let stringified = "";
+  for (let i = 0; i < 9; i++) {
+    for (var j = 0; j < 9; j++) {
+      stringified += this.rows[i][j].value;
+    }
+  }
+  return stringified;
+}
 
 // This method takes in a unit as an argument, and returns and array of only its values.
 // It is invoked in unitsNumbers(), unitComplete(), and printUnitArray().
@@ -143,17 +152,17 @@ Sudoku.prototype.updatePeers = function (square) {
       })
     }
   }
-    // for (let i = 0; i < 9; i++) {
-    //   this.rows[square.row][i].candidates = this.rows[square.row][i].candidates.filter((candidate) => {
-    //     return candidate !== square.candidates[0] || this.nonets[square.nonet][i] === square;
-    //   });
-    //   this.columns[square.column][i].candidates = this.columns[square.column][i].candidates.filter((candidate) => {
-    //     return candidate !== square.candidates[0] || this.nonets[square.nonet][i] === square;
-    //   });
-    //   this.nonets[square.nonet][i].candidates = this.nonets[square.nonet][i].candidates.filter((candidate) => {
-    //     return candidate !== square.candidates[0] || this.nonets[square.nonet][i] === square;
-    //   });
-    // }
+  // for (let i = 0; i < 9; i++) {
+  //   this.rows[square.row][i].candidates = this.rows[square.row][i].candidates.filter((candidate) => {
+  //     return candidate !== square.candidates[0] || this.nonets[square.nonet][i] === square;
+  //   });
+  //   this.columns[square.column][i].candidates = this.columns[square.column][i].candidates.filter((candidate) => {
+  //     return candidate !== square.candidates[0] || this.nonets[square.nonet][i] === square;
+  //   });
+  //   this.nonets[square.nonet][i].candidates = this.nonets[square.nonet][i].candidates.filter((candidate) => {
+  //     return candidate !== square.candidates[0] || this.nonets[square.nonet][i] === square;
+  //   });
+  // }
 };
 
 Sudoku.prototype.fillIfForced = function (square) {
