@@ -5,8 +5,8 @@ const HistoryView = function(container) {
 HistoryView.prototype.showHistory = function() {
   const historyNavButton = document.querySelector("a[href='#history']");
   historyNavButton.addEventListener('click', (event) => {
-    const formElement = document.querySelector('#new-users');
-    formElement.innerHTML = '';
+    // const formElement = document.querySelector('#new-users');
+    // formElement.innerHTML = '';
     const gridElement = document.querySelector('#users');
     gridElement.innerHTML = '';
     this.container.innerHTML = '';

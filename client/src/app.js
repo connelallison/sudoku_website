@@ -40,10 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const gameView = new GameView(wrapperContainer);
   gameView.showGame();
 
-  const userFormContainer = document.querySelector('div#new-users');
-  const userFormView = new UserFormView(userFormContainer);
-  // userFormView.showUserForm();
-  userFormView.bindEvents();
+  // const userFormContainer = document.querySelector('div#new-users');
+  // const userFormView = new UserFormView(userFormContainer);
+  // // userFormView.showUserForm();
+  // userFormView.bindEvents();
 
   const userGridContainer = document.querySelector('div#users');
   const userGridView = new UserGridView(userGridContainer);

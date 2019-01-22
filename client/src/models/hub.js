@@ -5,6 +5,7 @@ const Sudoku = require('./sudoku_solver.js')
 const Hub = function (){
   this.sudoku = new Sudoku();
   this.displaysCandidates = false;
+  this.user = null;
 };
 
 Hub.prototype.bindEvents = function () {
@@ -12,6 +13,17 @@ Hub.prototype.bindEvents = function () {
   gameNavButton.addEventListener('click', (event) => {
     PubSub.publish("Hub:render-sudoku-grid");
     PubSub.publish('Hub:render-values-view', this.sudoku.unitsNumbers(this.sudoku.rows));
+  })
+  const userForm = document.querySelector("#current-user");
+  if (localStorage.getItem("savedUser")) {
+  userForm.value = localStorage.getItem("savedUser");
+  this.user = userForm.value;
+  console.log("loaded " + this.user);
+}
+  userForm.addEventListener("change", (event) => {
+    this.user = event.target.value;
+    localStorage.setItem("savedUser", this.user);
+    console.log(this.user);
   })
   PubSub.publish("Hub:render-sudoku-grid");
   PubSub.publish('Hub:render-values-view', this.sudoku.unitsNumbers(this.sudoku.rows));

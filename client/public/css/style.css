@@ -38,6 +38,14 @@ nav a:hover {
   color: red;
 }
 
+
+#stopwatch-container h2 {
+  display: flex;
+  text-align: right;
+  justify-content: flex-end;
+  font-size: 40px;
+}
+
 #wrapper {
 }
 
@@ -48,8 +56,9 @@ nav a:hover {
 
 h1 {
   font-weight: bold;
-  font-size: 70px;
+  font-size: 50px;
   text-align: center;
+  margin: 10px;
 }
 
 p {
