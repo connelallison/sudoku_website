@@ -6,15 +6,20 @@
 }
 
 body {
-  background-image: url('../images/cherrytree.jpg');
-  /* background-repeat: no-repeat; */
+  background-repeat: no-repeat;
+  background: center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-image: linear-gradient(white, red);
   background-size: cover;
   font-family: Japan;
 }
 
 nav {
   display: flex;
-  background-color: lightpink;
+  /* background-color: lightpink; */
   width: 100%;
 }
 
@@ -24,11 +29,12 @@ nav a {
   text-align: center;
   padding: 14px 20px;
   text-decoration: none;
-  font-size: 24px;
+  font-size: 30px;
+  color: black;
 }
 
 nav a:hover {
-  color: white;
+  color: red;
 }
 
 #wrapper {
@@ -41,7 +47,7 @@ nav a:hover {
 
 h1 {
   font-weight: bold;
-  font-size: 50px;
+  font-size: 70px;
   text-align: center;
 }
 
@@ -62,7 +68,7 @@ table {
 }
 
 colgroup, tbody {
-  border: solid medium;
+  /* border: solid medium; */
 }
 
 td {
@@ -144,7 +150,7 @@ input {
 .values-table {
   height: 60px;
   width: 60px;
-  border: 1px solid black;
+  border: 2px solid black;
 }
 
 colgroup {
@@ -178,17 +184,22 @@ button {
   width: 180px;
   height: 50px;
   border-radius: 6px;
-  border: none;
+  border: 2px solid black;
   background-color: white;
   font-size: 20px;
+  color: black;
   font-family: japan;
   /* hover: blue; */
 }
 
-button:hover {background-color: #3e8e41}
+button:hover {
+  background-color: black;
+  color: white
+}
 
 button:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
+  background-color: white;
+  color: black;
+  box-shadow: 0 5px black;
   transform: translateY(4px);
 }
