@@ -30,17 +30,38 @@ SudokuValuesView.prototype.render = function (data) {
     const gridRow = document.createElement("tr");
     for (let j = 0; j < 9; j++, c++) {
       const gridSquare = document.createElement("td");
+      gridSquare.id = `square-${c}`;
       let value;
       let disabled;
       if (data[i][j] === 0) {
         value = ""
-        disabled = '';
+        disabled = false;
       } else {
         value = data[i][j];
-        disabled = 'disabled="true" ';;
+        disabled = true;
       }
       // type="number" min="1" max="9"    << to be done later
-      gridSquare.innerHTML += `<input id="square-${c}" ${disabled}maxlength="1" size="3" value="${value}"></input>`;
+      const gridSquareInput = document.createElement("input");
+      gridSquareInput.id = `square-${c}-input`;
+      gridSquareInput.disabled = disabled;
+      gridSquareInput.maxlength = 1;
+      gridSquareInput.size = 3;
+      gridSquareInput.value = value;
+      gridSquareInput.addEventListener("input", (event) => {
+        if (!["1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(event.target.value)) {
+          event.target.value = "";
+        }
+      });
+      gridSquareInput.addEventListener("change", (event) => {
+        console.log("change event triggered");
+        console.log(parseInt(event.target.value));
+        console.log(i);
+        console.log(j);
+        PubSub.publish("SudokuValuesView:attempt-fill-value", [i, j, parseInt(event.target.value)]);
+      });
+      PubSub.subscribe("Hub:illegal-move");
+      gridSquare.appendChild(gridSquareInput);
+      // gridSquare.innerHTML += `<input id="square-${c}" ${disabled}maxlength="1" size="3" value="${value}"></input>`;
       gridRow.appendChild(gridSquare);
       gridSquare.classList.add("values-table")
       grid
