@@ -12,6 +12,14 @@ Hub.prototype.bindEvents = function () {
   easyButton.addEventListener("click", () => {
     this.getDataEasy();
   });
+  const mediumButton = document.querySelector("#medium-button");
+  mediumButton.addEventListener("click", () => {
+    this.getDataMedium();
+  });
+  const hardButton = document.querySelector("#hard-button");
+  hardButton.addEventListener("click", () => {
+    this.getDataHard();
+  });
   const solveButton = document.querySelector("#solve-button");
   solveButton.addEventListener("click", () => {
     PubSub.publish("Hub:puzzle-ends");
@@ -42,6 +50,34 @@ Hub.prototype.getDataEasy = function(){
     sudoku.populateApiRequest(sudokuData);
     this.sudoku = sudoku;
     PubSub.publish('Hub:render-values-view', this.sudoku.unitsNumbers(this.sudoku.rows));
+    PubSub.publish("Hub:puzzle-begins")
+  });
+}
+
+Hub.prototype.getDataMedium = function(){
+  const request = new Request('http://www.cs.utep.edu/cheon/ws/sudoku/new/?size=9&level=2');
+  request.get().then((data) => {
+    const sudokuData = data.squares;
+    console.log('sudoku data received medium', sudokuData);
+    const sudoku = new Sudoku();
+    sudoku.populateApiRequest(sudokuData);
+    this.sudoku = sudoku;
+    PubSub.publish('Hub:render-values-view',
+    this.sudoku.unitsNumbers(this.sudoku.rows));
+    PubSub.publish("Hub:puzzle-begins")
+  });
+}
+
+Hub.prototype.getDataHard = function(){
+  const request = new Request('http://www.cs.utep.edu/cheon/ws/sudoku/new/?size=9&level=3');
+  request.get().then((data) => {
+    const sudokuData = data.squares;
+    console.log('sudoku data received hard', sudokuData);
+    const sudoku = new Sudoku();
+    sudoku.populateApiRequest(sudokuData);
+    this.sudoku = sudoku;
+    PubSub.publish('Hub:render-values-view',
+    this.sudoku.unitsNumbers(this.sudoku.rows));
     PubSub.publish("Hub:puzzle-begins")
   });
 }
