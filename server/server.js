@@ -10,14 +10,14 @@ app.use(express.static(publicPath));
 
 app.use(parser.json());
 
-// MongoClient.connect('mongodb://localhost:27017')
-// .then((client) => {
-//   const db = client.db('sudoku_app');
-//   const usersCollection = db.collection('users');
-//   const usersRouter = createRouter(usersCollection);
-//   app.use('/api/users', usersRouter);
-// })
-// .catch(console.error);
+MongoClient.connect('mongodb://localhost:27017')
+.then((client) => {
+  const db = client.db('sudoku_app');
+  const usersCollection = db.collection('users');
+  const usersRouter = createRouter(usersCollection);
+  app.use('/api/users', usersRouter);
+})
+.catch(console.error);
 
 app.listen(3000, function() {
   console.log(`Listening on port ${ this.address().port}`);

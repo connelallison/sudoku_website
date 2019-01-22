@@ -42,6 +42,8 @@ SudokuValuesView.prototype.render = function (data) {
       // type="number" min="1" max="9"    << to be done later
       gridSquare.innerHTML += `<input id="square-${c}" ${disabled}maxlength="1" size="3" value="${value}"></input>`;
       gridRow.appendChild(gridSquare);
+      gridSquare.classList.add("values-table")
+      grid
     }
     switch (i) {
       case 0:

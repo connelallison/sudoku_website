@@ -35,12 +35,18 @@ Hub.prototype.bindEvents = function () {
 Hub.prototype.getDataEasy = function(){
   const request = new Request('http://www.cs.utep.edu/cheon/ws/sudoku/new/?size=9&level=1');
   request.get().then((data) => {
+<<<<<<< HEAD
     const sudokuData = data.squares;
     console.log('sudoku data received', sudokuData);
     const sudoku = new Sudoku();
     sudoku.populateApiRequest(sudokuData);
     this.sudoku = sudoku;
     PubSub.publish('Hub:render-values-view', this.sudoku.unitsNumbers(this.sudoku.rows));
+=======
+    this.sudokuData = data.squares;
+    console.log('sudoku data received:', this.sudokuData);
+    PubSub.publish('Hub:sudoku-data-received', this.sudokuData);
+>>>>>>> a8e554d874cc73d64607cab494c8159b625a0c5f
   });
 }
 

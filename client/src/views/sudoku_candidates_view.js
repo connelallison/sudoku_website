@@ -31,11 +31,13 @@ SudokuCandidatesView.prototype.render = function (data) {
     for (let j = 0; j < 9; j++, c++) {
       const gridSquare = document.createElement("td");
       const nestedTable = document.createElement("table");
+      nestedTable.classList.add("nested-table")
       for (let k = 0, d = 1; k < 3; k++) {
         const candidateGridRow = document.createElement("tr");
         for (let l = 0; l < 3; l++, d++) {
           const candidateGridSquare = document.createElement("td");
           candidateGridSquare.classList.add("candidate-square")
+          candidateGridRow.classList.add("candidate-row")
           let pencilMarkValue;
           let disabled;
           if (!data[i][j].includes(d)) {

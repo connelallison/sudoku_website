@@ -10,10 +10,17 @@
 </head>
 <body>
 		<center>
-    <ul>
-    <li><a href="#game">Sudoku Game</a></li>
-    <li><a class="active" href="#history">Sudoku History</a></li>
-    </ul>
+      <nav>
+        <ul>
+          <a class="active" href="#game">Game</a>
+          <a href="#rules">Rules</a>
+          <a href="#history">History</a>
+          <a href="#players">Players</a>
+        </ul>
+      </nav>
+      <div id="new-users"></div>
+      <div id="users"></div>
+      <div id="wrapper">
     <h1>Sudoku Game</h1>
 		<div class="step">
       <p>New Game:</p>
@@ -24,128 +31,60 @@
 		<br>
 		<button id="switch-view-button">Switch between candidates and values</button>
 		<br><br>
+      <div id="sudoku-grid-div">
+      </div>
 
-    <div id="sudoku-grid-div">
+      <div class="stopwatchContainer">
+        <h1 class="title">Stopwatch</h1>
+        <h1 id="timerLabel">00:00:00</h1>
+        <input type="button" value="START" class="myButton" onClick="start()" id="startBtn">
+        <input type="button" value="STOP" class="myButton" onClick="stop()">
+        <input type="button" value="RESET" class="myButton" onClick="reset()">
+      </div>
+      <script type="text/javascript">
+        var status = 0;
+        var time = 0;
 
-    </div>
+        function start() {
+          status = 1;
+          document.getElementById("startBtn").disabled = true;
+          timer();
+        }
+        function stop() {
+          status = 0;
+          document.getElementById("startBtn").disabled = false;
+        }
+        function reset() {
+          status = 0;
+          time = 0;
+          document.getElementById("startBtn").disabled = false;
+          document.getElementById("timerLabel").innerHTML = "00:00:00";
 
-		<!-- <table border="0" cellspacing="0">
-      <colgroup>
-        <col>
-        <col>
-        <col>
-      <colgroup>
-        <col>
-        <col>
-        <col>
-      <colgroup>
-        <col>
-        <col>
-        <col>
-      <tbody>
-			<tr>
-				<td><input id="number1" style="outline: none; border: none; text-align: center; font-size: 16px; padding:0; margin:0" maxlength="1" size="3"></input></td>
-				<td><input id="number2" maxlength="1" size="3"></input></td>
-				<td><input id="number3" maxlength="1" size="3"></input></td>
-				<td><input id="number4" maxlength="1" size="3"></input></td>
-				<td><input id="number5" maxlength="1" size="3"></input></td>
-				<td><input id="number6" maxlength="1" size="3"></input></td>
-				<td><input id="number7" maxlength="1" size="3"></input></td>
-				<td><input id="number8" maxlength="1" size="3"></input></td>
-				<td><input id="number9" maxlength="1" size="3"></input></td>
-			</tr>
-			<tr>
-				<td><input id="number10" maxlength="1" size="3"></input></td>
-				<td><input id="number11" maxlength="1" size="3"></input></td>
-				<td><input id="number12" maxlength="1" size="3"></input></td>
-				<td><input id="number13" maxlength="1" size="3"></input></td>
-				<td><input id="number14" maxlength="1" size="3"></input></td>
-				<td><input id="number15" maxlength="1" size="3"></input></td>
-				<td><input id="number16" maxlength="1" size="3"></input></td>
-				<td><input id="number17" maxlength="1" size="3"></input></td>
-				<td><input id="number18" maxlength="1" size="3"></input></td>
-			</tr>
-			<tr>
-				<td><input id="number19" maxlength="1" size="3"></input></td>
-				<td><input id="number20" maxlength="1" size="3"></input></td>
-				<td><input id="number21" maxlength="1" size="3"></input></td>
-				<td><input id="number22" maxlength="1" size="3"></input></td>
-				<td><input id="number23" maxlength="1" size="3"></input></td>
-				<td><input id="number24" maxlength="1" size="3"></input></td>
-				<td><input id="number25" maxlength="1" size="3"></input></td>
-				<td><input id="number26" maxlength="1" size="3"></input></td>
-				<td><input id="number27" maxlength="1" size="3"></input></td>
-			</tr>
-      </tbody>
-      <tbody>
-			<tr>
-				<td><input id="number28" maxlength="1" size="3"></input></td>
-				<td><input id="number29" maxlength="1" size="3"></input></td>
-				<td><input id="number30" maxlength="1" size="3"></input></td>
-				<td><input id="number31" maxlength="1" size="3"></input></td>
-				<td><input id="number32" maxlength="1" size="3"></input></td>
-				<td><input id="number33" maxlength="1" size="3"></input></td>
-				<td><input id="number34" maxlength="1" size="3"></input></td>
-				<td><input id="number35" maxlength="1" size="3"></input></td>
-				<td><input id="number36" maxlength="1" size="3"></input></td>
-			</tr>
-			<tr>
-				<td><input id="number37" maxlength="1" size="3"></input></td>
-				<td><input id="number38" maxlength="1" size="3"></input></td>
-				<td><input id="number39" maxlength="1" size="3"></input></td>
-				<td><input id="number40" maxlength="1" size="3"></input></td>
-				<td><input id="number41" maxlength="1" size="3"></input></td>
-				<td><input id="number42" maxlength="1" size="3"></input></td>
-				<td><input id="number43" maxlength="1" size="3"></input></td>
-				<td><input id="number44" maxlength="1" size="3"></input></td>
-				<td><input id="number45" maxlength="1" size="3"></input></td>
-			</tr>
-			<tr>
-				<td><input id="number46" maxlength="1" size="3"></input></td>
-				<td><input id="number47" maxlength="1" size="3"></input></td>
-				<td><input id="number48" maxlength="1" size="3"></input></td>
-				<td><input id="number49" maxlength="1" size="3"></input></td>
-				<td><input id="number50" maxlength="1" size="3"></input></td>
-				<td><input id="number51" maxlength="1" size="3"></input></td>
-				<td><input id="number52" maxlength="1" size="3"></input></td>
-				<td><input id="number53" maxlength="1" size="3"></input></td>
-				<td><input id="number54" maxlength="1" size="3"></input></td>
-			</tr>
-      </tbody>
-			<tr>
-				<td><input id="number55" maxlength="1" size="3"></input></td>
-				<td><input id="number56" maxlength="1" size="3"></input></td>
-				<td><input id="number57" maxlength="1" size="3"></input></td>
-				<td><input id="number58" maxlength="1" size="3"></input></td>
-				<td><input id="number59" maxlength="1" size="3"></input></td>
-				<td><input id="number60" maxlength="1" size="3"></input></td>
-				<td><input id="number61" maxlength="1" size="3"></input></td>
-				<td><input id="number62" maxlength="1" size="3"></input></td>
-				<td><input id="number63" maxlength="1" size="3"></input></td>
-			</tr>
-			<tr>
-				<td><input id="number64" maxlength="1" size="3"></input></td>
-				<td><input id="number65" maxlength="1" size="3"></input></td>
-				<td><input id="number66" maxlength="1" size="3"></input></td>
-				<td><input id="number67" maxlength="1" size="3"></input></td>
-				<td><input id="number68" maxlength="1" size="3"></input></td>
-				<td><input id="number69" maxlength="1" size="3"></input></td>
-				<td><input id="number70" maxlength="1" size="3"></input></td>
-				<td><input id="number71" maxlength="1" size="3"></input></td>
-				<td><input id="number72" maxlength="1" size="3"></input></td>
-			</tr>
-			<tr>
-				<td><input id="number73" maxlength="1" size="3"></input></td>
-				<td><input id="number74" maxlength="1" size="3"></input></td>
-				<td><input id="number75" maxlength="1" size="3"></input></td>
-				<td><input id="number76" maxlength="1" size="3"></input></td>
-				<td><input id="number77" maxlength="1" size="3"></input></td>
-				<td><input id="number78" maxlength="1" size="3"></input></td>
-				<td><input id="number79" maxlength="1" size="3"></input></td>
-				<td><input id="number80" maxlength="1" size="3"></input></td>
-				<td><input id="number81" maxlength="1" size="3"></input></td>
-			</tr>
-		</table> -->
+        }
+        function timer() {
+          if(status == 1) {
+            setTimeout(function(){
+               time++;
+               var min = Math.floor(time/100/60);
+               var sec = Math.floor(time/100);
+               var mSec = time % 100;
+
+              if(min < 10){
+                min = "0" + min;
+              }
+              if(sec >= 60){
+                sec = sec % 60;
+              }
+              if(sec < 10){
+                sec = "0" + sec;
+              }
+
+              document.getElementById("timerLabel").innerHTML = min + ":" + sec + ":" + mSec;
+              timer();
+            }, 10);
+          }
+        }
+      </script>
     <br><br>
 		<button onclick="Check Answer Functon()" >Check Answer</button>
 		<button onclick="Give Hint Function()">Give Hint</button>
