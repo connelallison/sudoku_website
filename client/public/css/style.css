@@ -24,7 +24,14 @@ input[type=text] {
 }
 
 body {
-  background-color: mistyrose;
+  /* background-color: mistyrose; */
+  background-repeat: no-repeat;
+  background: center center fixed;
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+  background-size: cover;
+  background-image: linear-gradient(white, red);
   background-size: cover;
   font-family: Japan;
 }
@@ -156,14 +163,14 @@ td {
   /* background: lime; */
 }
 
-/* ul {
+ /* ul {
   font-family: helvetica;
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: #333;
-}
+} */
 
 input {
   outline: none;
@@ -249,6 +256,11 @@ button:active {
   color: black;
   box-shadow: 0 7px black;
   transform: translateY(4px);
+}
+
+.grid-square-input {
+  font-size: 30px;
+  color: black;
 }
 
 /*slideshow css

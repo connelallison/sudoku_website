@@ -87,6 +87,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const stylesheet = document.querySelector('#pagestyle');
     if (stylesheet.getAttribute('href') === '/css/style.css'){
       swapStyleSheet('/css/krazy.css');
+      img = document.createElement('img');
+      img.src = '/images/doge.png';
+      img.className = 'doge';
+      const dogeDiv = document.querySelector('#doge')
+      dogeDiv.appendChild(img);
     }
     else
     {
