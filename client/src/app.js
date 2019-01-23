@@ -8,6 +8,7 @@ const UserGridView = require('./views/user_grid_view.js');
 const Users = require('./models/users_model.js');
 const HistoryView = require('./views/history_view.js');
 const RulesView = require('./views/rules_view.js');
+const GameView = require('./views/game_view.js');
 const Stopwatch = require("./views/stopwatch.js");
 
 
@@ -31,47 +32,50 @@ document.addEventListener('DOMContentLoaded', () => {
   // sudoku.populate2dArray(sudokuRows);
   // let sudokuValues = sudoku.unitsNumbers(sudoku.rows);
   // let sudokuCandidates = sudoku.unitsCandidates(sudoku.rows);  const historyInfoContainer = document.querySelector('div#wrapper');
-  const historyInfoContainer = document.querySelector("div#wrapper")
-  const historyView = new HistoryView(historyInfoContainer);
+  const wrapperContainer = document.querySelector("div#wrapper")
+  const historyView = new HistoryView(wrapperContainer);
   historyView.showHistory();
-
-  const rulesContainer = document.querySelector("div#wrapper")
-  const rulesView = new RulesView(rulesContainer);
+  const rulesView = new RulesView(wrapperContainer);
   rulesView.showRules();
+  const gameView = new GameView(wrapperContainer);
+  gameView.showGame();
 
-  const userFormContainer = document.querySelector('div#new-users');
-  const userFormView = new UserFormView(userFormContainer);
-  // userFormView.showUserForm();
-  userFormView.bindEvents();
+  // const userFormContainer = document.querySelector('div#new-users');
+  // const userFormView = new UserFormView(userFormContainer);
+  // // userFormView.showUserForm();
+  // userFormView.bindEvents();
 
   const userGridContainer = document.querySelector('div#users');
   const userGridView = new UserGridView(userGridContainer);
   userGridView.bindEvents();
 
-  const usersUrl = 'http://localhost:3000/api/users';
+  const usersUrl = 'http://localhost:3000/api/puzzles';
   const users = new Users(usersUrl);
   users.getData();
-
-  const switchViewButton = document.querySelector("#switch-view-button");
-  switchViewButton.addEventListener("click", () => {
-    if (switchViewButton.textContent === "Show Candidates") {
-      switchViewButton.textContent = "Show Values"
-    } else if (switchViewButton.textContent === "Show Values") {
-      switchViewButton.textContent = "Show Candidates"
-    }
-    PubSub.publish("App:switch-view-clicked", )
-  })
-
-  const sudokuGridDiv = document.querySelector("#sudoku-grid-div")
-  const sudokuValuesView = new SudokuValuesView(sudokuGridDiv);
-  sudokuValuesView.bindEvents();
-  // sudokuValuesView.render(sudokuValues);
-  const sudokuCandidatesView = new SudokuCandidatesView(sudokuGridDiv);
-  sudokuCandidatesView.bindEvents();
-
   const stopwatchContainer = document.querySelector("#stopwatch-container");
   const stopwatch = new Stopwatch(stopwatchContainer);
   stopwatch.bindEvents();
+
+  // const switchViewButton = document.querySelector("#switch-view-button");
+  // switchViewButton.addEventListener("click", () => {
+  //   if (switchViewButton.textContent === "Show Candidates") {
+  //     switchViewButton.textContent = "Show Values"
+  //   } else if (switchViewButton.textContent === "Show Values") {
+  //     switchViewButton.textContent = "Show Candidates"
+  //   }
+  //   PubSub.publish("App:switch-view-clicked", )
+  // })
+
+  // const sudokuGridDiv = document.querySelector("#sudoku-grid-div")
+  // const sudokuValuesView = new SudokuValuesView(sudokuGridDiv);
+  // sudokuValuesView.bindEvents();
+  // // sudokuValuesView.render(sudokuValues);
+  // const sudokuCandidatesView = new SudokuCandidatesView(sudokuGridDiv);
+  // sudokuCandidatesView.bindEvents();
+  //
+  // const stopwatchContainer = document.querySelector("#stopwatch-container");
+  // const stopwatch = new Stopwatch(stopwatchContainer);
+  // stopwatch.bindEvents();
   // sudokuCandidatesView.render(sudokuCandidates);
 
   function swapStyleSheet(sheet) {
@@ -82,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let img;
   krazyButton.addEventListener('click', () => {
     const stylesheet = document.querySelector('#pagestyle');
-    if (stylesheet.getAttribute('href') === '/css/style.css'){
+    if (stylesheet.getAttribute('href') === './css/style.css'){
       swapStyleSheet('/css/krazy.css');
       img = document.createElement('img');
       img.src = '/images/doge.png';

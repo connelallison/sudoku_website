@@ -7,6 +7,7 @@ const Stopwatch = function(container){
 }
 
 Stopwatch.prototype.populate = function () {
+  this.container.innerHTML = "";
   // const title = document.createElement("h3");
   const timerLabel = document.createElement("h2");
   // title.textContent = "Stopwatch";
@@ -23,7 +24,8 @@ Stopwatch.prototype.populate = function () {
 
 Stopwatch.prototype.timer = function () {
   const stopwatch = this;
-  if (stopwatch.status === 1) {
+  const status = this.status;
+  if (status === 1) {
     setTimeout(function (){
       // console.log(stopwatch);
       // console.log(stopwatch.time);
@@ -33,16 +35,16 @@ Stopwatch.prototype.timer = function () {
       let sec = Math.floor(stopwatch.time);
 
       if (hour < 10) {
-        hour = "0" + hour + ":";
+        hour = "0" + hour;
       }
       if (hour === 0) {
         hour = "";
       }
       if (min >= 60) {
-        min = min % 60 + ":";
+        min = min % 60;
       }
       if (min < 10) {
-        min = "0" + min + ":";
+        min = "0" + min;
       }
       if (min === 0) {
         min = "";
@@ -54,11 +56,12 @@ Stopwatch.prototype.timer = function () {
         sec = "0" + sec;
       }
 
-      document.querySelector("#timer-label").innerHTML = `${hour}${min}${sec}`
+      document.querySelector("#timer-label").innerHTML = `${hour}:${min}:${sec}`
       // console.log(hour + min + sec);
       stopwatch.timer();
     }, 1000);
   }
+  return;
 }
 
 
@@ -67,7 +70,10 @@ Stopwatch.prototype.bindEvents = function(){
   //   console.log('click', event.detail)
   // })
   PubSub.subscribe("Hub:puzzle-begins", () => {
-    this.populate();
+    this.status = 0;
+    const populate = this.populate;
+    const boundPopulate = populate.bind(this);
+    setTimeout(boundPopulate, 500);
   })
   PubSub.subscribe("Hub:puzzle-ends", () => {
     this.status = 0;

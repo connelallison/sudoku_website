@@ -11,12 +11,10 @@ const UserFormView = function(container) {
 
 UserFormView.prototype.bindEvents = function(){
   const usersNavButton = document.querySelector("a[href='#players']");
-  usersNavButton.addEventListener('click', (event) => {
-    const sudokuElement = document.querySelector('#wrapper');
-    sudokuElement.innerHTML = '';
-    this.container.innerHTML = '';
-    this.renderForm();
-  })
+  const sudokuElement = document.querySelector('#wrapper');
+  sudokuElement.innerHTML = '';
+  this.container.innerHTML = '';
+  this.renderForm();
   // const newUserForm = document.querySelector('form');
   // console.log('new user form:', newUserForm);
 }
@@ -41,7 +39,7 @@ UserFormView.prototype.renderForm = function(){
   newUserForm.appendChild(submitFormButton);
 
   this.container.appendChild(newUserForm);
-
+  newUserForm.classList.add('user-grid')
 }
 
 

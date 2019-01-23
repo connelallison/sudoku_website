@@ -13,9 +13,9 @@ app.use(parser.json());
 MongoClient.connect('mongodb://localhost:27017')
 .then((client) => {
   const db = client.db('sudoku_app');
-  const usersCollection = db.collection('users');
-  const usersRouter = createRouter(usersCollection);
-  app.use('/api/users', usersRouter);
+  const puzzleCollection = db.collection('puzzles');
+  const puzzleRouter = createRouter(puzzleCollection);
+  app.use('/api/puzzles', puzzleRouter);
 })
 .catch(console.error);
 

@@ -30,14 +30,24 @@ SudokuCandidatesView.prototype.render = function (data) {
     const gridRow = document.createElement("tr");
     for (let j = 0; j < 9; j++, c++) {
       const gridSquare = document.createElement("td");
+      gridSquare.id = `square-${c}`;
+      let oddEven;
+      if (c%2 === 1) {
+        oddEven = "odd";
+      } else if (c%2 === 0) {
+        oddEven = "even";
+      }
+      gridSquare.classList.add(oddEven);
       const nestedTable = document.createElement("table");
       nestedTable.classList.add("nested-table")
+      nestedTable.classList.add(oddEven);
       for (let k = 0, d = 1; k < 3; k++) {
         const candidateGridRow = document.createElement("tr");
         for (let l = 0; l < 3; l++, d++) {
           const candidateGridSquare = document.createElement("td");
-          candidateGridSquare.classList.add("candidate-square")
-          candidateGridRow.classList.add("candidate-row")
+          candidateGridSquare.classList.add("candidate-square");
+          candidateGridRow.classList.add("candidate-row");
+          candidateGridSquare.classList.add(oddEven);
           let pencilMarkValue;
           let disabled;
           if (!data[i][j].includes(d)) {
@@ -47,7 +57,7 @@ SudokuCandidatesView.prototype.render = function (data) {
             pencilMarkValue = d;
             disabled = "";
           }
-          candidateGridSquare.innerHTML += `<input id="square-${c}-candidate-${d}" maxlength="1" size="1" value="${pencilMarkValue}"></input>`;
+          candidateGridSquare.innerHTML += `<input id="square-${c}-candidate-${d}" class="${oddEven}" maxlength="1" size="1" value="${pencilMarkValue}"></input>`;
           candidateGridRow.appendChild(candidateGridSquare);
         }
         nestedTable.appendChild(candidateGridRow);
