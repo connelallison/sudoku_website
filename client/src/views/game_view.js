@@ -108,6 +108,10 @@ GameView.prototype.showGame = function () {
     const hintButton = document.querySelector("#hint-button");
     hintButton.addEventListener("click", () => {
       PubSub.publish("GameView:hint-button-clicked");
+      hintButton.setAttribute('disabled', true);
+      setTimeout(function(){
+        hintButton.removeAttribute('disabled');
+      }, 1500)
     })
     const solveButton = document.querySelector("#solve-button");
     solveButton.addEventListener("click", () => {

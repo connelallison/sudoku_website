@@ -34,6 +34,10 @@ img {
   animation-duration: 1s;
 }
 
+#audio {
+  visibility: hidden;
+}
+
 #current-user {
   background-color: none;
   color: none;

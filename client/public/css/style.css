@@ -32,6 +32,10 @@
   border: none;
 }
 
+#audio {
+  visibility: hidden;
+}
+
 body {
   background-repeat: no-repeat;
   background: center center fixed;

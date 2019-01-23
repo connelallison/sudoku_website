@@ -15,7 +15,7 @@ const Stopwatch = require("./views/stopwatch.js");
 document.addEventListener('DOMContentLoaded', () => {
 
   console.log('Javascript loaded');
-  
+
   const body = document.querySelector("body");
   body.innerHTML += `<audio id="audio" controls> <source src="./music/music.mp3" type="audio/mp3"> </audio>`;
   // // temporary code for passing a hardcoded sudoku to the view - will be replaced later.
@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#pagestyle').setAttribute("href", sheet);
   }
   const audio = document.getElementById("audio");
+  audio.loop = true;
   let playing = false;
   const krazyButton = document.querySelector('#krazy-button');
   let img;

@@ -15,6 +15,10 @@ const Hub = function (url){
 };
 
 Hub.prototype.bindEvents = function () {
+  const puzzlesNavButton = document.querySelector("a[href='#puzzles']");
+  puzzlesNavButton.addEventListener("click", (evt) => {
+    this.showPuzzlesByUser();
+  })
   const gameNavButton = document.querySelector("a[href='#game']");
   gameNavButton.addEventListener('click', (event) => {
     PubSub.publish("Hub:render-sudoku-grid");
