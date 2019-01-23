@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="./css/style.css">
-  <script src="js/bundle.js"></script>
+  <link id="pagestyle" rel="stylesheet" href="./css/style.css" type="text/css">
+  <script type="application/javascript" src="js/bundle.js"></script>
   <title>Document</title>
 </head>
 <body>
@@ -16,16 +16,23 @@
           <a class="clear-message" href="#rules">Rules</a>
           <a class="clear-message" href="#history">History</a>
           <a class="clear-message" href="#players">Players</a>
+          <a id='krazy-button' href="#krazymode">Krazy Mode</a>
+          <label for="current-user">User Name:</label>
+          <input type="text" id="current-user" autofocus></input>
         </ul>
         <!-- <p>Current User: </p> -->
-        <input id="current-user"></input>
+
+        <!-- <input type="text" id="name" name="name" required
+         minlength="4" maxlength="8" size="10"> -->
+
+        </div>
         <div id="stopwatch-container"> </div>
       </nav>
       <div id="wrapper">
     <!-- <h1>Sudoku Game</h1>
 		<div class="step">
 			<button id="easy-button" class="diff" >Easy Sudoku</button>
-			<button id="medium-button" class="diff active">Medium Sudoku</button>
+			<button id="medium-button" class="diff">Medium Sudoku</button>
 			<button id="hard-button" class="diff">Hard Sudoku</button>
 		</div>
 		<br>
