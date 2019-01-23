@@ -248,8 +248,10 @@ Sudoku.prototype.handleUniqueness = function () {
   testSudoku.solve();
   for (let i = 0; i < 5 && !testSudoku.sudokuComplete(); i++) {
     if (testSudoku.sudokuComplete()) {
+      console.log("sudoku is solveable without modifications");
       return;
     } else {
+      console.log("sudoku is not solveable without modifications");
       let squareToFix = testSudoku.checkUniqueness();
       if (squareToFix) {
         testSudoku.rows[squareToFix[0]][squareToFix[1]].value = squareToFix[2];

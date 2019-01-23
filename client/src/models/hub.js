@@ -10,7 +10,8 @@ const Hub = function (url){
   this.displaysCandidates = false;
   this.user = null;
   this.difficulty;
-  this.help = "solo";
+  this.help = "none";
+  this.time = 0;
 };
 
 Hub.prototype.bindEvents = function () {
@@ -30,7 +31,7 @@ Hub.prototype.bindEvents = function () {
     localStorage.setItem("savedUser", this.user);
     console.log(this.user);
   })
-
+  this.showPuzzlesByUser();
   // const completionMessage = document.querySelector("#completion-message");
   // const body = document.querySelector("body");
   // body.addEventListener("click", () => {
@@ -82,13 +83,14 @@ Hub.prototype.bindEvents = function () {
   })
   PubSub.subscribe("GameView:check-button-clicked", () => {
     if (this.sudoku.sudokuComplete()) {
+      this.time = document.querySelector("#timer-label").innerHTML;
       PubSub.publish("Hub:puzzle-ends");
       PubSub.publish("Hub:render-values-view", this.sudoku.unitsNumbers(this.sudoku.rows));
       this.displaysCandidates = false;
     }
   })
   PubSub.subscribe("GameView:hint-button-clicked", () => {
-    if (this.help === "solo") {
+    if (this.help === "none") {
       this.help = "hint";
     }
     this.sudoku.hint();
@@ -98,6 +100,7 @@ Hub.prototype.bindEvents = function () {
   PubSub.subscribe("GameView:solve-button-clicked", () => {
     this.help = "solver";
     this.sudoku.solve();
+    this.time = document.querySelector("#timer-label").innerHTML;
     PubSub.publish("Hub:puzzle-ends");
     PubSub.publish("Hub:render-values-view", this.sudoku.unitsNumbers(this.sudoku.rows));
     this.displaysCandidates = false;
@@ -105,6 +108,7 @@ Hub.prototype.bindEvents = function () {
   PubSub.subscribe("GameView:clear-button-clicked", () => {
     this.help = "abort";
     this.sudoku = new Sudoku();
+    this.time = document.querySelector("#timer-label").innerHTML;
     PubSub.publish("Hub:puzzle-ends");
     PubSub.publish("Hub:render-values-view", this.sudoku.unitsNumbers(this.sudoku.rows));
     this.displaysCandidates = false;
@@ -198,16 +202,16 @@ Hub.prototype.puzzleEnds = function () {
   const puzzleInitial = this.initialSudoku;
   const puzzleFinal = this.sudoku.stringify();
   const puzzleUser = this.user;
-  const puzzleTime = document.querySelector("#timer-label").innerHTML;
+  const puzzleTime = this.time;
   const puzzleHelp = this.help;
   const puzzleDifficulty = this.difficulty;
   const gameObject = {
-    "user": puzzleUser,
-    "initial": puzzleInitial,
-    "final": puzzleFinal,
-    "time": puzzleTime,
-    "help": puzzleHelp,
-    "difficulty": puzzleDifficulty
+    user: puzzleUser,
+    initial: puzzleInitial,
+    final: puzzleFinal,
+    time: puzzleTime,
+    help: puzzleHelp,
+    difficulty: puzzleDifficulty
   };
   console.log('initial sudoku:', puzzleInitial);
   console.log('final sudoku:', puzzleFinal);
@@ -215,6 +219,19 @@ Hub.prototype.puzzleEnds = function () {
   console.log('puzzle help:', puzzleHelp);
   console.log('difficulty:', puzzleDifficulty);
   this.postPuzzle(gameObject);
+
+}
+
+Hub.prototype.showPuzzlesByUser = function () {
+  const user = this.user;
+  const url = this.url;
+  const request = new Request(this.url);
+  request.show(user)
+  .then((puzzles) => {
+    console.log('Hub:puzzles-per-user-loaded', puzzles);
+    PubSub.publish('Hub:puzzles-per-user-loaded', puzzles);
+  })
+  .catch(console.error);
 }
 
 Hub.prototype.postPuzzle = function (puzzle) {
@@ -232,7 +249,7 @@ Hub.prototype.completionMessage = function (gameObject) {
     case "abort":
       return;
       break;
-    case "solo":
+    case "none":
       messageContainer.innerHTML += "<p>Good job! You solved it all by yourself.</p>";
       break;
     case "hint":

@@ -3,8 +3,8 @@ const Sudoku = require('./models/sudoku_solver.js');
 const SudokuValuesView = require("./views/sudoku_values_view.js");
 const SudokuCandidatesView = require("./views/sudoku_candidates_view.js");
 const PubSub = require('./helpers/pub_sub.js');
-const UserFormView = require('./views/user_form_view.js');
-const UserGridView = require('./views/user_grid_view.js');
+// const UserFormView = require('./views/user_form_view.js');
+const PuzzleGridView = require('./views/puzzle_grid_view.js');
 const Users = require('./models/users_model.js');
 const HistoryView = require('./views/history_view.js');
 const RulesView = require('./views/rules_view.js');
@@ -45,13 +45,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // // userFormView.showUserForm();
   // userFormView.bindEvents();
 
-  const userGridContainer = document.querySelector('div#users');
-  const userGridView = new UserGridView(userGridContainer);
-  userGridView.bindEvents();
+  const puzzleGridContainer = document.querySelector('div#wrapper');
+  const puzzleGridView = new PuzzleGridView(puzzleGridContainer);
+  puzzleGridView.bindEvents();
 
-  const usersUrl = 'http://localhost:3000/api/puzzles';
-  const users = new Users(usersUrl);
-  users.getData();
+  // const usersUrl = 'http://localhost:3000/api/puzzles';
+  // const users = new Users(usersUrl);
+  // users.getData();
   const stopwatchContainer = document.querySelector("#stopwatch-container");
   const stopwatch = new Stopwatch(stopwatchContainer);
   stopwatch.bindEvents();
