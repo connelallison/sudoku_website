@@ -2,10 +2,16 @@ const Request = function (url) {
   this.url = url
 };
 
-// do we pass anything in here?
-// Request.prototype.get = function (onComplete) {
 Request.prototype.get = function () {
-  return fetch(this.url)
+  return fetch(this.url, {
+ mode: 'cors',
+ headers: {
+   "Access-Control-Allow-Headers": "access-control-allow-origin",
+   "Access-Control-Allow-Methods": ["POST", "GET", "OPTIONS", "PUT", "DELETE"],
+   'Access-Control-Allow-Origin':'*',
+   'Content-Type': 'text/html'
+ }
+})
     .then((response) => response.json());
 };
 

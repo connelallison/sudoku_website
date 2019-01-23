@@ -2,10 +2,12 @@
 
 const express = require('express');
 const ObjectID = require('mongodb').ObjectID;
+// const cors = require('cors');
 
 const createRouter = function (collection) {
 
   const router = express.Router();
+  // router.all("*", cors());
 
   router.get('/', (req, res) => {
     collection.find()
