@@ -24,6 +24,18 @@ body {
   animation-duration: 0.5s;
 }
 
+@-webkit-keyframes img {
+  0% { position: fixed; bottom: 0; left: 0;}
+  50% { position: fixed; top: 0; right: 0;}
+  100% { position: fixed; bottom: 0; right: 0;}
+}
+
+img {
+  -webkit-animation-iteration-count: infinite;
+  animation-name: img;
+  animation-duration: 1s;
+}
+
 nav {
   display: flex;
   /* background-color: lightpink; */
