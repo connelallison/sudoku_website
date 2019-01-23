@@ -82,7 +82,19 @@ SudokuValuesView.prototype.render = function (data) {
         }
         PubSub.publish("SudokuValuesView:attempt-fill-value", [i, j, parseInt(value)]);
       });
-      PubSub.subscribe("Hub:illegal-move");
+      PubSub.subscribe("Hub:value-rejected", (event) => {
+        const coords = event.detail;
+        if (coords.some((coord) => {
+          return coord[0] === i && coord[1] === j;
+        })) {
+          gridSquare.style.background = "red";
+          gridSquareInput.style.background = "red";
+          setTimeout(function () {
+            gridSquare.style.background = "white";
+            gridSquareInput.style.background = "white";
+          }, 1500);
+        }
+      });
       gridSquare.appendChild(gridSquareInput);
       // gridSquare.innerHTML += `<input id="square-${c}" ${disabled}maxlength="1" size="3" value="${value}"></input>`;
       gridRow.appendChild(gridSquare);

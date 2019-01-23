@@ -91,11 +91,13 @@ Sudoku.prototype.checkPeers = function (square) {
 };
 
 Sudoku.prototype.attemptFillValue = function (square, value) {
-  if (this.legalMove(square, value)) {
+  const result = this.legalMove(square, value);
+  if (result[0]) {
     this.fillValue(square, value);
     return true;
   } else {
-    return false;
+    // console.error("ILLEGAL MOVE");
+    return result;
   }
 }
 
@@ -109,13 +111,17 @@ Sudoku.prototype.fillValue = function (square, value) {
 Sudoku.prototype.legalMove = function (square, value) {
   const peers = this.getPeers(square);
   if (peers.some((peer) => {
-    peer.value === value;
+    return peer.value === value;
   })) {
     console.log("illegal move");
-    return false;
+    const illegalPeers = peers.filter((peer) => {
+      return peer.value === value;
+    }).concat(square);
+    console.log(illegalPeers);
+    return [false, illegalPeers];
   } else {
     console.log("legal move");
-    return true;
+    return [true];
   }
 }
 
@@ -125,8 +131,18 @@ Sudoku.prototype.getPeers = function (square) {
   })
 }
 
+Sudoku.prototype.getCoordsArray = function (array) {
+  return array.map((square) => {
+    return [square.row, square.column];
+  });
+}
+
 Sudoku.prototype.getPeerCoords = function (square) {
   return square.peers;
+}
+
+Sudoku.prototype.getPeerAndSquareCoords = function (square) {
+  return square.peers.concat([square.row, square.column]);
 }
 
 Sudoku.prototype.checkHiddenSingles = function (square) {
@@ -244,12 +260,14 @@ Sudoku.prototype.handleUniqueness = function () {
 Sudoku.prototype.solve = function () {
   let previousValues = [];
   let currentValues = this.unitsCandidates(this.rows);
+  this.printUnitArray(this.rows);
   while (!this.stringEquals(previousValues, currentValues)) {
     // while (JSON.stringify(previousValues) !== JSON.stringify(currentValues)) {
     previousValues = currentValues;
     this.loopsPass();
     currentValues = this.unitsCandidates(this.rows);
   }
+  this.printUnitArray(this.rows);
   this.reportOutcome(!this.stringEquals(previousValues, this.unitsNumbers(this.rows)));
   // this.reportOutcome(JSON.stringify(initialValues) !== JSON.stringify(this.unitsNumbers(this.rows)));
 }
@@ -300,7 +318,7 @@ Sudoku.prototype.singlesLoop = function () {
     this.singlesPass();
     this.fillOneCandidates();
     currentValues = this.unitsCandidates(this.rows);
-    this.printUnitArray(this.rows);
+    // this.printUnitArray(this.rows);
   }
 }
 

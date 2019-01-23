@@ -46,12 +46,16 @@ Hub.prototype.bindEvents = function () {
     console.log("column:", column);
     console.log("value:", value);
     console.log("square:", square);
-    if (this.sudoku.attemptFillValue(square, value)) {
+    const result = this.sudoku.attemptFillValue(square, value);
+    console.log(result);
+    if (result[0]) {
       PubSub.publish('Hub:render-values-view', this.sudoku.unitsNumbers(this.sudoku.rows));
       console.log("value accepted, re-rendering view");
     } else {
       PubSub.publish('Hub:render-values-view', this.sudoku.unitsNumbers(this.sudoku.rows));
-      // PubSub.publish("Hub:value-rejected", square.peerCoords())
+
+      PubSub.publish("Hub:value-rejected", this.sudoku.getCoordsArray(result[1]));
+      console.log(this.sudoku.getCoordsArray(result[1]));
       console.log("value rejected, re-rendering view");
       // PubSub.publish("Hub:illegal-move");
     }

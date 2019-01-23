@@ -103,8 +103,9 @@ const sudoku10rows = [
 // console.log(sudoku1.rows[0][3].value);
 // console.log(sudoku1.rows[0][3].candidates);
 
-sudoku1.populate2dArray(sudoku1rows);
-console.log(sudoku1.stringify());
+// sudoku1.populate2dArray(sudoku1rows);
+// sudoku1.attemptFillValue(sudoku1.rows[0][0], 2);
+// console.log(sudoku1.stringify());
 // sudoku1complete.populate2dArray(sudoku1completeRows);
 // sudoku2.populateString(sudoku2string);
 // sudoku3.populateString(sudoku3string);
