@@ -18,13 +18,18 @@
   100% {background-color:red; left:0px; top:0px;}
 } */
 
+#krazy-button {
+  font-size: 20px;
+}
+
 #current-user {
   outline: none;
-  background-color: mistyrose;
+  background: none;
   font-family: japan;
   font-size: 30px;
   padding: 14px;
   margin-left: 20px;
+  border: none;
 }
 
 body {
@@ -70,9 +75,9 @@ label {
 
 #stopwatch-container h2 {
   display: flex;
-  text-align: right;
+  text-align: center;
   justify-content: flex-end;
-  font-size: 40px;
+  font-size: 24px;
 }
 
 #wrapper {
