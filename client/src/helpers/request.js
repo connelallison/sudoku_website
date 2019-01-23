@@ -3,15 +3,7 @@ const Request = function (url) {
 };
 
 Request.prototype.get = function () {
-  return fetch(this.url, {
- mode: 'cors',
- headers: {
-   "Access-Control-Allow-Headers": "access-control-allow-origin",
-   "Access-Control-Allow-Methods": ["POST", "GET", "OPTIONS", "PUT", "DELETE"],
-   'Access-Control-Allow-Origin':'*',
-   'Content-Type': 'text/html'
- }
-})
+  return fetch(this.url)
     .then((response) => response.json());
 };
 
@@ -20,8 +12,7 @@ Request.prototype.post = function (payload) {
     method: 'POST',
     body: JSON.stringify(payload),
     headers: { 'Content-Type': 'application/json' }
-  })
-    .then((response) => response.json());
+  }).then((response) => response.json());
 };
 
 Request.prototype.delete = function (id) {

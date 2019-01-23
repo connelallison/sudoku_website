@@ -2,9 +2,10 @@ const PubSub = require('../helpers/pub_sub.js');
 const Request = require('../helpers/request.js');
 const Sudoku = require('./sudoku_solver.js')
 
-const Hub = function (){
-  this.url = "http://localhost:3000/api/puzzles";
-  this.sudoku = new Sudoku();
+const Hub = function (url){
+  this.url = url;
+  let sudoku = new Sudoku();
+  this.sudoku = sudoku;
   this.initialSudoku = null;
   this.displaysCandidates = false;
   this.user = null;
@@ -96,15 +97,15 @@ Hub.prototype.bindEvents = function () {
   })
   PubSub.subscribe("GameView:solve-button-clicked", () => {
     this.help = "solver";
-    PubSub.publish("Hub:puzzle-ends");
     this.sudoku.solve();
+    PubSub.publish("Hub:puzzle-ends");
     PubSub.publish("Hub:render-values-view", this.sudoku.unitsNumbers(this.sudoku.rows));
     this.displaysCandidates = false;
   })
   PubSub.subscribe("GameView:clear-button-clicked", () => {
     this.help = "abort";
-    PubSub.publish("Hub:puzzle-ends");
     this.sudoku = new Sudoku();
+    PubSub.publish("Hub:puzzle-ends");
     PubSub.publish("Hub:render-values-view", this.sudoku.unitsNumbers(this.sudoku.rows));
     this.displaysCandidates = false;
     document.querySelector("#stopwatch-container").innerHTML = "";
@@ -201,18 +202,24 @@ Hub.prototype.puzzleEnds = function () {
   const puzzleHelp = this.help;
   const puzzleDifficulty = this.difficulty;
   const gameObject = {
-    user: puzzleUser,
-    initial: puzzleInitial,
-    final: puzzleFinal,
-    time: puzzleTime,
-    help: puzzleHelp,
-    difficulty: puzzleDifficulty
+    "user": puzzleUser,
+    "initial": puzzleInitial,
+    "final": puzzleFinal,
+    "time": puzzleTime,
+    "help": puzzleHelp,
+    "difficulty": puzzleDifficulty
   };
+  console.log('initial sudoku:', puzzleInitial);
+  console.log('final sudoku:', puzzleFinal);
+  console.log('puzzle time:', puzzleTime);
+  console.log('puzzle help:', puzzleHelp);
+  console.log('difficulty:', puzzleDifficulty);
   this.postPuzzle(gameObject);
 }
 
 Hub.prototype.postPuzzle = function (puzzle) {
-  const request = new Request(this.url);
+  const url = this.url;
+  const request = new Request(url);
   request.post(puzzle)
   .then(this.completionMessage(puzzle))
   .catch(console.error);

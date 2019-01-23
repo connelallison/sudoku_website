@@ -3,25 +3,29 @@
 use sudoku_app;
 db.dropDatabase();
 
-db.users.insertMany([
+db.puzzles.insertMany([
   {
-    name: "Ally",
-    gamesCompleted: 5,
-    score: 50
+    user: "Ally",
+    initial: "102340600704608900068000070000080040680170059200005013030709568006050307579036400",
+    final: "192347685754618932368592174915283746683174259247965813431729568826451397579836421",
+    time: "00:00:38",
+    help: "solver",
+    difficulty: "easy"
   },
   {
-    name: "Kev",
-    gamesCompleted: 4,
-    score: 40
+    user: "Ally",
+    initial: "309010208016920007204507609020040500160205003000070092001302700030461900605080301",
+    final: "379614258516928437284537619928143576167295843453876192891352764732461985645789321",
+    time: "00:00:10",
+    help: "solver",
+    difficulty: "easy"
   },
   {
-    name: "Daniel",
-    gamesCompleted: 3,
-    score: 30
-  },
-  {
-    name: "Connel",
-    gamesCompleted: 3,
-    score: 30
+    user: "Daniel",
+    initial: "510000098008901200390200060809060400100593002003040159730400020086705310420300076",
+    final: "512634798678951243394278561859162437147593682263847159731486925986725314425319876",
+    time: "00:00:10",
+    help: "hint",
+    difficulty: "easy"
   }
 ]);
