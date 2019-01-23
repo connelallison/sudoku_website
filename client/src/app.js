@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     else
     {
-      swapStyleSheet('/css/style.css');
+      swapStyleSheet('./css/style.css');
       img.src = '';
     };
   });
