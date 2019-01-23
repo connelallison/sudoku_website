@@ -58,6 +58,7 @@ input[type=text] {
   width: 250px;
   text-align: left;
   background-color: none;
+  background: none;
   -webkit-animation-iteration-count: infinite;
   animation-name: body;
   animation-duration: 0.5s;
