@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const krazyButton = document.querySelector('#krazy-button');
   krazyButton.addEventListener('click', () => {
     const stylesheet = document.querySelector('#pagestyle');
-    if (stylesheet.getAttribute('href') === '/css/style.css'){
+    if (stylesheet.getAttribute('href') === './css/style.css'){
       swapStyleSheet('/css/krazy.css');
     }
     else

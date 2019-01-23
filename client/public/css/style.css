@@ -5,36 +5,32 @@
   font-weight: bold;
 }
 
-#current-user {
-  background-color: mistyrose;
-  font-family: japan;
-  font-size: 30px;
-  padding: 14px;
-}
+/* @keyframes body {
+  from {background-color: red;}
+  to {background-color: mistyrose;}
+} */
 
-label {
-  margin-left: 40px;
-}
-
-input[type=text] {
-  color: red;
-  font-weight: bold;
-  width: 250px;
-  text-align: left;
-}
+/* @-webkit-keyframes body {
+  0%   {background-color:red; left:0px; top:0px;}
+  25%  {background-color:yellow; left:200px; top:0px;}
+  50%  {background-color:blue; left:200px; top:200px;}
+  75%  {background-color:green; left:0px; top:200px;}
+  100% {background-color:red; left:0px; top:0px;}
+} */
 
 body {
   background-color: mistyrose;
   background-size: cover;
   font-family: Japan;
+  /* -webkit-animation-iteration-count: infinite; */
+  animation-name: body;
+  animation-duration: 5s;
 }
 
 nav {
-  text-align: center;
   display: flex;
+  /* background-color: lightpink; */
   width: 100%;
-  font-size: 30px;
-  background-color: none;
 }
 
 nav a {
@@ -45,26 +41,21 @@ nav a {
   text-decoration: none;
   font-size: 30px;
   color: black;
-  background-color: none;
 }
 
 nav a:hover {
   color: red;
 }
 
-#timer-label {
+
+#stopwatch-container h2 {
   display: flex;
-  justify-content: flex-end;
   text-align: right;
-  align-items: flex-end;
+  justify-content: flex-end;
   font-size: 40px;
 }
 
 #wrapper {
-}
-
-.user-list {
-  width: 75%;
 }
 
 #users {
@@ -109,6 +100,10 @@ td {
   background-color: white;
 }
 
+.mySlides {
+  /* font-family: helvetica; */
+}
+
 #users {
   display: flex;
   flex-direction: row;
@@ -146,14 +141,6 @@ td {
   font-size: 10px;
   font-family: japan;
   hover: blue;
-
-}
-
-.odd {
-  /* background: fuchsia; */
-}
-.even {
-  /* background: lime; */
 }
 
 /* ul {
@@ -164,6 +151,23 @@ td {
   overflow: hidden;
   background-color: #333;
 }
+
+li {
+  float: left;
+}
+
+li a {
+  text-family: helvetica;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+} */
 
 input {
   outline: none;
@@ -236,6 +240,7 @@ button {
   font-size: 20px;
   color: black;
   font-family: japan;
+  /* hover: blue; */
 }
 
 button:hover {
@@ -249,101 +254,4 @@ button:active {
   color: black;
   box-shadow: 0 7px black;
   transform: translateY(4px);
-}
-
-/*slideshow css
-
-* {box-sizing:border-box}
-
-/* Slideshow container */
-.slideshow-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
-}
-
-/* Hide the images by default */
-.mySlides {
-  display: none;
-}
-
-/* Next & previous buttons */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  margin-top: -22px;
-  padding: 16px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-}
-
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
-}
-
-/* Caption text */
-.text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-/* The dots/bullets/indicators */
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.active, .dot:hover {
-  background-color: #717171;
-}
-
-/* Fading animation */
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@-webkit-keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}
-
-@keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
 }
