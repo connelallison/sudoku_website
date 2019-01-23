@@ -37,6 +37,13 @@ SudokuValuesView.prototype.render = function (data) {
     for (let j = 0; j < 9; j++, c++) {
       const gridSquare = document.createElement("td");
       gridSquare.id = `square-${c}`;
+      let oddEven;
+      if (c%2 === 1) {
+        oddEven = "odd";
+      } else if (c%2 === 0) {
+        oddEven = "even";
+      }
+      gridSquare.classList.add(oddEven);
       let value;
       let disabled;
       if (data[i][j] === 0) {
@@ -51,6 +58,7 @@ SudokuValuesView.prototype.render = function (data) {
       // type="number" min="1" max="9"    << to be done later
       const gridSquareInput = document.createElement("input");
       gridSquareInput.id = `square-${c}-input`;
+      gridSquareInput.classList.add(oddEven);
       gridSquareInput.disabled = disabled;
       gridSquareInput.maxlength = 1;
       gridSquareInput.size = 3;
@@ -85,18 +93,18 @@ SudokuValuesView.prototype.render = function (data) {
       case 0:
       case 1:
       case 2:
-        tbody1.appendChild(gridRow);
-        break;
+      tbody1.appendChild(gridRow);
+      break;
       case 3:
       case 4:
       case 5:
-        tbody2.appendChild(gridRow);
-        break;
+      tbody2.appendChild(gridRow);
+      break;
       case 6:
       case 7:
       case 8:
-        tbody3.appendChild(gridRow);
-        break;
+      tbody3.appendChild(gridRow);
+      break;
       default:
     }
   }

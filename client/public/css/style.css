@@ -141,7 +141,13 @@ td {
   font-size: 10px;
   font-family: japan;
   hover: blue;
+}
 
+.odd {
+  /* background: fuchsia; */
+}
+.even {
+  /* background: lime; */
 }
 
 /* ul {
