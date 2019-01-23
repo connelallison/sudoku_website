@@ -18,6 +18,15 @@
   100% {background-color:red; left:0px; top:0px;}
 } */
 
+#current-user {
+  outline: none;
+  background-color: mistyrose;
+  font-family: japan;
+  font-size: 30px;
+  padding: 14px;
+  margin-left: 20px;
+}
+
 body {
   /* background-color: mistyrose; */
   background-repeat: no-repeat;
@@ -54,6 +63,10 @@ nav a:hover {
   color: red;
 }
 
+label {
+  font-size: 30px;
+  margin-left: 20px
+}
 
 #stopwatch-container h2 {
   display: flex;
@@ -192,23 +205,24 @@ input {
   font-size: 10px;
   padding: 0;
   margin: 0;
-  /* border: 1px solid black; */
 }
 
 .candidate-row {
   background-color: white;
+  border: none;
 }
 
 .nested-table {
   height: 60px;
   width: 60px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .values-table {
   height: 60px;
   width: 60px;
-  border: 2px solid black;
+  outline: none;
+  /* border: 2px solid black; */
 }
 
 colgroup {
@@ -266,6 +280,8 @@ button:active {
 .grid-square-input {
   font-size: 30px;
   color: black;
+  text-align: center;
+  border: none;
 }
 
 /*slideshow css
@@ -364,4 +380,3 @@ button:active {
   from {opacity: .4}
   to {opacity: 1}
 }
-
