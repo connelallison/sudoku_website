@@ -91,10 +91,14 @@ Sudoku.prototype.checkPeers = function (square) {
 };
 
 Sudoku.prototype.attemptFillValue = function (square, value) {
+  if (value === 0) {
+    this.fillValue(square, value);
+    return [true];
+  }
   const result = this.legalMove(square, value);
   if (result[0]) {
     this.fillValue(square, value);
-    return true;
+    return [true];
   } else {
     // console.error("ILLEGAL MOVE");
     return result;
@@ -153,9 +157,10 @@ Sudoku.prototype.checkHiddenSingles = function (square) {
   // peerCandidates = [...new Set(peerCandidates)];
   for (let i = 0; i < square.candidates.length; i++) {
     if (!peerCandidates.includes(square.candidates[i])) {
-      square.value = square.candidates[i];
-      square.candidates = [square.candidates[i]];
-      this.updatePeers(square);
+      this.attemptFillValue(square, square.candidates[i])
+      // square.value = square.candidates[i];
+      // square.candidates = [square.candidates[i]];
+      // this.updatePeers(square);
     }
   }
 };
@@ -184,6 +189,7 @@ Sudoku.prototype.updatePeers = function (square) {
 Sudoku.prototype.fillIfForced = function (square) {
   if (square.candidates.length === 1 && square.value === 0) {
     // square.value = square.candidates[0];
+    this.attemptFillValue(square, square.candidates[0]);
   }
 }
 
@@ -191,7 +197,8 @@ Sudoku.prototype.fillOneCandidates = function () {
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
       if (this.rows[i][j].candidates.length === 1) {
-        this.rows[i][j].value = this.rows[i][j].candidates[0];
+        // this.rows[i][j].value = this.rows[i][j].candidates[0];
+        this.attemptFillValue(this.rows[i][j], this.rows[i][j].candidates[0])
       }
     }
   }

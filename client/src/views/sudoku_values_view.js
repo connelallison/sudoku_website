@@ -70,10 +70,10 @@ SudokuValuesView.prototype.render = function (data) {
         }
       });
       gridSquareInput.addEventListener("change", (event) => {
-        console.log("change event triggered");
-        console.log(parseInt(event.target.value));
-        console.log(i);
-        console.log(j);
+        // console.log("change event triggered");
+        // console.log(parseInt(event.target.value));
+        // console.log(i);
+        // console.log(j);
         let value;
         if (event.target.value === "") {
           value = 0;

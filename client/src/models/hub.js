@@ -42,12 +42,12 @@ Hub.prototype.bindEvents = function () {
     const column = event.detail[1];
     const square = this.sudoku.rows[row][column];
     const value = event.detail[2];
-    console.log("row:", row);
-    console.log("column:", column);
-    console.log("value:", value);
-    console.log("square:", square);
+    // console.log("row:", row);
+    // console.log("column:", column);
+    // console.log("value:", value);
+    // console.log("square:", square);
     const result = this.sudoku.attemptFillValue(square, value);
-    console.log(result);
+    // console.log(result);
     if (result[0]) {
       PubSub.publish('Hub:render-values-view', this.sudoku.unitsNumbers(this.sudoku.rows));
       console.log("value accepted, re-rendering view");
