@@ -19,7 +19,7 @@ GameView.prototype.showGame = function () {
     this.container.innerHTML += `<br> <button id="switch-view-button">Show Candidates</button> <br><br> `;
     this.container.innerHTML += `<div id="sudoku-grid-div"> </div> <br> `;
     this.container.innerHTML += `<div id="stopwatch-container"> </div>`;
-    this.container.innerHTML += `<button onclick="Check Answer Functon()" >Check Answer</button> <button onclick="Give Hint Function()">Give Hint</button> <button id="solve-button">Solve</button> <button onclick="Clear Function()">Clear</button> `
+    this.container.innerHTML += `<button id="check-button" >Check Answer</button> <button onclick="Give Hint Function()">Give Hint</button> <button id="solve-button">Solve</button> <button onclick="Clear Function()">Clear</button> `
     // this.container.innerHTML += `<br><br><button onclick="Check Answer Functon()" >Check Answer</button><button onclick="Give Hint Function()">Give Hint</button>`;
     // this.container.innerHTML += `<button id="solve-button">Solve</button>`;
     // this.container.innerHTML += `<button onclick="Clear Function()">Clear</button>`;
@@ -36,6 +36,10 @@ GameView.prototype.showGame = function () {
     hardButton.addEventListener("click", () => {
       PubSub.publish("GameView:hard-button-clicked");
     });
+    const checkButton = document.querySelector("#check-button");
+    checkButton.addEventListener("click", () => {
+      PubSub.publish("GameView:check-button-clicked");
+    })
     const solveButton = document.querySelector("#solve-button");
     solveButton.addEventListener("click", () => {
       PubSub.publish("GameView:solve-button-clicked");

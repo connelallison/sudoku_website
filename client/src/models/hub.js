@@ -9,6 +9,7 @@ const Hub = function (){
   this.displaysCandidates = false;
   this.user = null;
   this.difficulty;
+  this.help = "solo";
 };
 
 Hub.prototype.bindEvents = function () {
@@ -65,7 +66,13 @@ Hub.prototype.bindEvents = function () {
   PubSub.subscribe("GameView:hard-button-clicked", () => {
     this.getDataHard();
   });
+  PubSub.subscribe("GameView:check-button-clicked", () => {
+    if (this.sudoku.sudokuComplete()) {
+      PubSub.publish("Hub:puzzle-ends");
+    }
+  })
   PubSub.subscribe("GameView:solve-button-clicked", () => {
+    this.help = "solver";
     PubSub.publish("Hub:puzzle-ends");
     this.sudoku.solve();
     PubSub.publish("Hub:render-values-view", this.sudoku.unitsNumbers(this.sudoku.rows));
@@ -142,7 +149,7 @@ Hub.prototype.puzzleEnds = function () {
   const puzzleFinal = this.sudoku.stringify();
   const puzzleUser = this.user;
   const puzzleTime = document.querySelector("#timer-label").innerHTML;
-  const puzzleHelp = null;
+  const puzzleHelp = this.help;
   const puzzleDifficulty = this.difficulty;
   const gameObject = {
     user: puzzleUser,
@@ -164,6 +171,7 @@ Hub.prototype.postPuzzle = function (puzzle) {
 
 Hub.prototype.completionMessage = function (gameObject) {
   messageContainer = document.querySelector("#completion-message");
+  messageContainer.innerHTML = "";
   switch (gameObject.help) {
     case "solo":
       messageContainer.innerHTML += "<p>Good job! You solved it all by yourself.</p>";
