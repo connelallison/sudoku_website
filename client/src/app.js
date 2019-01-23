@@ -94,6 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   });
 
-  const hub = new Hub();
+  const hub = new Hub('http://localhost:3000/api/puzzles');
   hub.bindEvents();
 });
