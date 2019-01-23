@@ -84,6 +84,7 @@ p {
   font-size: 24px;
   text-align: justify;
   width: 75%;
+  margin: 10px;
 }
 
 span {
@@ -145,6 +146,23 @@ td {
   font-size: 10px;
   font-family: japan;
   hover: blue;
+
+}
+
+.odd {
+  /* background: fuchsia; */
+}
+.even {
+  /* background: lime; */
+}
+
+/* ul {
+  font-family: helvetica;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
 }
 
 input {

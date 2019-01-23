@@ -12,14 +12,15 @@ GameView.prototype.showGame = function () {
   PubSub.subscribe("Hub:render-sudoku-grid", () => {
     this.container.innerHTML = "";
     this.container.innerHTML += "<h1>Sudoku Game</h1>";
-    this.container.innerHTML += `<div class="step"> <button id="easy-button" class="diff" >Easy Sudoku</button> <button id="medium-button" class="diff active">Medium Sudoku</button> <button id="hard-button" class="diff">Hard Sudoku</button> </div>`
+    // this.container.innerHTML += `<div class="step"> <button id="easy-button" class="diff clear-message" >Easy Sudoku</button> <button id="medium-button" class="diff active clear-message">Medium Sudoku</button> <button id="hard-button" class="diff clear-message">Hard Sudoku</button> </div>`
+    this.container.innerHTML += `<div class="step"> <button id="easy-button" class="diff clear-message" >Easy Sudoku</button> <button id="medium-button" class="diff clear-message">Medium Sudoku</button> <button id="custom-button" class="diff clear-message">Custom Sudoku</button> </div>`
     // this.container.innerHTML += `<h1>Sudoku Game</h1> <div class="step"> <button id="easy-button" class="diff" >Easy Sudoku</button>`;
     // this.container.innerHTML += `<button id="medium-button" class="diff active">Medium Sudoku</button>`;
     // this.container.innerHTML += `<button id="hard-button" class="diff">Hard Sudoku</button> </div> `;
     this.container.innerHTML += `<br> <button id="switch-view-button">Show Candidates</button> <br><br> `;
     this.container.innerHTML += `<div id="sudoku-grid-div"> </div> <br> `;
     this.container.innerHTML += `<div id="stopwatch-container"> </div>`;
-    this.container.innerHTML += `<button onclick="Check Answer Functon()" >Check Answer</button> <button onclick="Give Hint Function()">Give Hint</button> <button id="solve-button">Solve</button> <button onclick="Clear Function()">Clear</button> `
+    this.container.innerHTML += `<button id="check-button" >Check Answer</button> <button id="hint-button">Give Hint</button> <button id="solve-button">Solve</button> <br> <button id="clear-button">Clear</button> <button id="reset-button">Reset</button> `
     // this.container.innerHTML += `<br><br><button onclick="Check Answer Functon()" >Check Answer</button><button onclick="Give Hint Function()">Give Hint</button>`;
     // this.container.innerHTML += `<button id="solve-button">Solve</button>`;
     // this.container.innerHTML += `<button onclick="Clear Function()">Clear</button>`;
@@ -27,18 +28,70 @@ GameView.prototype.showGame = function () {
     easyButton.addEventListener("click", () => {
       console.log("easy button clicked");
       PubSub.publish("GameView:easy-button-clicked");
+      easyButton.setAttribute('disabled', true);
+      setTimeout(function(){
+        easyButton.removeAttribute('disabled');
+      }, 3000)
     });
     const mediumButton = document.querySelector("#medium-button");
     mediumButton.addEventListener("click", () => {
       PubSub.publish("GameView:medium-button-clicked");
+      mediumButton.setAttribute('disabled', true);
+      setTimeout(function(){
+        mediumButton.removeAttribute('disabled');
+      }, 3000)
     });
-    const hardButton = document.querySelector("#hard-button");
-    hardButton.addEventListener("click", () => {
-      PubSub.publish("GameView:hard-button-clicked");
-    });
+    // const hardButton = document.querySelector("#hard-button");
+    // hardButton.addEventListener("click", () => {
+    //   PubSub.publish("GameView:hard-button-clicked");
+    //   hardButton.setAttribute('disabled', true);
+    //   setTimeout(function(){
+    //     hardButton.removeAttribute('disabled');
+    //   }, 3000)
+    // });
+    const customButton = document.querySelector("#custom-button");
+    customButton.addEventListener("click", () => {
+      const inputDiv = document.createElement("div");
+      const inputPrompt = document.createElement("p");
+      inputPrompt.innerHTML = "Paste your puzzle below as a string of numbers:"
+      const stringInput = document.createElement("input");
+      const switchButton = document.querySelector("#switch-view-button");
+      const br1 = document.createElement("br");
+      const br2 = document.createElement("br");
+      inputDiv.appendChild(inputPrompt);
+      inputDiv.appendChild(stringInput);
+      stringInput.addEventListener("change", (event) => {
+        PubSub.publish("GameView:custom-puzzle-entered", event.target.value);
+        this.container.removeChild(inputDiv);
+        this.container.removeChild(br1);
+        this.container.removeChild(br2);
+      })
+      // inputDiv.innerHTML += "<br>";
+      // inputDiv.innerHTML += "<br>";
+
+      this.container.insertBefore(inputDiv, switchButton);
+      this.container.insertBefore(br1, switchButton);
+      this.container.insertBefore(br2, switchButton);
+    })
+    const checkButton = document.querySelector("#check-button");
+    checkButton.addEventListener("click", () => {
+      PubSub.publish("GameView:check-button-clicked");
+    })
+    const hintButton = document.querySelector("#hint-button");
+    hintButton.addEventListener("click", () => {
+      PubSub.publish("GameView:hint-button-clicked");
+    })
     const solveButton = document.querySelector("#solve-button");
     solveButton.addEventListener("click", () => {
       PubSub.publish("GameView:solve-button-clicked");
+    })
+    const clearButton = document.querySelector("#clear-button");
+    clearButton.addEventListener("click", () => {
+      PubSub.publish("GameView:clear-button-clicked");
+    })
+    const resetButton = document.querySelector("#reset-button");
+    resetButton.addEventListener("click", () => {
+      PubSub.publish("GameView:reset-button-clicked");
     })
     const switchViewButton = document.querySelector("#switch-view-button");
     switchViewButton.addEventListener("click", () => {
