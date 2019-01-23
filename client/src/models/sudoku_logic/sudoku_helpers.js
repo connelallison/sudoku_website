@@ -308,7 +308,7 @@ Sudoku.prototype.singlesLoopHint = function () {
   let previousValues = this.unitsNumbers(this.rows);
   let currentValues = this.unitsNumbers(this.rows);
   for (let i = 0; i < 10 && this.stringEquals(previousValues, currentValues); i++) {
-    this.singlesPass();
+    this.singlesPassHint();
     currentValues = this.unitsNumbers(this.rows);
     this.printUnitArray(this.rows);
   }

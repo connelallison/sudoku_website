@@ -63,9 +63,18 @@ Hub.prototype.bindEvents = function () {
   PubSub.subscribe("GameView:medium-button-clicked", () => {
     this.getDataMedium();
   });
-  PubSub.subscribe("GameView:hard-button-clicked", () => {
-    this.getDataHard();
-  });
+  // PubSub.subscribe("GameView:hard-button-clicked", () => {
+  //   this.getDataHard();
+  // });
+  PubSub.subscribe("GameView:custom-puzzle-entered", (event) => {
+    this.sudoku = new Sudoku();
+    this.sudoku.populateString(event.detail);
+    this.sudoku.handleUniqueness();
+    this.initialSudoku = this.sudoku.stringify();
+    this.difficulty = "custom";
+    PubSub.publish("Hub:initialise-values-view", this.sudoku.unitsNumbers(this.sudoku.rows));
+    PubSub.publish("Hub:puzzle-begins");
+  })
   PubSub.subscribe("GameView:check-button-clicked", () => {
     if (this.sudoku.sudokuComplete()) {
       PubSub.publish("Hub:puzzle-ends");
