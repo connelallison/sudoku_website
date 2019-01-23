@@ -90,11 +90,17 @@ Hub.prototype.bindEvents = function () {
   })
   PubSub.subscribe("GameView:clear-button-clicked", () => {
     this.help = "abort";
-    PubSub.publish("Hub:puzzle-ends");
+    PubSub.publish("Hub:puzzle-ends#");
     this.sudoku = new Sudoku();
     PubSub.publish("Hub:render-values-view", this.sudoku.unitsNumbers(this.sudoku.rows));
     this.displaysCandidates = false;
     document.querySelector("#stopwatch-container").innerHTML = "";
+  })
+  PubSub.subscribe("GameView:reset-button-clicked", () => {
+    this.sudoku = new Sudoku();
+    this.sudoku.populateString(this.initialSudoku);
+    PubSub.publish("Hub:render-values-view", this.sudoku.unitsNumbers(this.sudoku.rows));
+    this.displaysCandidates = false;
   })
   PubSub.subscribe("GameView:switch-button-clicked", () => {
     if (this.sudoku) {
@@ -113,6 +119,13 @@ Hub.prototype.bindEvents = function () {
     console.log("puzzle-ends triggered");
     this.puzzleEnds();
   });
+  const messageContainer = document.querySelector("#completion-message");
+  const buttons = document.querySelectorAll(".nav-link");
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      messageContainer.innerHTML = "";
+    })
+  })
 }
 
 Hub.prototype.getDataEasy = function(){

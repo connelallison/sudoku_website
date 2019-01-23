@@ -7,8 +7,8 @@ HistoryView.prototype.showHistory = function() {
   historyNavButton.addEventListener('click', (event) => {
     // const formElement = document.querySelector('#new-users');
     // formElement.innerHTML = '';
-    const gridElement = document.querySelector('#users');
-    gridElement.innerHTML = '';
+    // const gridElement = document.querySelector('#users');
+    // gridElement.innerHTML = '';
     this.container.innerHTML = '';
     this.renderHistoryData();
   })
