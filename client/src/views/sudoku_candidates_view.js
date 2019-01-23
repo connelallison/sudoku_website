@@ -31,6 +31,7 @@ SudokuCandidatesView.prototype.render = function (data) {
     for (let j = 0; j < 9; j++, c++) {
       const gridSquare = document.createElement("td");
       gridSquare.id = `square-${c}`;
+      gridSquare.classList.add("values-grid")
       let oddEven;
       if (c%2 === 1) {
         oddEven = "odd";
@@ -57,7 +58,7 @@ SudokuCandidatesView.prototype.render = function (data) {
             pencilMarkValue = d;
             disabled = "";
           }
-          candidateGridSquare.innerHTML += `<input id="square-${c}-candidate-${d}" class="${oddEven}" maxlength="1" size="1" value="${pencilMarkValue}"></input>`;
+          candidateGridSquare.innerHTML += `<input id="square-${c}-candidate-${d}" class="${oddEven} candidate-square" maxlength="1" size="1" value="${pencilMarkValue}"></input>`;
           candidateGridRow.appendChild(candidateGridSquare);
         }
         nestedTable.appendChild(candidateGridRow);
