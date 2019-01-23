@@ -212,6 +212,7 @@ input {
   font-size: 10px;
   padding: 0;
   margin: none;
+  caret-color: red;
 }
 
 /* .candidate-square:.even{
