@@ -9,10 +9,10 @@
 
 @-webkit-keyframes body {
   0%   {background-color:fuchsia; left:0px; top:0px;}
-  /* 25%  {background-color:yellow; left:200px; top:0px;} */
+  25%  {background-color:yellow; left:200px; top:0px;}
   50%  {background-color:blue; left:200px; top:200px;}
   75%  {background-color:green; left:0px; top:200px;}
-  /* 100% {background-color:red; left:0px; top:0px;} */
+  100% {background-color:red; left:0px; top:0px;}
 }
 @-webkit-keyframes opposite {
   0%   {background-color:black; left:0px; top:0px;}
@@ -20,6 +20,18 @@
   50%  {background-color:black; left:200px; top:200px;}
   75%  {background-color:white; left:0px; top:200px;}
   100% {background-color:black; left:0px; top:0px;}
+}
+
+@-webkit-keyframes img {
+  0% { position: fixed; bottom: 0; left: 0;}
+  50% { position: fixed; top: 0; right: 0;}
+  100% { position: fixed; bottom: 0; right: 0;}
+}
+
+img {
+  -webkit-animation-iteration-count: infinite;
+  animation-name: img;
+  animation-duration: 1s;
 }
 
 #current-user {
@@ -31,13 +43,13 @@
   -webkit-animation-iteration-count: infinite;
   animation-name: body;
   animation-duration: 0.5s;
-  animation: fontbulger 0.5s infinite;
+  animation: fontbulger 5s infinite;
 }
 
 label {
   margin-left: 40px;
   background-color: none;
-  animation: fontbulger 0.5s infinite;
+  animation: fontbulger 5s infinite;
 }
 
 input[type=text] {
@@ -49,7 +61,7 @@ input[type=text] {
   -webkit-animation-iteration-count: infinite;
   animation-name: body;
   animation-duration: 0.5s;
-  animation: fontbulger 0.5s infinite;
+  animation: fontbulger 3s infinite;
 }
 
 body {
@@ -138,7 +150,7 @@ h1 {
   -webkit-animation-iteration-count: infinite;
   animation-duration: 3s;
   animation-name: slidein;
-  animation: fontbulger 2s infinite;
+  /* animation: fontbulger 4s infinite; */
 }
 
 p {
@@ -146,7 +158,7 @@ p {
   font-size: 24px;
   text-align: justify;
   width: 75%;
-  animation: fontbulger 2s infinite;
+  animation: fontbulger 6s infinite;
 }
 
 span {
@@ -169,7 +181,7 @@ td {
   text-align: center;
   padding: 0;
   background-color: none;
-  animation: fontbulger 2s infinite;
+  animation: fontbulger 5s infinite;
 }
 
 #users {
@@ -230,10 +242,6 @@ input {
   margin: 0;
 }
 
-.candidate-row {
-  /* background-color: white; */
-}
-
 .nested-table {
   height: 60px;
   width: 60px;
@@ -250,6 +258,8 @@ input {
 }
 
 .grid-square-input {
+  font-size: 30px;
+  color: black;
   background-color: none;
   -webkit-animation-iteration-count: infinite;
   animation-name: opposite;
@@ -292,7 +302,7 @@ button {
   font-size: 20px;
   color: black;
   font-family: japan;
-  animation: fontbulger 0.5s infinite;
+  animation: fontbulger 5s infinite;
 }
 
 button:hover {
