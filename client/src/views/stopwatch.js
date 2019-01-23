@@ -24,7 +24,8 @@ Stopwatch.prototype.populate = function () {
 
 Stopwatch.prototype.timer = function () {
   const stopwatch = this;
-  if (stopwatch.status === 1) {
+  const status = this.status;
+  if (status === 1) {
     setTimeout(function (){
       // console.log(stopwatch);
       // console.log(stopwatch.time);
@@ -60,6 +61,7 @@ Stopwatch.prototype.timer = function () {
       stopwatch.timer();
     }, 1000);
   }
+  return;
 }
 
 
@@ -68,7 +70,10 @@ Stopwatch.prototype.bindEvents = function(){
   //   console.log('click', event.detail)
   // })
   PubSub.subscribe("Hub:puzzle-begins", () => {
-    this.populate();
+    this.status = 0;
+    const populate = this.populate;
+    const boundPopulate = populate.bind(this);
+    setTimeout(boundPopulate, 200);
   })
   PubSub.subscribe("Hub:puzzle-ends", () => {
     this.status = 0;
