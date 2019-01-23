@@ -73,7 +73,7 @@ Stopwatch.prototype.bindEvents = function(){
     this.status = 0;
     const populate = this.populate;
     const boundPopulate = populate.bind(this);
-    setTimeout(boundPopulate, 200);
+    setTimeout(boundPopulate, 500);
   })
   PubSub.subscribe("Hub:puzzle-ends", () => {
     this.status = 0;
