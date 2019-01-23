@@ -64,6 +64,7 @@ SudokuValuesView.prototype.render = function (data) {
       // gridSquare.innerHTML += `<input id="square-${c}" ${disabled}maxlength="1" size="3" value="${value}"></input>`;
       gridRow.appendChild(gridSquare);
       gridSquare.classList.add("values-table")
+      gridSquareInput.classList.add("grid-square-input")
       grid
     }
     switch (i) {

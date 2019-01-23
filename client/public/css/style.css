@@ -10,7 +10,6 @@
   font-family: japan;
   font-size: 30px;
   padding: 14px;
-  margin-left: 20px;
 }
 
 label {
@@ -18,14 +17,10 @@ label {
 }
 
 input[type=text] {
-  width: 100px;
-  transition: ease-in-out, width .55s ease-in-out;
   color: red;
   font-weight: bold;
-}
-
-input[type=text]:focus {
   width: 250px;
+  text-align: left;
 }
 
 body {
@@ -39,13 +34,14 @@ nav {
   display: flex;
   width: 100%;
   font-size: 30px;
+  background-color: none;
 }
 
 nav a {
   display: flex;
   float: left;
   text-align: center;
-  padding: 14px 10px;
+  padding: 14px 20px;
   text-decoration: none;
   font-size: 30px;
   color: black;
@@ -149,34 +145,7 @@ td {
   font-size: 10px;
   font-family: japan;
   hover: blue;
-
 }
-
-/* ul {
-  font-family: helvetica;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  text-family: helvetica;
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover {
-  background-color: #111;
-} */
 
 input {
   outline: none;
