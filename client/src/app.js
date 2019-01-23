@@ -15,7 +15,9 @@ const Stopwatch = require("./views/stopwatch.js");
 document.addEventListener('DOMContentLoaded', () => {
 
   console.log('Javascript loaded');
-
+  
+  const body = document.querySelector("body");
+  body.innerHTML += `<audio id="audio" controls> <source src="./music/music.mp3" type="audio/mp3"> </audio>`;
   // // temporary code for passing a hardcoded sudoku to the view - will be replaced later.
   //   const sudoku = new Sudoku();
   //   const sudokuRows = [
@@ -81,7 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function swapStyleSheet(sheet) {
     document.querySelector('#pagestyle').setAttribute("href", sheet);
   }
-
+  const audio = document.getElementById("audio");
+  let playing = false;
   const krazyButton = document.querySelector('#krazy-button');
   let img;
   krazyButton.addEventListener('click', () => {
@@ -99,7 +102,25 @@ document.addEventListener('DOMContentLoaded', () => {
       swapStyleSheet('./css/style.css');
       img.src = '';
     };
+    if (playing) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
+    audio.onplaying = function() {
+      playing = true;
+    };
+    audio.onpause = function() {
+      playing = false;
+    };
   });
+
+
+
+
+
+
+
 
   const hub = new Hub('http://localhost:3000/api/puzzles');
   hub.bindEvents();
