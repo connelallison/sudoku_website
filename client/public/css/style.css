@@ -75,9 +75,9 @@ label {
 
 #stopwatch-container h2 {
   display: flex;
-  text-align: center;
+  text-align: right;
   justify-content: flex-end;
-  font-size: 24px;
+  font-size: 35px;
 }
 
 #wrapper {
@@ -109,7 +109,7 @@ span {
 
 table {
   border-collapse: collapse;
-  border: 10px solid black;
+  /* border: 10px solid black; */
 }
 
 colgroup, tbody {
@@ -203,7 +203,15 @@ input {
   margin: 0;
 }
 
-.candidate-square {
+.candidate-square:.even{
+  outline: none;
+  border: none;
+  text-align: center;
+  font-size: 10px;
+  padding: 0;
+  margin: 0;
+}
+.candidate-square:.odd{
   outline: none;
   border: none;
   text-align: center;
@@ -287,6 +295,15 @@ button:active {
   color: black;
   text-align: center;
   border: none;
+}
+
+.odd {
+  outline: none;
+  /* border: none; */
+}
+.even {
+  outline: none;
+  /* border: none; */
 }
 
 /*slideshow css
