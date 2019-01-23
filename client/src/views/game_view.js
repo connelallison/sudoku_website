@@ -25,24 +25,44 @@ GameView.prototype.showGame = function () {
     // this.container.innerHTML += `<button id="solve-button">Solve</button>`;
     // this.container.innerHTML += `<button onclick="Clear Function()">Clear</button>`;
     const easyButton = document.querySelector("#easy-button");
+    const mediumButton = document.querySelector("#medium-button");
     easyButton.addEventListener("click", () => {
+      if (document.querySelector("#string-input-div")) {
+        this.container.removeChild(document.querySelector("#string-input-div"));
+        this.container.removeChild(document.querySelector("#br1"));
+        this.container.removeChild(document.querySelector("#br2"));
+      }
       console.log("easy button clicked");
       PubSub.publish("GameView:easy-button-clicked");
       easyButton.setAttribute('disabled', true);
-      setTimeout(function(){
-        easyButton.removeAttribute('disabled');
-      }, 3000)
-    });
-    const mediumButton = document.querySelector("#medium-button");
-    mediumButton.addEventListener("click", () => {
-      PubSub.publish("GameView:medium-button-clicked");
       mediumButton.setAttribute('disabled', true);
       setTimeout(function(){
+        easyButton.removeAttribute('disabled');
+        mediumButton.removeAttribute('disabled');
+
+      }, 3000)
+    });
+    mediumButton.addEventListener("click", () => {
+      if (document.querySelector("#string-input-div")) {
+        this.container.removeChild(document.querySelector("#string-input-div"));
+        this.container.removeChild(document.querySelector("#br1"));
+        this.container.removeChild(document.querySelector("#br2"));
+      }
+      PubSub.publish("GameView:medium-button-clicked");
+      easyButton.setAttribute('disabled', true);
+      mediumButton.setAttribute('disabled', true);
+      setTimeout(function(){
+        easyButton.removeAttribute('disabled');
         mediumButton.removeAttribute('disabled');
       }, 3000)
     });
     // const hardButton = document.querySelector("#hard-button");
     // hardButton.addEventListener("click", () => {
+    //   if (document.querySelector("#string-input-div")) {
+    //     this.container.removeChild(document.querySelector("#string-input-div"));
+    //     this.container.removeChild(document.querySelector("#br1"));
+    //     this.container.removeChild(document.querySelector("#br2"));
+    //   }
     //   PubSub.publish("GameView:hard-button-clicked");
     //   hardButton.setAttribute('disabled', true);
     //   setTimeout(function(){
@@ -51,13 +71,21 @@ GameView.prototype.showGame = function () {
     // });
     const customButton = document.querySelector("#custom-button");
     customButton.addEventListener("click", () => {
+      if (document.querySelector("#string-input-div")) {
+        this.container.removeChild(document.querySelector("#string-input-div"));
+        this.container.removeChild(document.querySelector("#br1"));
+        this.container.removeChild(document.querySelector("#br2"));
+      }
       const inputDiv = document.createElement("div");
+      inputDiv.id = "string-input-div";
       const inputPrompt = document.createElement("p");
       inputPrompt.innerHTML = "Paste your puzzle below as a string of numbers:"
       const stringInput = document.createElement("input");
       const switchButton = document.querySelector("#switch-view-button");
       const br1 = document.createElement("br");
+      br1.id = "br1";
       const br2 = document.createElement("br");
+      br2.id = "br2"
       inputDiv.appendChild(inputPrompt);
       inputDiv.appendChild(stringInput);
       stringInput.addEventListener("change", (event) => {
