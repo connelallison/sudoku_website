@@ -242,10 +242,6 @@ input {
   margin: 0;
 }
 
-.candidate-row {
-  /* background-color: white; */
-}
-
 .nested-table {
   height: 60px;
   width: 60px;
@@ -262,6 +258,8 @@ input {
 }
 
 .grid-square-input {
+  font-size: 30px;
+  color: black;
   background-color: none;
   -webkit-animation-iteration-count: infinite;
   animation-name: opposite;
