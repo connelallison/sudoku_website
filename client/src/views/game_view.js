@@ -28,14 +28,26 @@ GameView.prototype.showGame = function () {
     easyButton.addEventListener("click", () => {
       console.log("easy button clicked");
       PubSub.publish("GameView:easy-button-clicked");
+      easyButton.setAttribute('disabled', true);
+      setTimeout(function(){
+        easyButton.removeAttribute('disabled');
+      }, 3000)
     });
     const mediumButton = document.querySelector("#medium-button");
     mediumButton.addEventListener("click", () => {
       PubSub.publish("GameView:medium-button-clicked");
+      mediumButton.setAttribute('disabled', true);
+      setTimeout(function(){
+        mediumButton.removeAttribute('disabled');
+      }, 3000)
     });
     // const hardButton = document.querySelector("#hard-button");
     // hardButton.addEventListener("click", () => {
     //   PubSub.publish("GameView:hard-button-clicked");
+    //   hardButton.setAttribute('disabled', true);
+    //   setTimeout(function(){
+    //     hardButton.removeAttribute('disabled');
+    //   }, 3000)
     // });
     const customButton = document.querySelector("#custom-button");
     customButton.addEventListener("click", () => {
