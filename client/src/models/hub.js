@@ -69,7 +69,17 @@ Hub.prototype.bindEvents = function () {
   PubSub.subscribe("GameView:check-button-clicked", () => {
     if (this.sudoku.sudokuComplete()) {
       PubSub.publish("Hub:puzzle-ends");
+      PubSub.publish("Hub:render-values-view", this.sudoku.unitsNumbers(this.sudoku.rows));
+      this.displaysCandidates = false;
     }
+  })
+  PubSub.subscribe("GameView:hint-button-clicked", () => {
+    if (this.help === "solo") {
+      this.help = "hint";
+    }
+    this.sudoku.hint();
+    PubSub.publish("Hub:render-values-view", this.sudoku.unitsNumbers(this.sudoku.rows));
+    this.displaysCandidates = false;
   })
   PubSub.subscribe("GameView:solve-button-clicked", () => {
     this.help = "solver";
@@ -78,13 +88,23 @@ Hub.prototype.bindEvents = function () {
     PubSub.publish("Hub:render-values-view", this.sudoku.unitsNumbers(this.sudoku.rows));
     this.displaysCandidates = false;
   })
+  PubSub.subscribe("GameView:clear-button-clicked", () => {
+    this.help = "abort";
+    PubSub.publish("Hub:puzzle-ends");
+    this.sudoku = new Sudoku();
+    PubSub.publish("Hub:render-values-view", this.sudoku.unitsNumbers(this.sudoku.rows));
+    this.displaysCandidates = false;
+    document.querySelector("#stopwatch-container").innerHTML = "";
+  })
   PubSub.subscribe("GameView:switch-button-clicked", () => {
     if (this.sudoku) {
       if (this.displaysCandidates) {
         PubSub.publish("Hub:render-values-view", this.sudoku.unitsNumbers(this.sudoku.rows));
+        document.querySelector("#switch-view-button").innerHTML = "Show Candidates";
         this.displaysCandidates = false;
       } else {
         PubSub.publish("Hub:render-candidates-view", this.sudoku.unitsCandidates(this.sudoku.rows));
+        document.querySelector("#switch-view-button").innerHTML = "Show Values";
         this.displaysCandidates = true;
       }
     }
@@ -103,6 +123,7 @@ Hub.prototype.getDataEasy = function(){
     const sudoku = new Sudoku();
     sudoku.populateApiRequest(sudokuData);
     this.sudoku = sudoku;
+    this.sudoku.handleUniqueness();
     this.initialSudoku = this.sudoku.stringify();
     this.difficulty = "easy";
     // PubSub.publish("Hub:puzzle-ends");
@@ -120,6 +141,7 @@ Hub.prototype.getDataMedium = function(){
     const sudoku = new Sudoku();
     sudoku.populateApiRequest(sudokuData);
     this.sudoku = sudoku;
+    this.sudoku.handleUniqueness();
     this.initialSudoku = this.sudoku.stringify();
     this.difficulty = "medium";
     // PubSub.publish("Hub:puzzle-ends");
@@ -136,6 +158,7 @@ Hub.prototype.getDataHard = function(){
     const sudoku = new Sudoku();
     sudoku.populateApiRequest(sudokuData);
     this.sudoku = sudoku;
+    this.sudoku.handleUniqueness();
     this.initialSudoku = this.sudoku.stringify();
     this.difficulty = "hard";
     // PubSub.publish("Hub:puzzle-ends");
@@ -173,6 +196,9 @@ Hub.prototype.completionMessage = function (gameObject) {
   messageContainer = document.querySelector("#completion-message");
   messageContainer.innerHTML = "";
   switch (gameObject.help) {
+    case "abort":
+      return;
+      break;
     case "solo":
       messageContainer.innerHTML += "<p>Good job! You solved it all by yourself.</p>";
       break;
@@ -186,7 +212,9 @@ Hub.prototype.completionMessage = function (gameObject) {
       messageContainer.innerHTML += "<p>Logic does not yet report help.</p>";
       break;
   }
-  messageContainer.innerHTML += `<p>User: ${gameObject.user}</p>`;
+  if (this.user) {
+    messageContainer.innerHTML += `<p>User: ${gameObject.user}</p>`;
+  }
   messageContainer.innerHTML += `<p>Time: ${gameObject.time}</p>`;
   messageContainer.innerHTML += `<p>Difficulty: ${gameObject.difficulty}</p>`;
   // const buttons = document.querySelectorAll("button");

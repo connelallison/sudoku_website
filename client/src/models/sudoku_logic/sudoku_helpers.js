@@ -194,6 +194,53 @@ Sudoku.prototype.reportOutcome = function (bool) {
   }
 }
 
+Sudoku.prototype.checkUniqueness = function () {
+  let unfilledSquares = [];
+  for (let i = 0; i < 9; i++) {
+    unfilledSquares = unfilledSquares.concat(this.emptySquares(this.rows[i]));
+  }
+  if (unfilledSquares.length > 3) {
+    let candidateLists = unfilledSquares.map((square) => {
+      return square.candidates;
+    });
+    if (candidateLists.some((someList) => {
+      return someList.some((candidate) => {
+        return candidateLists.every((otherList) => {
+          return otherList.includes(candidate);
+        });
+      });
+    }) ) {
+      unfilledSquares[0].value = unfilledSquares[0].candidates[0];
+      return [unfilledSquares[0].row, unfilledSquares[0].column, unfilledSquares[0].value]
+    } else {
+      return false;
+    }
+  }
+}
+
+Sudoku.prototype.handleUniqueness = function () {
+  let stringified = this.stringify();
+  let testSudoku = new Sudoku();
+  testSudoku.populateString(stringified);
+  testSudoku.solve();
+  for (let i = 0; i < 5 && !testSudoku.sudokuComplete(); i++) {
+    if (testSudoku.sudokuComplete()) {
+      return;
+    } else {
+      let squareToFix = testSudoku.checkUniqueness();
+      if (squareToFix) {
+        testSudoku.rows[squareToFix[0]][squareToFix[1]].value = squareToFix[2];
+        testSudoku.solve();
+        if (testSudoku.sudokuComplete()) {
+          this.rows[squareToFix[0]][squareToFix[1]].value = squareToFix[2];
+        }
+      }
+    }
+  }
+}
+
+
+
 Sudoku.prototype.solve = function () {
   let previousValues = [];
   let currentValues = this.unitsCandidates(this.rows);
@@ -205,6 +252,16 @@ Sudoku.prototype.solve = function () {
   }
   this.reportOutcome(!this.stringEquals(previousValues, this.unitsNumbers(this.rows)));
   // this.reportOutcome(JSON.stringify(initialValues) !== JSON.stringify(this.unitsNumbers(this.rows)));
+}
+
+Sudoku.prototype.hint = function () {
+  let previousValues = this.unitsNumbers(this.rows);
+  let currentValues = this.unitsNumbers(this.rows);
+    for (let i = 0; i < 10 && this.stringEquals(previousValues, currentValues); i++) {
+    // while (JSON.stringify(previousValues) !== JSON.stringify(currentValues)) {
+    this.loopsPassHint();
+    currentValues = this.unitsNumbers(this.rows);
+  }
 }
 
 // Sudoku.prototype.untilStuck = function (callback) {
@@ -226,6 +283,13 @@ Sudoku.prototype.loopsPass = function () {
   this.nakedPairsLoop();
   this.hiddenPairsLoop();
 }
+Sudoku.prototype.loopsPassHint = function () {
+  this.singlesLoopHint();
+  // can think about some control flow stuff later
+  // this.lockedCandidatesLoop();
+  // this.nakedPairsLoop();
+  // this.hiddenPairsLoop();
+}
 
 Sudoku.prototype.singlesLoop = function () {
   let previousValues = [];
@@ -238,7 +302,16 @@ Sudoku.prototype.singlesLoop = function () {
     currentValues = this.unitsCandidates(this.rows);
     this.printUnitArray(this.rows);
   }
+}
 
+Sudoku.prototype.singlesLoopHint = function () {
+  let previousValues = this.unitsNumbers(this.rows);
+  let currentValues = this.unitsNumbers(this.rows);
+  for (let i = 0; i < 10 && this.stringEquals(previousValues, currentValues); i++) {
+    this.singlesPass();
+    currentValues = this.unitsNumbers(this.rows);
+    this.printUnitArray(this.rows);
+  }
 }
 
 Sudoku.prototype.singlesPass = function () {
@@ -248,10 +321,24 @@ Sudoku.prototype.singlesPass = function () {
       // this.fillIfForced(this.rows[i][j]);
       // this.updatePeers(this.rows[i][j]);
       this.checkHiddenSingles(this.rows[i][j]);
+      this.fillIfForced(this.rows[i][j]);
     }
   }
-  // console.log("Attempt 1:");
-  // this.printUnitArray(this.rows);
+}
+Sudoku.prototype.singlesPassHint = function () {
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      let previousValue = this.rows[i][j].value;
+      this.checkPeers(this.rows[i][j]);
+      // this.fillIfForced(this.rows[i][j]);
+      // this.updatePeers(this.rows[i][j]);
+      this.checkHiddenSingles(this.rows[i][j]);
+      this.fillIfForced(this.rows[i][j]);
+      if (this.rows[i][j].value !== previousValue) {
+        break;
+      }
+    }
+  }
 }
 
 Sudoku.prototype.singlesSolve = function () {
@@ -338,7 +425,7 @@ Sudoku.prototype.lockedCandidatesNonet = function (nonet) {
     let candidateSquares = emptySquares.filter((square) => {
       return square.candidates.includes(missingNumbers[i])
     });
-    if (candidateSquares.every((square) => {
+    if (candidateSquares.length > 1 && candidateSquares.every((square) => {
       return square.row === candidateSquares[0].row;
     })) {
       let eliminatedSquares = this.rows[candidateSquares[0].row].filter((square) => {
@@ -350,7 +437,7 @@ Sudoku.prototype.lockedCandidatesNonet = function (nonet) {
         })
       }
     }
-    if (candidateSquares.every((square) => {
+    if (candidateSquares.length > 1 && candidateSquares.every((square) => {
       return square.column === candidateSquares[0].column;
     })) {
       let eliminatedSquares = this.columns[candidateSquares[0].column].filter((square) => {

@@ -34,16 +34,16 @@ Stopwatch.prototype.timer = function () {
       let sec = Math.floor(stopwatch.time);
 
       if (hour < 10) {
-        hour = "0" + hour + ":";
+        hour = "0" + hour;
       }
       if (hour === 0) {
         hour = "";
       }
       if (min >= 60) {
-        min = min % 60 + ":";
+        min = min % 60;
       }
       if (min < 10) {
-        min = "0" + min + ":";
+        min = "0" + min;
       }
       if (min === 0) {
         min = "";
@@ -55,7 +55,7 @@ Stopwatch.prototype.timer = function () {
         sec = "0" + sec;
       }
 
-      document.querySelector("#timer-label").innerHTML = `${hour}${min}${sec}`
+      document.querySelector("#timer-label").innerHTML = `${hour}:${min}:${sec}`
       // console.log(hour + min + sec);
       stopwatch.timer();
     }, 1000);
