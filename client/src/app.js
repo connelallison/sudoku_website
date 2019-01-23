@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const krazyButton = document.querySelector('#krazy-button');
+  let img;
   krazyButton.addEventListener('click', () => {
     const stylesheet = document.querySelector('#pagestyle');
     if (stylesheet.getAttribute('href') === './css/style.css'){
@@ -95,7 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     else
     {
-      swapStyleSheet('/css/style.css')
+      swapStyleSheet('./css/style.css');
+      img.src = '';
     };
   });
 
