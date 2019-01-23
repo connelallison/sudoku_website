@@ -4,7 +4,7 @@ const SudokuValuesView = require("./views/sudoku_values_view.js");
 const SudokuCandidatesView = require("./views/sudoku_candidates_view.js");
 const PubSub = require('./helpers/pub_sub.js');
 const UserFormView = require('./views/user_form_view.js');
-const UserGridView = require('./views/user_grid_view.js');
+const PuzzleGridView = require('./views/user_grid_view.js');
 const Users = require('./models/users_model.js');
 const HistoryView = require('./views/history_view.js');
 const RulesView = require('./views/rules_view.js');
@@ -40,13 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const gameView = new GameView(wrapperContainer);
   gameView.showGame();
 
-  // const userFormContainer = document.querySelector('div#new-users');
-  // const userFormView = new UserFormView(userFormContainer);
-  // // userFormView.showUserForm();
-  // userFormView.bindEvents();
+  const userFormContainer = document.querySelector('div#new-users');
+  const userFormView = new UserFormView(userFormContainer);
+  // userFormView.showUserForm();
+  userFormView.bindEvents();
 
-  const userGridContainer = document.querySelector('div#users');
-  const userGridView = new UserGridView(userGridContainer);
+  const puzzleGridContainer = document.querySelector('div#wrapper');
+  const puzzleGridView = new PuzzleGridView(puzzleGridContainer);
   userGridView.bindEvents();
 
   const usersUrl = 'http://localhost:3000/api/puzzles';

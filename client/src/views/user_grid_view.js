@@ -1,14 +1,14 @@
 const PubSub = require('../helpers/pub_sub.js');
-const UserView = require('./user_view.js')
+const PuzzleView = require('./puzzle_view.js')
 
-const UserGridView = function(container) {
+const PuzzleGridView = function(container) {
   this.container = container;
 }
 
-UserGridView.prototype.bindEvents = function(){
-  const usersNavButton = document.querySelector("a[href='#players']");
-  usersNavButton.addEventListener('click', (event) => {
-    PubSub.subscribe('Users:all-users-loaded', (event) => {
+PuzzleGridView.prototype.bindEvents = function(){
+  const puzzlesNavButton = document.querySelector("a[href='#puzzles']");
+  puzzlesNavButton.addEventListener('click', (event) => {
+    PubSub.subscribe('Puzzles:all-users-loaded', (event) => {
       this.renderUserGrid(event.detail);
       console.log('published on all-users-loaded:', event.detail);
     })

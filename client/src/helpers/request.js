@@ -7,6 +7,11 @@ Request.prototype.get = function () {
     .then((response) => response.json());
 };
 
+Request.prototype.show = function (user) {
+  return fetch(`${this.url}/${user}`)
+    .then((response) => response.json());
+};
+
 Request.prototype.post = function (payload) {
   return fetch(this.url, {
     method: 'POST',

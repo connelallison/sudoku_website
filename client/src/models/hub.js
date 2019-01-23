@@ -217,6 +217,17 @@ Hub.prototype.puzzleEnds = function () {
   this.postPuzzle(gameObject);
 }
 
+Hub.prototype.showPuzzlesByUser = function (user) {
+  const url = this.url;
+  const request = new Request(this.url);
+  request.show(this.user)
+  .then((puzzles) => {
+    console.log('Hub:puzzles-per-user-loaded', puzzles);
+    PubSub.publish('Hub:puzzles-per-user-loaded', puzzles);
+  })
+  .catch(console.error);
+}
+
 Hub.prototype.postPuzzle = function (puzzle) {
   const url = this.url;
   const request = new Request(url);
