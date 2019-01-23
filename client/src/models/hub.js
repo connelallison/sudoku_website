@@ -30,8 +30,8 @@ Hub.prototype.bindEvents = function () {
     console.log(this.user);
   })
 
-  const completionMessage = document.querySelector("#completion-message");
-  const body = document.querySelector("body");
+  // const completionMessage = document.querySelector("#completion-message");
+  // const body = document.querySelector("body");
   // body.addEventListener("click", () => {
   //   completionMessage.innerHTML = "";
   // })
@@ -99,7 +99,7 @@ Hub.prototype.bindEvents = function () {
   })
   PubSub.subscribe("GameView:clear-button-clicked", () => {
     this.help = "abort";
-    PubSub.publish("Hub:puzzle-ends#");
+    PubSub.publish("Hub:puzzle-ends");
     this.sudoku = new Sudoku();
     PubSub.publish("Hub:render-values-view", this.sudoku.unitsNumbers(this.sudoku.rows));
     this.displaysCandidates = false;
@@ -129,7 +129,7 @@ Hub.prototype.bindEvents = function () {
     this.puzzleEnds();
   });
   const messageContainer = document.querySelector("#completion-message");
-  const buttons = document.querySelectorAll(".nav-link");
+  const buttons = document.querySelectorAll(".clear-message");
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
       messageContainer.innerHTML = "";

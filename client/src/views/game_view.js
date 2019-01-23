@@ -12,8 +12,8 @@ GameView.prototype.showGame = function () {
   PubSub.subscribe("Hub:render-sudoku-grid", () => {
     this.container.innerHTML = "";
     this.container.innerHTML += "<h1>Sudoku Game</h1>";
-    // this.container.innerHTML += `<div class="step"> <button id="easy-button" class="diff" >Easy Sudoku</button> <button id="medium-button" class="diff active">Medium Sudoku</button> <button id="hard-button" class="diff">Hard Sudoku</button> </div>`
-    this.container.innerHTML += `<div class="step"> <button id="easy-button" class="diff" >Easy Sudoku</button> <button id="medium-button" class="diff active">Medium Sudoku</button> <button id="custom-button" class="diff">Custom Sudoku</button> </div>`
+    // this.container.innerHTML += `<div class="step"> <button id="easy-button" class="diff clear-message" >Easy Sudoku</button> <button id="medium-button" class="diff active clear-message">Medium Sudoku</button> <button id="hard-button" class="diff clear-message">Hard Sudoku</button> </div>`
+    this.container.innerHTML += `<div class="step"> <button id="easy-button" class="diff clear-message" >Easy Sudoku</button> <button id="medium-button" class="diff active clear-message">Medium Sudoku</button> <button id="custom-button" class="diff clear-message">Custom Sudoku</button> </div>`
     // this.container.innerHTML += `<h1>Sudoku Game</h1> <div class="step"> <button id="easy-button" class="diff" >Easy Sudoku</button>`;
     // this.container.innerHTML += `<button id="medium-button" class="diff active">Medium Sudoku</button>`;
     // this.container.innerHTML += `<button id="hard-button" class="diff">Hard Sudoku</button> </div> `;
