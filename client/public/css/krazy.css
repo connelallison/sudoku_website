@@ -73,6 +73,18 @@ body {
   animation-duration: 0.5s;
 }
 
+@-webkit-keyframes img {
+  0% { position: fixed; bottom: 0; left: 0;}
+  50% { position: fixed; top: 0; right: 0;}
+  100% { position: fixed; bottom: 0; right: 0;}
+}
+
+img {
+  -webkit-animation-iteration-count: infinite;
+  animation-name: img;
+  animation-duration: 1s;
+}
+
 nav {
   text-align: center;
   display: flex;
@@ -129,7 +141,7 @@ nav a:hover {
   }
 }
 
-@keyframes fontbulger {
+/* @keyframes fontbulger {
   0% {
     font-size: 30px;
   }
@@ -139,7 +151,7 @@ nav a:hover {
   100% {
     font-size: 12px;
   }
-}
+} */
 
 
 h1 {
@@ -240,6 +252,9 @@ input {
   font-size: 10px;
   padding: 0;
   margin: 0;
+  -webkit-animation-iteration-count: infinite;
+  animation-name: opposite;
+  animation-duration: 0.5s;
 }
 
 .nested-table {

@@ -64,6 +64,7 @@ SudokuValuesView.prototype.render = function (data) {
       gridSquareInput.size = 3;
       gridSquareInput.value = value;
       gridSquareInput.autocomplete = "off";
+      gridSquareInput.style.outline = "none";
       gridSquareInput.addEventListener("input", (event) => {
         if (!["1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(event.target.value)) {
           event.target.value = "";

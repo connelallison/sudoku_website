@@ -12,10 +12,10 @@
 
 /* @-webkit-keyframes body {
   0%   {background-color:red; left:0px; top:0px;}
-  25%  {background-color:yellow; left:200px; top:0px;}
+  // 25%  {background-color:yellow; left:200px; top:0px;}
   50%  {background-color:blue; left:200px; top:200px;}
   75%  {background-color:green; left:0px; top:200px;}
-  100% {background-color:red; left:0px; top:0px;}
+  // 100% {background-color:red; left:0px; top:0px;}
 } */
 
 #krazy-button {
@@ -28,24 +28,20 @@
   font-family: japan;
   font-size: 30px;
   padding: 14px;
-  margin-left: 20px;
+  /* margin-left: 20px; */
   border: none;
 }
 
 body {
-  /* background-color: mistyrose; */
   background-repeat: no-repeat;
   background: center center fixed;
- -webkit-background-size: cover;
- -moz-background-size: cover;
- -o-background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
   background-image: linear-gradient(white, red);
   background-size: cover;
   font-family: Japan;
-  /* -webkit-animation-iteration-count: infinite; */
-  animation-name: body;
-  animation-duration: 5s;
 }
 
 nav {
@@ -62,6 +58,7 @@ nav a {
   text-decoration: none;
   font-size: 30px;
   color: black;
+  margin: none;
 }
 
 nav a:hover {
@@ -70,14 +67,14 @@ nav a:hover {
 
 label {
   font-size: 30px;
-  margin-left: 20px
+  margin-left: 15px
 }
 
 #stopwatch-container h2 {
   display: flex;
-  text-align: center;
+  text-align: right;
   justify-content: flex-end;
-  font-size: 24px;
+  font-size: 35px;
 }
 
 #wrapper {
@@ -90,17 +87,15 @@ label {
 
 h1 {
   font-weight: bold;
-  font-size: 50px;
+  font-size: 70px;
   text-align: center;
-  margin: 10px;
 }
 
 p {
   font-family: japan;
-  font-size: 24px;
+  font-size: 18px;
   text-align: justify;
   width: 75%;
-  margin: 10px;
 }
 
 span {
@@ -109,7 +104,7 @@ span {
 
 table {
   border-collapse: collapse;
-  border: 10px solid black;
+  /* border: 10px solid black; */
 }
 
 colgroup, tbody {
@@ -124,6 +119,15 @@ td {
   padding: 0;
   background-color: white;
 }
+td:.candidate-square {
+  border: none;
+  height: 2em;
+  width: 2em;
+  text-align: center;
+  padding: 0;
+  background-color: white;
+}
+
 
 .mySlides {
   /* font-family: helvetica; */
@@ -172,16 +176,17 @@ td {
   font-size: 10px;
   font-family: japan;
   hover: blue;
+
 }
 
- /* ul {
+/* ul {
   font-family: helvetica;
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: #333;
-} */
+}
 
 li {
   float: left;
@@ -204,10 +209,27 @@ input {
   outline: none;
   border: none;
   text-align: center;
-  font-size: 16px;
+  font-size: 10px;
+  padding: 0;
+  margin: none;
+}
+
+/* .candidate-square:.even{
+  outline: none;
+  border: none;
+  text-align: center;
+  font-size: 10px;
   padding: 0;
   margin: 0;
 }
+.candidate-square:.odd{
+  outline: none;
+  border: none;
+  text-align: center;
+  font-size: 10px;
+  padding: 0;
+  margin: 0;
+} */
 
 .candidate-square {
   outline: none;
@@ -267,7 +289,7 @@ button {
   width: 180px;
   height: 50px;
   border-radius: 6px;
-  border: 3px solid black;
+  border: 2px solid black;
   background-color: white;
   font-size: 20px;
   color: black;
@@ -277,23 +299,24 @@ button {
 
 button:hover {
   background-color: black;
-  border: 3px solid black;
-  color: white;
+  color: white
 }
 
 button:active {
   background-color: white;
   color: black;
-  box-shadow: 0 7px black;
+  box-shadow: 0 5px black;
   transform: translateY(4px);
 }
-
 .grid-square-input {
   font-size: 30px;
   color: black;
   text-align: center;
   border: none;
+
 }
+
+
 
 /*slideshow css
 
@@ -390,4 +413,13 @@ button:active {
 @keyframes fade {
   from {opacity: .4}
   to {opacity: 1}
+}
+
+.odd {
+  outline: none;
+  /* border: none; */
+}
+.even {
+  outline: none;
+  /* border: none; */
 }
