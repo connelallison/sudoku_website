@@ -15,25 +15,26 @@ const createRouter = function (collection) {
     .then((docs) => res.json(docs))
   });
 
-  router.get('/:id', (req, res) => {
-    const id = ObjectID(req.params.id);
-    collection.findOne({_id: id})
+  router.get('/:user', (req, res) => {
+    const user = req.params.user;
+    collection.find({"user": user})
+    .toArray()
     .then((docs) => res.json(docs));
   });
 
   router.post('/', (req, res) => {
-    const newUser = req.body;
-    collection.insertOne(newUser)
+    const newPuzzle = req.body;
+    collection.insertOne(newPuzzle)
     .then(() => collection.find().toArray())
     .then((docs) => res.json(docs));
   });
 
-  router.delete('/:id', (req, res) => {
-    const id = ObjectID(req.params.id);
-    collection.deleteOne({_id: id})
-    .then(() => collection.find().toArray())
-    .then((docs) => res.json(docs));
-  });
+  // router.delete('/:id', (req, res) => {
+  //   const id = ObjectID(req.params.id);
+  //   collection.deleteOne({_id: id})
+  //   .then(() => collection.find().toArray())
+  //   .then((docs) => res.json(docs));
+  // });
 
   return router;
 
