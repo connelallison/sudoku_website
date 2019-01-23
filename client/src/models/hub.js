@@ -99,7 +99,8 @@ Hub.prototype.getDataEasy = function(){
     this.initialSudoku = this.sudoku.stringify();
     this.difficulty = "easy";
     // PubSub.publish("Hub:puzzle-ends");
-    PubSub.publish('Hub:render-values-view', this.sudoku.unitsNumbers(this.sudoku.rows));
+    PubSub.publish("Hub:initialise-values-view", this.sudoku.unitsNumbers(this.sudoku.rows));
+    // PubSub.publish('Hub:render-values-view', this.sudoku.unitsNumbers(this.sudoku.rows));
     PubSub.publish("Hub:puzzle-begins");
   });
 }
@@ -115,8 +116,7 @@ Hub.prototype.getDataMedium = function(){
     this.initialSudoku = this.sudoku.stringify();
     this.difficulty = "medium";
     // PubSub.publish("Hub:puzzle-ends");
-    PubSub.publish('Hub:render-values-view',
-    this.sudoku.unitsNumbers(this.sudoku.rows));
+    PubSub.publish("Hub:initialise-values-view", this.sudoku.unitsNumbers(this.sudoku.rows));
     PubSub.publish("Hub:puzzle-begins")
   });
 }
@@ -132,7 +132,7 @@ Hub.prototype.getDataHard = function(){
     this.initialSudoku = this.sudoku.stringify();
     this.difficulty = "hard";
     // PubSub.publish("Hub:puzzle-ends");
-    PubSub.publish('Hub:render-values-view', this.sudoku.unitsNumbers(this.sudoku.rows));
+    PubSub.publish("Hub:initialise-values-view", this.sudoku.unitsNumbers(this.sudoku.rows));
     PubSub.publish("Hub:puzzle-begins")
   });
 }
@@ -181,6 +181,18 @@ Hub.prototype.completionMessage = function (gameObject) {
   messageContainer.innerHTML += `<p>User: ${gameObject.user}</p>`;
   messageContainer.innerHTML += `<p>Time: ${gameObject.time}</p>`;
   messageContainer.innerHTML += `<p>Difficulty: ${gameObject.difficulty}</p>`;
+  // const buttons = document.querySelectorAll("button");
+  // const anchors = document.querySelectorAll("a");
+  // const clearMessage = () => {
+  //   messageContainer.innerHTML = "";
+  //   removeEventListener("click", clearMessage)
+  // }
+  // for (let i = 0; i < buttons.length; i++) {
+  //   buttons[i].addEventListener("click", clearMessage)
+  // }
+  // for (let i = 0; i < anchors.length; i++) {
+  //   anchors[i].addEventListener("click", clearMessage)
+  // }
 }
 
 module.exports = Hub;

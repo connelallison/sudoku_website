@@ -4,9 +4,15 @@ const PubSub = require("../helpers/pub_sub.js");
 
 const SudokuValuesView = function (container) {
   this.container = container;
+  this.initialising = false;
 }
 
 SudokuValuesView.prototype.bindEvents = function () {
+  PubSub.subscribe("Hub:initialise-values-view", (evt) => {
+    this.initialising = true;
+    this.render(evt.detail);
+    this.initialising = false;
+  })
   PubSub.subscribe('Hub:render-values-view', (evt) => {
     // console.log(evt.detail);
     this.render(evt.detail);
@@ -38,7 +44,9 @@ SudokuValuesView.prototype.render = function (data) {
         disabled = false;
       } else {
         value = data[i][j];
-        disabled = true;
+        if (this.initialising) {
+          disabled = true;
+        }
       }
       // type="number" min="1" max="9"    << to be done later
       const gridSquareInput = document.createElement("input");
@@ -47,6 +55,7 @@ SudokuValuesView.prototype.render = function (data) {
       gridSquareInput.maxlength = 1;
       gridSquareInput.size = 3;
       gridSquareInput.value = value;
+      gridSquareInput.autocomplete = "off";
       gridSquareInput.addEventListener("input", (event) => {
         if (!["1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(event.target.value)) {
           event.target.value = "";
@@ -57,7 +66,13 @@ SudokuValuesView.prototype.render = function (data) {
         console.log(parseInt(event.target.value));
         console.log(i);
         console.log(j);
-        PubSub.publish("SudokuValuesView:attempt-fill-value", [i, j, parseInt(event.target.value)]);
+        let value;
+        if (event.target.value === "") {
+          value = 0;
+        } else {
+          value = event.target.value;
+        }
+        PubSub.publish("SudokuValuesView:attempt-fill-value", [i, j, parseInt(value)]);
       });
       PubSub.subscribe("Hub:illegal-move");
       gridSquare.appendChild(gridSquareInput);

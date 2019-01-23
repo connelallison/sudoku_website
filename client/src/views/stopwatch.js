@@ -7,6 +7,7 @@ const Stopwatch = function(container){
 }
 
 Stopwatch.prototype.populate = function () {
+  this.container.innerHTML = "";
   // const title = document.createElement("h3");
   const timerLabel = document.createElement("h2");
   // title.textContent = "Stopwatch";
