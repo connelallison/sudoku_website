@@ -141,10 +141,16 @@ td:.candidate-square {
   justify-content: space-around;
 }
 
-#user {
+#puzzle {
   border: dashed rosybrown;
   padding: 2px 10px;
   margin-bottom: 10px;
+}
+
+#puzzle p {
+  margin: 0px;
+  width: 100%;
+  text-align: left;
 }
 
 #new-users {
